@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bisriq574agub"]
+[gd_scene load_steps=19 format=3 uid="uid://bisriq574agub"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_efpgi"]
 [ext_resource type="Texture2D" uid="uid://c8akn2qvnx2gk" path="res://assets/Sprite Pack 5/2 - Lil Wiz/Idle_(32 x 32).png" id="2_ktr2h"]
@@ -106,9 +106,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ypa2e"]
 size = Vector2(20, 25)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eidvg"]
+size = Vector2(20, 23.5)
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -16)
-collision_mask = 2
+collision_mask = 22
 script = ExtResource("1_efpgi")
 
 [node name="animator" type="AnimationPlayer" parent="."]
@@ -119,13 +122,18 @@ animation = &"jumping"
 frame_progress = 0.869122
 
 [node name="collision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_ypa2e")
 
-[node name="camera" type="Camera2D" parent="."]
-position = Vector2(0, -36)
-limit_left = 0
-limit_bottom = 5000000
-limit_smoothed = true
-editor_draw_limits = true
+[node name="hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2(0, -0.25)
+shape = SubResource("RectangleShape2D_eidvg")
+debug_color = Color(0.988235, 0, 0.305882, 0.419608)
+
+[node name="remote" type="RemoteTransform2D" parent="."]
+
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]

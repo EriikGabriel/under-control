@@ -8,11 +8,19 @@
 
 config_version=5
 
+[DiscordSDK]
+
+EditorPresence/enabled=false
+
 [application]
 
 config/name="Under Control"
 run/main_scene="res://levels/level_1.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
+
+[autoload]
+
+DiscordSDKLoader="*res://addons/discord-sdk-gd/nodes/core_updater.gd"
 
 [display]
 
@@ -27,6 +35,10 @@ window/stretch/scale=2.0
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 
 [input]
 
