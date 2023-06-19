@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+
 const SPEED = 100.0
 const JUMP_FORCE = -400.0
 
@@ -46,3 +47,22 @@ func _on_hurtbox_body_entered(body: Node2D):
 func follow_camera(camera):
 	var camera_path = camera.get_path()
 	remote_tranform.remote_path = camera_path
+
+
+var inimigoA
+
+func _ready():
+	inimigoA = get_node("/root/World-1/Enemy/hitbox")  # Obtém a referência ao inimigoA
+
+	if inimigoA:
+		#print(inimigoA.inverter)  # Acessa a variável do inimigoA
+		
+		# Conecta o sinal para receber notificações de alteração
+		inimigoA.sentido_alterado.connect(_on_sentido_alterado)
+	else:
+		print("inimigoA não encontrado!")
+		
+		
+func _on_sentido_alterado(novoValor):
+	print(novoValor)
+
