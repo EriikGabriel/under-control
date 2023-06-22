@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 const SPEED = 100.0
 const JUMP_FORCE = -400.0
 
@@ -10,6 +9,7 @@ var is_jumping = false
 
 @onready var animation := $anim as AnimatedSprite2D
 @onready var remote_tranform := $remote as RemoteTransform2D
+@onready var enemy_hitbox := $"/root/World-1/Enemy/hitbox" as Area2D
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -22,10 +22,15 @@ func _physics_process(delta):
 		is_jumping = true
 	elif is_on_floor():
 		is_jumping = false
+		
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("move_left", "move_right")
+	
+	if enemy_hitbox.inverted_control: 
+			direction *= -1
+	
 	if direction:
 		velocity.x = direction * SPEED
 		animation.scale.x = direction
@@ -47,22 +52,7 @@ func _on_hurtbox_body_entered(body: Node2D):
 func follow_camera(camera):
 	var camera_path = camera.get_path()
 	remote_tranform.remote_path = camera_path
-
-
-var inimigoA
-
-func _ready():
-	inimigoA = get_node("/root/World-1/Enemy/hitbox")  # Obtém a referência ao inimigoA
-
-	if inimigoA:
-		#print(inimigoA.inverter)  # Acessa a variável do inimigoA
-		
-		# Conecta o sinal para receber notificações de alteração
-		inimigoA.sentido_alterado.connect(_on_sentido_alterado)
-	else:
-		print("inimigoA não encontrado!")
 		
 		
-func _on_sentido_alterado(novoValor):
-	print(novoValor)
+
 
