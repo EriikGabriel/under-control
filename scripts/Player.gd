@@ -7,9 +7,16 @@ const JUMP_FORCE = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_jumping = false
 
+# Control flag's
+var inverted_control = false
+
 @onready var animation := $anim as AnimatedSprite2D
 @onready var remote_tranform := $remote as RemoteTransform2D
 @onready var enemy_hitbox := $"/root/World-1/Enemy/hitbox" as Area2D
+
+func _ready():
+	# Conecta o sinal para receber notificações de alteração
+	enemy_hitbox.control_changed_direction.connect(_on_control_changed_direction)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -28,16 +35,16 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("move_left", "move_right")
 	
-	if enemy_hitbox.inverted_control: 
-			direction *= -1
+	if inverted_control:
+		direction *= -1
 	
-	if direction:
+	# Usar signal para delegar o inverted_control
+	if is_jumping:
+		animation.play("jumping")
+	elif direction:
 		velocity.x = direction * SPEED
 		animation.scale.x = direction
-		if !is_jumping:
-			animation.play("running")
-	elif is_jumping:
-		animation.play("jumping")
+		animation.play("running")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		animation.play("idle")
@@ -52,7 +59,8 @@ func _on_hurtbox_body_entered(body: Node2D):
 func follow_camera(camera):
 	var camera_path = camera.get_path()
 	remote_tranform.remote_path = camera_path
-		
-		
+
+func _on_control_changed_direction(direction_inverted):
+	inverted_control = direction_inverted
 
 

@@ -13,25 +13,25 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_pressed("move_left"):
-		if enemy_hitbox.inverted_control:
-			D_anim.play("press")
-		else:
+#		if enemy_hitbox.inverted_control:
+#			D_anim.play("press")
+#		else:
 			A_anim.play("press")
 	else:
-		if enemy_hitbox.inverted_control:
-			D_anim.play("default")
-		else:
+#		if enemy_hitbox.inverted_control:
+#			D_anim.play("default")
+#		else:
 			A_anim.play("default")
 	
 	if Input.is_action_pressed("move_right"):
-		if enemy_hitbox.inverted_control:
-			A_anim.play("press")
-		else:
+#		if enemy_hitbox.inverted_control:
+#			A_anim.play("press")
+#		else:
 			D_anim.play("press")
 	else:
-		if enemy_hitbox.inverted_control:
-			A_anim.play("default")
-		else:
+#		if enemy_hitbox.inverted_control:
+#			A_anim.play("default")
+#		else:
 			D_anim.play("default")
 	
 	if Input.is_action_pressed("jump"):

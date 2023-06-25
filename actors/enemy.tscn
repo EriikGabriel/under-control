@@ -1,178 +1,104 @@
-[gd_scene load_steps=14 format=3 uid="uid://8uvm041cw475"]
+[gd_scene load_steps=20 format=3 uid="uid://8uvm041cw475"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_h6la3"]
-[ext_resource type="Texture2D" uid="uid://cv4vvoqcp37it" path="res://assets/Sprite Pack 5/8 - Orc/Idle_(64 x 32).png" id="1_wtkaa"]
-[ext_resource type="Texture2D" uid="uid://diei31gs8eky2" path="res://assets/Sprite Pack 5/8 - Orc/Hurt_(64 x 32).png" id="2_v2ain"]
-[ext_resource type="Texture2D" uid="uid://d4l5dpkei0rrw" path="res://assets/Sprite Pack 5/8 - Orc/Walking_(64 x 32).png" id="4_pkah3"]
-[ext_resource type="Texture2D" uid="uid://c7qr3ro5uy2bq" path="res://assets/Sprite Pack 5/8 - Orc/Spear_Jab_(64 x 32).png" id="5_iq5tl"]
+[ext_resource type="Texture2D" uid="uid://chqfcfohdof7n" path="res://assets/Guardian/guardiao_attack-Sheet.png" id="2_m8ww3"]
+[ext_resource type="Texture2D" uid="uid://b2yd73e1tqj5g" path="res://assets/Guardian/guardiao_walking-Sheet.png" id="3_sftfj"]
 [ext_resource type="PackedScene" uid="uid://cdyc5enkm6a4l" path="res://prefabs/hitbox.tscn" id="6_35681"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_peqj3"]
-size = Vector2(26, 28)
+size = Vector2(23, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anvj8"]
+atlas = ExtResource("2_m8ww3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2brs"]
+atlas = ExtResource("2_m8ww3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjvm5"]
+atlas = ExtResource("2_m8ww3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exe51"]
+atlas = ExtResource("2_m8ww3")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3u6q"]
+atlas = ExtResource("2_m8ww3")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1nii"]
+atlas = ExtResource("3_sftfj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7mlv"]
+atlas = ExtResource("3_sftfj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nqod2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anvj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2brs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjvm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exe51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3u6q")
+}],
+"loop": true,
+"name": &"attacking",
+"speed": 7.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1nii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7mlv")
+}],
+"loop": true,
+"name": &"running",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_pvysh"]
 resource_name = "attack"
 length = 0.6
 loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("texture:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_iq5tl")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("texture:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [6]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("texture:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
 
 [sub_resource type="Animation" id="Animation_tp4r5"]
 resource_name = "hurt"
 length = 0.1
 loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("texture:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_v2ain")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("texture:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("texture:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
 [sub_resource type="Animation" id="Animation_byxi4"]
 resource_name = "idle"
 length = 0.7
 loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("texture:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_wtkaa")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("texture:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [7]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("texture:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
-}
 
 [sub_resource type="Animation" id="Animation_o1ics"]
 resource_name = "walk"
 length = 0.6
 loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("texture:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_pkah3")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("texture:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [6]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("texture:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cod17"]
 _data = {
@@ -183,7 +109,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6hirn"]
-size = Vector2(27, 29)
+size = Vector2(22, 29)
 
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(0, 1)
@@ -192,16 +118,16 @@ collision_mask = 2
 script = ExtResource("1_h6la3")
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -15)
+position = Vector2(1.5, -16)
 shape = SubResource("RectangleShape2D_peqj3")
 
-[node name="texture" type="Sprite2D" parent="."]
+[node name="anim" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -17)
-texture = ExtResource("1_wtkaa")
-hframes = 7
-frame = 6
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_nqod2")
+animation = &"running"
 
-[node name="anim" type="AnimationPlayer" parent="."]
+[node name="animator" type="AnimationPlayer" parent="."]
 autoplay = "walk"
 speed_scale = 0.5
 libraries = {
@@ -210,12 +136,11 @@ libraries = {
 
 [node name="raycast" type="RayCast2D" parent="."]
 position = Vector2(0, -9)
-target_position = Vector2(-30, 0)
-collision_mask = 6
+target_position = Vector2(-12, 0)
 
 [node name="hitbox" parent="." instance=ExtResource("6_35681")]
 
 [node name="collision" type="CollisionShape2D" parent="hitbox" groups=["enemies"]]
-position = Vector2(-3.5, -15.5)
+position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_6hirn")
 debug_color = Color(0.964706, 0.12549, 0.356863, 0.419608)

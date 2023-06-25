@@ -5,6 +5,9 @@ const JUMP_VELOCITY = -400.0
 
 var direction := -1
 
+@onready var animation := $anim as AnimatedSprite2D
+@onready var raycast := $raycast as RayCast2D
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -13,7 +16,15 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		
-	velocity.x = direction * SPEED * delta
-
+	
+	
+	if raycast.is_colliding():
+		animation.play("attacking");
+		velocity.x = 0
+	else:
+		velocity.x = direction * SPEED * delta
+		animation.play("running")
 
 	move_and_slide()
+	
+
