@@ -259,9 +259,7 @@ player_life = 3
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xiiwd")
-animation = &"death"
-frame = 8
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 2.5)

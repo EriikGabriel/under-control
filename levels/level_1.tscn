@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://crmd435d0r5l4"]
+[gd_scene load_steps=27 format=3 uid="uid://crmd435d0r5l4"]
 
 [ext_resource type="Script" path="res://scripts/world_1.gd" id="1_1yyjk"]
 [ext_resource type="Texture2D" uid="uid://chfmtphjiqwel" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_57j58"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://claquidcvstik" path="res://assets/Seasonal Tilesets/1 - Grassland/Extra_plants (16 x 16).png" id="5_o0ppm"]
 [ext_resource type="Texture2D" uid="uid://btfys6rs8k87a" path="res://assets/Keys/Classic/Dark/Spritesheets/A.png" id="6_b6jnn"]
 [ext_resource type="Script" path="res://scripts/ui_controls.gd" id="6_k64jl"]
+[ext_resource type="PackedScene" uid="uid://dokah3cvchfms" path="res://prefabs/platform.tscn" id="8_kle8d"]
 [ext_resource type="Texture2D" uid="uid://r7sa841yjf1b" path="res://assets/Keys/Classic/Dark/Spritesheets/D.png" id="9_64by2"]
 [ext_resource type="PackedScene" uid="uid://8uvm041cw475" path="res://actors/enemy.tscn" id="9_edicr"]
 [ext_resource type="Texture2D" uid="uid://xf2tvg5wrd35" path="res://assets/Keys/Classic/Dark/Single PNGs/D.png" id="11_7b7hu"]
@@ -532,7 +533,7 @@ layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
-layer_2/tile_data = PackedInt32Array(1179676, 917505, 4, 1245212, 917505, 5, 1179677, 983041, 4, 1179678, 1048577, 4, 1245214, 1048577, 5, 1179679, 1114113, 4, 1179680, 1179649, 4, 1245216, 1179649, 5, 1310750, 1048577, 5, 1376286, 1048577, 5, 1441822, 1048577, 5, 1310748, 917505, 5, 1376284, 917505, 5, 1441820, 917505, 5, 1376288, 1179649, 5, 1310752, 1179649, 5, 1441824, 1179649, 5)
+layer_2/tile_data = PackedInt32Array()
 
 [node name="Player" parent="." instance=ExtResource("3_v41y2")]
 position = Vector2(98, 273)
@@ -545,6 +546,9 @@ limit_left = 0
 limit_bottom = 5000000
 limit_smoothed = true
 editor_draw_limits = true
+
+[node name="Platform" parent="." instance=ExtResource("8_kle8d")]
+position = Vector2(485, 307)
 
 [node name="Controls" type="CanvasLayer" parent="."]
 script = ExtResource("6_k64jl")

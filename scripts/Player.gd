@@ -8,10 +8,12 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_jumping = false
 var is_death = false
 var knockback_vector = Vector2.ZERO
-@export var player_life := 10
 
 # Control flag's
 var inverted_control = false
+var disabled_key
+
+@export var player_life := 10
 
 @onready var animation := $anim as AnimatedSprite2D
 @onready var remote_tranform := $remote as RemoteTransform2D
@@ -20,13 +22,15 @@ var inverted_control = false
 @onready var colision := $collision as CollisionShape2D
 @onready var hurtbox := $hurtbox as Area2D
 @onready var enemy := $"/root/World-1/Enemy" as CharacterBody2D
+@onready var platform := $"/root/World-1/Platform" as StaticBody2D
 
 func _ready():
-	# Conecta o sinal para receber notificações de alteraçãoh
+	# Conecta o sinal para receber notificações de alteração
 	enemy.enemy_attack.connect(_on_hurtbox_body_entered)
+	platform.disable_key.connect(on_disable_key)
+	
 
 func _physics_process(delta):
-	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
@@ -37,14 +41,13 @@ func _physics_process(delta):
 	elif is_on_floor():
 		is_jumping = false
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("move_left", "move_right")
+	
+	if disabled_key == "RIGHT" && direction > 0: direction = 0
 	
 	if inverted_control:
 		direction *= -1
-	
-	# Usar signal para delegar o inverted_control
+
 	if !is_death: 
 		if is_jumping:
 			animation.play("jumping")
@@ -85,16 +88,17 @@ func take_damage(knockback_force := Vector2.ZERO, duration := 0.25):
 	player_life -= 1
 	
 	if knockback_force != Vector2.ZERO:
-		knockback_vector = knockback_force 
-		
 		var knockback_tween := get_tree().create_tween()
+		
+		knockback_vector = knockback_force 
 		knockback_tween.parallel().tween_property(self, "knockback_vector", Vector2.ZERO, duration)
 		animation.modulate = Color(1, 0, 0, 1)
 		knockback_tween.parallel().tween_property(animation, "modulate", Color(1,1,1,1), duration)
 
-		animation.play("hit")
-
-func _on_control_changed_direction(direction_inverted):
+func on_control_changed_direction(direction_inverted):
 	inverted_control = direction_inverted
+	
+func on_disable_key(key):
+	disabled_key = key
 
 
