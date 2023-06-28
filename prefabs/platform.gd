@@ -15,10 +15,8 @@ func _process(_delta):
 
 
 func _on_platform_body_entered(body):
-	print("collide")
 	if body.name == "Player":
 		emit_signal("disable_key", "RIGHT")
-
 
 func _on_platform_body_exited(body):
 	if body.name == "Player":

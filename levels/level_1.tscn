@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://crmd435d0r5l4"]
+[gd_scene load_steps=42 format=3 uid="uid://crmd435d0r5l4"]
 
 [ext_resource type="Script" path="res://scripts/world_1.gd" id="1_1yyjk"]
 [ext_resource type="Texture2D" uid="uid://chfmtphjiqwel" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_57j58"]
@@ -12,9 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://dokah3cvchfms" path="res://prefabs/platform.tscn" id="8_kle8d"]
 [ext_resource type="Texture2D" uid="uid://r7sa841yjf1b" path="res://assets/Keys/Classic/Dark/Spritesheets/D.png" id="9_64by2"]
 [ext_resource type="PackedScene" uid="uid://8uvm041cw475" path="res://actors/enemy.tscn" id="9_edicr"]
+[ext_resource type="Texture2D" uid="uid://b2ji4djd4382i" path="res://Mini FX, Items & UI/Mini UI/Health_Indicator_Black_Outline (8 x 8).png" id="10_s5gwe"]
 [ext_resource type="Texture2D" uid="uid://xf2tvg5wrd35" path="res://assets/Keys/Classic/Dark/Single PNGs/D.png" id="11_7b7hu"]
 [ext_resource type="Texture2D" uid="uid://fnees5o42jab" path="res://assets/Keys/Classic/Dark/Single PNGs/SPACE.png" id="11_7eisg"]
 [ext_resource type="Texture2D" uid="uid://sr33a7gxsfy" path="res://assets/Keys/Classic/Dark/Spritesheets/SPACE.png" id="12_o3cs2"]
+[ext_resource type="Texture2D" uid="uid://dokwpxgqbwhvj" path="res://Runes.png" id="13_pgixp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_maf35"]
 texture = ExtResource("1_57j58")
@@ -443,6 +445,227 @@ sources/1 = SubResource("TileSetAtlasSource_mdpk3")
 sources/5 = SubResource("TileSetAtlasSource_xwnpd")
 sources/6 = SubResource("TileSetAtlasSource_yijpd")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cim2"]
+atlas = ExtResource("13_pgixp")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq3jk"]
+atlas = ExtResource("13_pgixp")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyyac"]
+atlas = ExtResource("13_pgixp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgiwg"]
+atlas = ExtResource("13_pgixp")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q0cpl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cim2")
+}],
+"loop": true,
+"name": &"auto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq3jk")
+}],
+"loop": true,
+"name": &"disable",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyyac")
+}],
+"loop": true,
+"name": &"invert",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgiwg")
+}],
+"loop": true,
+"name": &"random",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntcdm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cim2")
+}],
+"loop": true,
+"name": &"auto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq3jk")
+}],
+"loop": true,
+"name": &"disable",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyyac")
+}],
+"loop": true,
+"name": &"invert",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgiwg")
+}],
+"loop": true,
+"name": &"random",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qupfn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cim2")
+}],
+"loop": true,
+"name": &"auto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq3jk")
+}],
+"loop": true,
+"name": &"disable",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyyac")
+}],
+"loop": true,
+"name": &"invert",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgiwg")
+}],
+"loop": true,
+"name": &"random",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hon8k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cim2")
+}],
+"loop": true,
+"name": &"auto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq3jk")
+}],
+"loop": true,
+"name": &"disable",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyyac")
+}],
+"loop": true,
+"name": &"invert",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgiwg")
+}],
+"loop": true,
+"name": &"random",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rimmw"]
+atlas = ExtResource("10_s5gwe")
+region = Rect2(1, 0, 7, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fechr"]
+atlas = ExtResource("10_s5gwe")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sqdgo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rimmw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fechr")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7qa2h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rimmw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fechr")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sgakf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rimmw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fechr")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpcvs"]
 atlas = ExtResource("6_b6jnn")
 region = Rect2(17, 0, 17, 16)
@@ -534,6 +757,13 @@ layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Scene"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 0
+layer_3/tile_data = PackedInt32Array(1114133, 196609, 5)
 
 [node name="Player" parent="." instance=ExtResource("3_v41y2")]
 position = Vector2(98, 273)
@@ -549,6 +779,66 @@ editor_draw_limits = true
 
 [node name="Platform" parent="." instance=ExtResource("8_kle8d")]
 position = Vector2(485, 307)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Runes" type="Node2D" parent="UI"]
+position = Vector2(77, 14)
+metadata/_edit_lock_ = true
+
+[node name="Rune_1" type="AnimatedSprite2D" parent="UI/Runes"]
+visible = false
+position = Vector2(-32, -8)
+sprite_frames = SubResource("SpriteFrames_q0cpl")
+animation = &"invert"
+centered = false
+
+[node name="Rune_2" type="AnimatedSprite2D" parent="UI/Runes"]
+visible = false
+position = Vector2(-12, -8)
+sprite_frames = SubResource("SpriteFrames_ntcdm")
+animation = &"invert"
+centered = false
+
+[node name="Rune_3" type="AnimatedSprite2D" parent="UI/Runes"]
+visible = false
+position = Vector2(8, -8)
+sprite_frames = SubResource("SpriteFrames_qupfn")
+animation = &"invert"
+centered = false
+
+[node name="Rune_4" type="AnimatedSprite2D" parent="UI/Runes"]
+visible = false
+position = Vector2(28, -8)
+sprite_frames = SubResource("SpriteFrames_hon8k")
+animation = &"invert"
+centered = false
+
+[node name="Lifes" type="Node2D" parent="UI"]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(20, 14)
+
+[node name="Heart_1" type="AnimatedSprite2D" parent="UI/Lifes"]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(-12, -4)
+sprite_frames = SubResource("SpriteFrames_sqdgo")
+centered = false
+
+[node name="Heart_2" type="AnimatedSprite2D" parent="UI/Lifes"]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(-3, -4)
+sprite_frames = SubResource("SpriteFrames_7qa2h")
+centered = false
+
+[node name="Heart_3" type="AnimatedSprite2D" parent="UI/Lifes"]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(6, -4)
+sprite_frames = SubResource("SpriteFrames_sgakf")
+centered = false
 
 [node name="Controls" type="CanvasLayer" parent="."]
 script = ExtResource("6_k64jl")

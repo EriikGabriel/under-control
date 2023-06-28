@@ -20,9 +20,10 @@ var disabled_key
 @onready var raycast_right := $raycast_right as RayCast2D
 @onready var raycast_left := $raycast_left as RayCast2D 
 @onready var colision := $collision as CollisionShape2D
-@onready var hurtbox := $hurtbox as Area2D
 @onready var enemy := $"/root/World-1/Enemy" as CharacterBody2D
 @onready var platform := $"/root/World-1/Platform" as StaticBody2D
+@onready var runes := $"/root/World-1/UI/Runes" as Node2D
+@onready var lifes := $"/root/World-1/UI/Lifes" as Node2D
 
 func _ready():
 	# Conecta o sinal para receber notificações de alteração
@@ -45,8 +46,14 @@ func _physics_process(delta):
 	
 	if disabled_key == "RIGHT" && direction > 0: direction = 0
 	
+	var children = runes.get_children()
+	
 	if inverted_control:
 		direction *= -1
+		children[0].play("invert")
+		children[0].visible = true
+	else: 
+		children[0].visible = false
 
 	if !is_death: 
 		if is_jumping:
@@ -66,16 +73,15 @@ func _physics_process(delta):
 
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
-	if player_life <= 1:
+	if raycast_right.is_colliding():
+		take_damage(Vector2(-200, -200))
+	elif raycast_left.is_colliding():
+		take_damage(Vector2(200, -200))
+	
+	if player_life <= 0:
 		animation.play('death')
 		is_death = true
 		colision.disabled = true
-		hurtbox.monitoring = false
-	else:
-		if raycast_right.is_colliding():
-			take_damage(Vector2(-200, -200))
-		elif raycast_left.is_colliding():
-			take_damage(Vector2(200, -200))
 	
 	if body.is_in_group("guardians"): 
 		inverted_control = !inverted_control
@@ -85,7 +91,10 @@ func follow_camera(camera):
 	remote_tranform.remote_path = camera_path
 
 func take_damage(knockback_force := Vector2.ZERO, duration := 0.25):
+	var hearts = lifes.get_children()
+	hearts[player_life - 1].play("empty")
 	player_life -= 1
+	
 	
 	if knockback_force != Vector2.ZERO:
 		var knockback_tween := get_tree().create_tween()
