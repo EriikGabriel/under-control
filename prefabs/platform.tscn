@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dokah3cvchfms"]
 
+[ext_resource type="Script" path="res://scripts/platform.gd" id="1_gutih"]
 [ext_resource type="Texture2D" uid="uid://08wntifp68h1" path="res://assets/Seasonal Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="1_kdt88"]
-[ext_resource type="Script" path="res://prefabs/platform.gd" id="1_uaetn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rcyw"]
 size = Vector2(72, 2)
@@ -11,7 +11,7 @@ size = Vector2(73.5, 5)
 
 [node name="Platform" type="StaticBody2D"]
 collision_layer = 2
-script = ExtResource("1_uaetn")
+script = ExtResource("1_gutih")
 
 [node name="platform" type="Area2D" parent="."]
 collision_layer = 2
