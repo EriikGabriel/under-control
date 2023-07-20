@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://crmd435d0r5l4"]
+[gd_scene load_steps=46 format=3 uid="uid://crmd435d0r5l4"]
 
 [ext_resource type="Script" path="res://scripts/world_1.gd" id="1_1yyjk"]
 [ext_resource type="Texture2D" uid="uid://chfmtphjiqwel" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_57j58"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://claquidcvstik" path="res://assets/Seasonal Tilesets/1 - Grassland/Extra_plants (16 x 16).png" id="5_o0ppm"]
 [ext_resource type="Texture2D" uid="uid://btfys6rs8k87a" path="res://assets/Keys/Classic/Dark/Spritesheets/A.png" id="6_b6jnn"]
 [ext_resource type="Script" path="res://scripts/ui_controls.gd" id="6_k64jl"]
+[ext_resource type="PackedScene" uid="uid://cmfck4elrooh5" path="res://prefabs/moving_platform.tscn" id="6_sbmcm"]
+[ext_resource type="PackedScene" uid="uid://ctngfmg5eafum" path="res://prefabs/falling_platform.tscn" id="7_0a8li"]
 [ext_resource type="PackedScene" uid="uid://dokah3cvchfms" path="res://prefabs/platform.tscn" id="8_kle8d"]
 [ext_resource type="Texture2D" uid="uid://r7sa841yjf1b" path="res://assets/Keys/Classic/Dark/Spritesheets/D.png" id="9_64by2"]
 [ext_resource type="PackedScene" uid="uid://8uvm041cw475" path="res://actors/enemy.tscn" id="9_edicr"]
@@ -733,6 +735,32 @@ layer_3/y_sort_origin = 0
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array()
 
+[node name="falling_platform" parent="." instance=ExtResource("7_0a8li")]
+position = Vector2(257, 235)
+scale = Vector2(1.199, 1.07)
+
+[node name="falling_platform2" parent="." instance=ExtResource("7_0a8li")]
+position = Vector2(256, 130)
+scale = Vector2(1.199, 1.07)
+
+[node name="falling_platform3" parent="." instance=ExtResource("7_0a8li")]
+position = Vector2(256, 185)
+scale = Vector2(1.199, 1.07)
+
+[node name="moving_platform" parent="." instance=ExtResource("6_sbmcm")]
+position = Vector2(446, 297)
+scale = Vector2(1.199, 1.07)
+distance = 64
+
+[node name="moving_platform2" parent="." instance=ExtResource("6_sbmcm")]
+position = Vector2(877, 298)
+scale = Vector2(1.199, 1.07)
+move_horizontal = false
+
+[node name="Platform" parent="." instance=ExtResource("8_kle8d")]
+position = Vector2(708, 380)
+scale = Vector2(1.199, 1.07)
+
 [node name="Player" parent="." instance=ExtResource("3_v41y2")]
 position = Vector2(98, 273)
 
@@ -744,10 +772,6 @@ limit_left = 0
 limit_bottom = 5000000
 limit_smoothed = true
 editor_draw_limits = true
-
-[node name="Platform" parent="." instance=ExtResource("8_kle8d")]
-position = Vector2(516, 290)
-scale = Vector2(1.199, 1.07)
 
 [node name="Sign" parent="." instance=ExtResource("18_fdem6")]
 position = Vector2(342, 280)
