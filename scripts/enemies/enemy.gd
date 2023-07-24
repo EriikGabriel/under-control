@@ -29,3 +29,6 @@ func _physics_process(delta):
 
 func _on_anim_animation_finished():
 	emit_signal("enemy_attack", self)
+
+
+

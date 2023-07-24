@@ -1,6 +1,6 @@
 [gd_scene load_steps=48 format=3 uid="uid://bisriq574agub"]
 
-[ext_resource type="Script" path="res://scripts/Player.gd" id="1_efpgi"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_r14og"]
 [ext_resource type="Texture2D" uid="uid://d07avkhf3fg1v" path="res://assets/Jane/Jane_Death-Sheet.png" id="2_0jo6a"]
 [ext_resource type="Texture2D" uid="uid://df8gu3l2ea23n" path="res://assets/Jane/Jane_attack-Sheet.png" id="2_67m1j"]
 [ext_resource type="Texture2D" uid="uid://2cdr6jvs60ut" path="res://assets/Jane/Jane_idle-Sheet.png" id="2_icusg"]
@@ -301,23 +301,23 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ypa2e"]
-size = Vector2(15, 27)
+size = Vector2(14, 27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eidvg"]
-size = Vector2(17, 26)
+size = Vector2(18, 25.5)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -16)
 collision_mask = 22
-script = ExtResource("1_efpgi")
-player_life = 3
+script = ExtResource("1_r14og")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xiiwd")
 animation = &"idle"
+metadata/_edit_lock_ = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 2.5)
+position = Vector2(-1, 2.5)
 shape = SubResource("RectangleShape2D_ypa2e")
 
 [node name="hurtbox" type="Area2D" parent="."]
@@ -325,19 +325,19 @@ collision_layer = 32
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
-position = Vector2(-0.5, 1)
+position = Vector2(-1, 1.75)
 shape = SubResource("RectangleShape2D_eidvg")
 debug_color = Color(0.988235, 0, 0.305882, 0.419608)
 
 [node name="remote" type="RemoteTransform2D" parent="."]
 
 [node name="raycast_right" type="RayCast2D" parent="."]
-position = Vector2(8, 0)
+position = Vector2(6, 5)
 target_position = Vector2(6, 0)
 collision_mask = 4
 
 [node name="raycast_left" type="RayCast2D" parent="."]
-position = Vector2(-9, 0)
+position = Vector2(-8, 5)
 target_position = Vector2(-6, 0)
 collision_mask = 4
 

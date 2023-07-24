@@ -1,27 +1,22 @@
-[gd_scene load_steps=46 format=3 uid="uid://crmd435d0r5l4"]
+[gd_scene load_steps=35 format=3 uid="uid://crmd435d0r5l4"]
 
-[ext_resource type="Script" path="res://scripts/world_1.gd" id="1_1yyjk"]
+[ext_resource type="Script" path="res://scripts/world/world_1.gd" id="1_1yyjk"]
 [ext_resource type="Texture2D" uid="uid://chfmtphjiqwel" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_57j58"]
 [ext_resource type="Texture2D" uid="uid://08wntifp68h1" path="res://assets/Seasonal Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="2_ckpl1"]
 [ext_resource type="PackedScene" uid="uid://bisriq574agub" path="res://actors/player.tscn" id="3_v41y2"]
 [ext_resource type="Texture2D" uid="uid://cxrhriw5n1g0c" path="res://assets/Seasonal Tilesets/5 - Misc. universal tiles/Blocks (16 x 16).png" id="4_pef58"]
-[ext_resource type="Texture2D" uid="uid://c7o85jtpel5gf" path="res://assets/Keys/Classic/Dark/Single PNGs/A.png" id="5_8ol8f"]
 [ext_resource type="Texture2D" uid="uid://claquidcvstik" path="res://assets/Seasonal Tilesets/1 - Grassland/Extra_plants (16 x 16).png" id="5_o0ppm"]
-[ext_resource type="Texture2D" uid="uid://btfys6rs8k87a" path="res://assets/Keys/Classic/Dark/Spritesheets/A.png" id="6_b6jnn"]
-[ext_resource type="Script" path="res://scripts/ui_controls.gd" id="6_k64jl"]
+[ext_resource type="Script" path="res://scripts/ui/ui_controls.gd" id="6_k64jl"]
 [ext_resource type="PackedScene" uid="uid://cmfck4elrooh5" path="res://prefabs/moving_platform.tscn" id="6_sbmcm"]
 [ext_resource type="PackedScene" uid="uid://ctngfmg5eafum" path="res://prefabs/falling_platform.tscn" id="7_0a8li"]
-[ext_resource type="PackedScene" uid="uid://dokah3cvchfms" path="res://prefabs/platform.tscn" id="8_kle8d"]
-[ext_resource type="Texture2D" uid="uid://r7sa841yjf1b" path="res://assets/Keys/Classic/Dark/Spritesheets/D.png" id="9_64by2"]
-[ext_resource type="PackedScene" uid="uid://8uvm041cw475" path="res://actors/enemy.tscn" id="9_edicr"]
+[ext_resource type="PackedScene" uid="uid://8uvm041cw475" path="res://actors/Enemies/enemy.tscn" id="9_edicr"]
 [ext_resource type="Texture2D" uid="uid://dokwpxgqbwhvj" path="res://assets/Mini FX, Items & UI/Mini UI/Runes.png" id="9_uoqao"]
 [ext_resource type="Texture2D" uid="uid://b2ji4djd4382i" path="res://assets/Mini FX, Items & UI/Mini UI/Health_Indicator_Black_Outline (8 x 8).png" id="10_s5gwe"]
-[ext_resource type="Texture2D" uid="uid://xf2tvg5wrd35" path="res://assets/Keys/Classic/Dark/Single PNGs/D.png" id="11_7b7hu"]
-[ext_resource type="Texture2D" uid="uid://fnees5o42jab" path="res://assets/Keys/Classic/Dark/Single PNGs/SPACE.png" id="11_7eisg"]
-[ext_resource type="Texture2D" uid="uid://sr33a7gxsfy" path="res://assets/Keys/Classic/Dark/Spritesheets/SPACE.png" id="12_o3cs2"]
 [ext_resource type="PackedScene" uid="uid://blerq1hctcr5y" path="res://prefabs/sign.tscn" id="18_fdem6"]
-[ext_resource type="Script" path="res://scripts/action_menu.gd" id="19_lp8qe"]
 [ext_resource type="Texture2D" uid="uid://btcobo1ha7k2" path="res://assets/Mini FX, Items & UI/GUI/Buttons.png" id="19_tkegl"]
+[ext_resource type="Script" path="res://scripts/ui/action_menu.gd" id="20_hlx3u"]
+[ext_resource type="PackedScene" uid="uid://cdtk0dcs83ykc" path="res://actors/Enemies/manifestation.tscn" id="22_wsmyo"]
+[ext_resource type="SpriteFrames" uid="uid://dc62xa123hbhb" path="res://spriteframes/keys.tres" id="24_yol2j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_maf35"]
 texture = ExtResource("1_57j58")
@@ -636,75 +631,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fpcvs"]
-atlas = ExtResource("6_b6jnn")
-region = Rect2(17, 0, 17, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_74mhc"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_8ol8f")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fpcvs")
-}],
-"loop": false,
-"name": &"press",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k4thj"]
-atlas = ExtResource("9_64by2")
-region = Rect2(17, 0, 17, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4kj1j"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("11_7b7hu")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k4thj")
-}],
-"loop": false,
-"name": &"press",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vh1qt"]
-atlas = ExtResource("12_o3cs2")
-region = Rect2(67, 0, 67, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_5l8mg"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("11_7eisg")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vh1qt")
-}],
-"loop": false,
-"name": &"press",
-"speed": 5.0
-}]
-
 [node name="World-1" type="Node2D"]
 script = ExtResource("1_1yyjk")
 
@@ -735,7 +661,7 @@ layer_3/y_sort_origin = 0
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array()
 
-[node name="falling_platform" parent="." instance=ExtResource("7_0a8li")]
+[node name="falling_platform1" parent="." instance=ExtResource("7_0a8li")]
 position = Vector2(257, 235)
 scale = Vector2(1.199, 1.07)
 
@@ -747,7 +673,7 @@ scale = Vector2(1.199, 1.07)
 position = Vector2(256, 185)
 scale = Vector2(1.199, 1.07)
 
-[node name="moving_platform" parent="." instance=ExtResource("6_sbmcm")]
+[node name="moving_platform1" parent="." instance=ExtResource("6_sbmcm")]
 position = Vector2(446, 297)
 scale = Vector2(1.199, 1.07)
 distance = 64
@@ -757,15 +683,14 @@ position = Vector2(877, 298)
 scale = Vector2(1.199, 1.07)
 move_horizontal = false
 
-[node name="Platform" parent="." instance=ExtResource("8_kle8d")]
-position = Vector2(708, 380)
-scale = Vector2(1.199, 1.07)
-
 [node name="Player" parent="." instance=ExtResource("3_v41y2")]
 position = Vector2(98, 273)
 
 [node name="Enemy" parent="." groups=["guardians"] instance=ExtResource("9_edicr")]
-position = Vector2(319, 289)
+position = Vector2(783, 289)
+
+[node name="Manifestation" parent="." instance=ExtResource("22_wsmyo")]
+position = Vector2(235, 271)
 
 [node name="Camera" type="Camera2D" parent="."]
 limit_left = 0
@@ -780,7 +705,6 @@ position = Vector2(342, 280)
 
 [node name="Runes" type="Node2D" parent="UI"]
 position = Vector2(77, 14)
-metadata/_edit_lock_ = true
 
 [node name="Rune_2" type="AnimatedSprite2D" parent="UI/Runes"]
 visible = false
@@ -788,6 +712,7 @@ position = Vector2(-12, -8)
 sprite_frames = SubResource("SpriteFrames_ntcdm")
 animation = &"invert"
 centered = false
+metadata/_edit_lock_ = true
 
 [node name="Rune_3" type="AnimatedSprite2D" parent="UI/Runes"]
 visible = false
@@ -795,6 +720,7 @@ position = Vector2(8, -8)
 sprite_frames = SubResource("SpriteFrames_qupfn")
 animation = &"invert"
 centered = false
+metadata/_edit_lock_ = true
 
 [node name="Rune_4" type="AnimatedSprite2D" parent="UI/Runes"]
 visible = false
@@ -802,6 +728,7 @@ position = Vector2(28, -8)
 sprite_frames = SubResource("SpriteFrames_hon8k")
 animation = &"invert"
 centered = false
+metadata/_edit_lock_ = true
 
 [node name="Lifes" type="Node2D" parent="UI"]
 texture_filter = 1
@@ -814,6 +741,7 @@ texture_repeat = 1
 position = Vector2(-12, -4)
 sprite_frames = SubResource("SpriteFrames_sqdgo")
 centered = false
+metadata/_edit_lock_ = true
 
 [node name="Heart_2" type="AnimatedSprite2D" parent="UI/Lifes"]
 texture_filter = 1
@@ -821,6 +749,7 @@ texture_repeat = 1
 position = Vector2(-3, -4)
 sprite_frames = SubResource("SpriteFrames_7qa2h")
 centered = false
+metadata/_edit_lock_ = true
 
 [node name="Heart_3" type="AnimatedSprite2D" parent="UI/Lifes"]
 texture_filter = 1
@@ -828,32 +757,39 @@ texture_repeat = 1
 position = Vector2(6, -4)
 sprite_frames = SubResource("SpriteFrames_sgakf")
 centered = false
+metadata/_edit_lock_ = true
 
 [node name="Controls" type="CanvasLayer" parent="."]
 script = ExtResource("6_k64jl")
 
-[node name="A" type="AnimatedSprite2D" parent="Controls"]
+[node name="LEFT" type="AnimatedSprite2D" parent="Controls"]
 position = Vector2(29, 141)
-sprite_frames = SubResource("SpriteFrames_74mhc")
-autoplay = "default"
+sprite_frames = ExtResource("24_yol2j")
+animation = &"default [A]"
+autoplay = "default [A]"
 centered = false
+metadata/_edit_lock_ = true
 
-[node name="D" type="AnimatedSprite2D" parent="Controls"]
+[node name="RIGHT" type="AnimatedSprite2D" parent="Controls"]
 position = Vector2(49, 141)
-sprite_frames = SubResource("SpriteFrames_4kj1j")
-autoplay = "default"
+sprite_frames = ExtResource("24_yol2j")
+animation = &"default [D]"
+autoplay = "default [D]"
 centered = false
+metadata/_edit_lock_ = true
 
 [node name="SPACE" type="AnimatedSprite2D" parent="Controls"]
 position = Vector2(118, 141)
-sprite_frames = SubResource("SpriteFrames_5l8mg")
-autoplay = "default"
+sprite_frames = ExtResource("24_yol2j")
+animation = &"default [SPACE]"
+autoplay = "default [SPACE]"
 centered = false
+metadata/_edit_lock_ = true
 
 [node name="Action Menu" type="CanvasLayer" parent="."]
 process_mode = 3
 visible = false
-script = ExtResource("19_lp8qe")
+script = ExtResource("20_hlx3u")
 
 [node name="Background" type="ColorRect" parent="Action Menu"]
 offset_right = 327.0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://8uvm041cw475"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_h6la3"]
+[ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_6ntif"]
 [ext_resource type="Texture2D" uid="uid://chqfcfohdof7n" path="res://assets/Guardian/guardiao_attack-Sheet.png" id="2_m8ww3"]
 [ext_resource type="Texture2D" uid="uid://b2yd73e1tqj5g" path="res://assets/Guardian/guardiao_walking-Sheet.png" id="3_sftfj"]
 [ext_resource type="PackedScene" uid="uid://cdyc5enkm6a4l" path="res://prefabs/hitbox.tscn" id="6_35681"]
@@ -109,13 +109,13 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6hirn"]
-size = Vector2(18, 29)
+size = Vector2(21, 29.5)
 
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(0, 1)
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_h6la3")
+script = ExtResource("1_6ntif")
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(4, -16)
@@ -136,13 +136,13 @@ libraries = {
 }
 
 [node name="raycast" type="RayCast2D" parent="."]
-position = Vector2(0, -9)
-target_position = Vector2(-11, 0)
+position = Vector2(-6, -9)
+target_position = Vector2(-5, 0)
 
 [node name="hitbox" parent="." instance=ExtResource("6_35681")]
 
 [node name="collision" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(3, -16)
+position = Vector2(4.5, -16.25)
 shape = SubResource("RectangleShape2D_6hirn")
 debug_color = Color(0.964706, 0.12549, 0.356863, 0.419608)
 

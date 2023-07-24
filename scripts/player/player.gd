@@ -19,7 +19,7 @@ var direction
 var inverted_control = false
 var disabled_keys: Array[String]
 
-@export var player_life := 10
+@export var player_life := 3
 
 @onready var animation := $anim as AnimatedSprite2D
 @onready var remote_tranform := $remote as RemoteTransform2D
@@ -29,14 +29,14 @@ var disabled_keys: Array[String]
 @onready var hurtbox := $hurtbox as Area2D
 
 @onready var enemy := $"/root/World-1/Enemy" as CharacterBody2D
-@onready var platform := $"/root/World-1/Platform" as StaticBody2D
+
 @onready var runes := $"/root/World-1/UI/Runes" as Node2D
 @onready var lifes := $"/root/World-1/UI/Lifes" as Node2D
 
 func _ready():
 	# Conecta os sinais para receber notificações de alteração
 	enemy.enemy_attack.connect(_on_hurtbox_body_entered)
-	platform.disable_keys.connect(on_disable_keys)
+#	platform.disable_keys.connect(on_disable_keys)
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -55,19 +55,19 @@ func _physics_process(delta):
 		is_attacking = false
 		
 	direction = Input.get_axis("move_left", "move_right")
-	
+
 	if disabled_keys.has("KEY_RIGHT") && direction > 0: direction = 0
 	
 	var children = runes.get_children()
 	
 	if inverted_control:
-		direction *= -1
+		_invert_control()
 		children[0].play("invert")
 		children[0].visible = true
 	else: 
 		children[0].visible = false
 	
-	if direction != 0:
+	if direction != 0 && !is_death:
 		velocity.x = direction * SPEED
 		animation.scale.x = direction
 	else:
@@ -95,7 +95,7 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 		set_collision_layer_value(1, false) # Player layer
 		set_collision_mask_value(3, false) # Enimy mask
 
-	if body.is_in_group("guardians"): 
+	if body.is_in_group("guardians"):
 		inverted_control = !inverted_control
 
 func follow_camera(camera):
@@ -103,6 +103,7 @@ func follow_camera(camera):
 	remote_tranform.remote_path = camera_path
 
 func take_damage(knockback_force := Vector2.ZERO, duration := 0.25):
+	
 	var hearts = lifes.get_children()
 	hearts[player_life - 1].play("empty")
 	player_life -= 1
@@ -114,6 +115,7 @@ func take_damage(knockback_force := Vector2.ZERO, duration := 0.25):
 		knockback_tween.parallel().tween_property(self, "knockback_vector", Vector2.ZERO, duration)
 		animation.modulate = Color(1, 0, 0, 1)
 		knockback_tween.parallel().tween_property(animation, "modulate", Color(1,1,1,1), duration)
+	
 	
 	is_hurt = true
 	await get_tree().create_timer(.3).timeout
@@ -139,8 +141,12 @@ func _set_state():
 	if animation.animation != state:
 		animation.play(state)
 
-func on_control_changed_direction(direction_inverted):
-	inverted_control = direction_inverted
+#func on_control_changed_direction(direction_inverted):
+#	inverted_control = direction_inverted
 	
 func on_disable_keys(keys: Array[String]):
 	disabled_keys = keys
+
+# Control changes
+func _invert_control():
+	direction *= -1
