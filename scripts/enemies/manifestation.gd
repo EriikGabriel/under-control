@@ -7,6 +7,8 @@ var direction = -1
 
 var default_keys_events: Dictionary = {}
 
+var keys_changes_array: Array[SignalBus.KeyChange] = []
+
 @export var change_keys: Array[StringName] = []
 @export var potential_keys: Array[Key] = []
 
@@ -14,6 +16,8 @@ var default_keys_events: Dictionary = {}
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
+	SignalBus.on_keys_changed.connect(_on_signal_keys_changed)
+	
 	for action_name in change_keys:
 		default_keys_events[action_name] = InputMap.action_get_events(action_name)[0]
 
@@ -31,15 +35,23 @@ func _physics_process(delta):
 
 func _on_area_body_entered(body):
 	if body.name == "Player": 
-		_random_control()
-		SignalBus.on_keys_changed.emit(SignalBus.KeyChange.RANDOM)
+		_random_keys()
+		
+		keys_changes_array.clear()
+		
+		if(!keys_changes_array.has(SignalBus.KeyChange.RANDOM)):
+			keys_changes_array.append(SignalBus.KeyChange.RANDOM)
+		SignalBus.on_keys_changed.emit(keys_changes_array)
 
 func _on_area_body_exited(body):
 	if body.name == "Player": 
-		_reset_control()
-		SignalBus.on_keys_changed.emit(SignalBus.KeyChange.NORMAL)
+		_reset_keys()
+		
+		keys_changes_array.clear()
+		keys_changes_array.append(SignalBus.KeyChange.NORMAL)
+		SignalBus.on_keys_changed.emit(keys_changes_array)
 
-func _random_control():
+func _random_keys():
 	var keys_quantity = change_keys.size()
 	
 	if potential_keys.size() < keys_quantity: return
@@ -64,8 +76,10 @@ func _random_control():
 		
 		InputMap.action_add_event(change_keys[i] + "_mod", event)
 
-func _reset_control():
+func _reset_keys():
 	for action in default_keys_events:
 		InputMap.action_erase_events(action)
 		InputMap.action_add_event(action, default_keys_events[action])
-	
+
+func _on_signal_keys_changed(changes: Array[SignalBus.KeyChange]):
+	keys_changes_array = changes

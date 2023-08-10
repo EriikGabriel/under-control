@@ -50,8 +50,8 @@ func _process(_delta):
 	if disabled_keys.has("KEY_SPACE"):
 		space_anim.play(space_anim_name.format({"state": "press"}))
 
-func _on_signal_keys_changed(change):
-	keys_modified = change != SignalBus.KeyChange.NORMAL
+func _on_signal_keys_changed(changes: Array[SignalBus.KeyChange]):
+	keys_modified = !changes.has(SignalBus.KeyChange.NORMAL)
 
 func on_disable_key(keys):
 	disabled_keys = keys

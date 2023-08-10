@@ -14,7 +14,7 @@ func _ready() -> void:
 	
 	var pos_x = -12
 	for i in player_health:
-		var heart_instance: Node2D = heart.instantiate()
+		var heart_instance: AnimatedSprite2D = heart.instantiate()
 		heart_instance.position = Vector2(pos_x, -4)
 		add_child(heart_instance)
 		pos_x += 9

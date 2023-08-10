@@ -314,9 +314,7 @@ script = ExtResource("1_r14og")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xiiwd")
-animation = &"attack"
-frame = 6
-frame_progress = 1.0
+animation = &"idle"
 metadata/_edit_lock_ = true
 
 [node name="collision" type="CollisionShape2D" parent="."]

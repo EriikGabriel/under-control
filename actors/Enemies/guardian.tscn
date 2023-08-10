@@ -1,9 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://8uvm041cw475"]
+[gd_scene load_steps=21 format=3 uid="uid://8uvm041cw475"]
 
 [ext_resource type="Script" path="res://scripts/enemies/guardian.gd" id="1_jbp22"]
 [ext_resource type="Texture2D" uid="uid://chqfcfohdof7n" path="res://assets/Guardian/guardiao_attack-Sheet.png" id="2_m8ww3"]
 [ext_resource type="Texture2D" uid="uid://b2yd73e1tqj5g" path="res://assets/Guardian/guardiao_walking-Sheet.png" id="3_sftfj"]
-[ext_resource type="PackedScene" uid="uid://cdyc5enkm6a4l" path="res://prefabs/hitbox.tscn" id="6_35681"]
+[ext_resource type="PackedScene" uid="uid://dp4v8b37tpt3r" path="res://prefabs/logical/hitbox.tscn" id="6_35681"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_peqj3"]
 size = Vector2(18, 30)
@@ -108,6 +108,9 @@ _data = {
 "walk": SubResource("Animation_o1ics")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hbium"]
+size = Vector2(8, 30)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6hirn"]
 size = Vector2(21, 29.5)
 
@@ -135,9 +138,12 @@ libraries = {
 "": SubResource("AnimationLibrary_cod17")
 }
 
-[node name="raycast" type="RayCast2D" parent="."]
-position = Vector2(-6, -9)
-target_position = Vector2(-5, 0)
+[node name="spell_area" type="Area2D" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="spell_area"]
+position = Vector2(-9, -16)
+shape = SubResource("RectangleShape2D_hbium")
+debug_color = Color(0.957802, 0.000227562, 0.824826, 0.156863)
 
 [node name="hitbox" parent="." instance=ExtResource("6_35681")]
 
@@ -147,3 +153,4 @@ shape = SubResource("RectangleShape2D_6hirn")
 debug_color = Color(0.964706, 0.12549, 0.356863, 0.419608)
 
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
+[connection signal="body_entered" from="spell_area" to="." method="_on_spell_area_body_entered"]

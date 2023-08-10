@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dt8qmg0w4ia34" path="res://assets/Manifestacao/Manifestacao_Death-Sheet.png" id="2_8y63a"]
 [ext_resource type="Texture2D" uid="uid://b26hr4l5oje4o" path="res://assets/Area Textures/480x480/pipo-gate01c.png" id="2_rpfre"]
 [ext_resource type="Texture2D" uid="uid://dri1biu3wffev" path="res://assets/Manifestacao/Manifestacao_hit-Sheet.png" id="3_f1v7o"]
-[ext_resource type="Script" path="res://scripts/logical/hitbox.gd" id="7_uvrho"]
+[ext_resource type="PackedScene" uid="uid://dp4v8b37tpt3r" path="res://prefabs/logical/hitbox.tscn" id="7_jpamt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5cix"]
 atlas = ExtResource("2_rpfre")
@@ -328,7 +328,7 @@ size = Vector2(20, 5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ngf65"]
 radius = 73.0274
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0qqx2"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_5cr3c"]
 radius = 15.0
 
 [node name="Manifestation" type="CharacterBody2D"]
@@ -366,13 +366,11 @@ position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_ngf65")
 debug_color = Color(0.957802, 0.000227562, 0.824826, 0.156863)
 
-[node name="hitbox" type="Area2D" parent="."]
-script = ExtResource("7_uvrho")
+[node name="hitbox" parent="." instance=ExtResource("7_jpamt")]
 
 [node name="shape" type="CollisionShape2D" parent="hitbox"]
-shape = SubResource("CircleShape2D_0qqx2")
+shape = SubResource("CircleShape2D_5cr3c")
 debug_color = Color(0.8, 0, 0.12549, 0.419608)
 
 [connection signal="body_entered" from="spell_area" to="." method="_on_area_body_entered"]
 [connection signal="body_exited" from="spell_area" to="." method="_on_area_body_exited"]
-[connection signal="body_entered" from="hitbox" to="hitbox" method="_on_body_entered"]

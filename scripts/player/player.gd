@@ -31,8 +31,6 @@ var disabled_keys: Array[String]
 @onready var colision := $collision as CollisionShape2D
 @onready var hurtbox := $hurtbox as Area2D
 
-@onready var runes := $"/root/World-1/UI/Runes" as Control
-
 func _ready():
 	# Conecta os sinais para receber notificações de alteração
 	SignalBus.on_controls_changed.connect(_on_signal_controls_changed)
@@ -65,15 +63,9 @@ func _physics_process(delta):
 
 	if disabled_keys.has("KEY_RIGHT") && direction > 0: direction = 0
 	
-	var children = runes.get_children()
-	
 	if control_inverted:
 		_invert_control()
-		children[0].play("invert")
-		children[0].visible = true
-	else: 
-		children[0].visible = false
-	
+
 	if direction != 0 && !is_death:
 		velocity.x = direction * SPEED
 		animation.scale.x = direction
@@ -132,12 +124,12 @@ func on_disable_keys(keys: Array[String]):
 	disabled_keys = keys
 
 # Controls changes
-func _on_signal_controls_changed(change):
-	control_inverted = change == SignalBus.ControlChange.INVERT
-	
+func _on_signal_controls_changed(changes: Array[SignalBus.ControlChange]):
+	control_inverted = changes.has(SignalBus.ControlChange.INVERT)
+
 # Keys changes	
-func _on_signal_keys_changed(change):
-	keys_modified = change != SignalBus.KeyChange.NORMAL
+func _on_signal_keys_changed(changes: Array[SignalBus.KeyChange]):
+	keys_modified = !changes.has(SignalBus.KeyChange.NORMAL)
 
 # Health changes
 func _on_signal_health_changed(node: Node, amount_changed: int, current_health: int):
