@@ -29,33 +29,40 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-
 func _on_area_body_entered(body):
-	if body.name == "Player": _random_control()
+	if body.name == "Player": 
+		_random_control()
+		SignalBus.on_keys_changed.emit(SignalBus.KeyChange.RANDOM)
 
 func _on_area_body_exited(body):
-	if body.name == "Player": _reset_control()
+	if body.name == "Player": 
+		_reset_control()
+		SignalBus.on_keys_changed.emit(SignalBus.KeyChange.NORMAL)
 
 func _random_control():
 	var keys_quantity = change_keys.size()
 	
 	if potential_keys.size() < keys_quantity: return
 	
-	for key_name in change_keys:
-		InputMap.action_erase_events(key_name)
-	
 	var new_controller_keys: Array[Key] = []
 	
 	while new_controller_keys.size() < keys_quantity:
 		var key = potential_keys.pick_random()
-		
+
 		if !new_controller_keys.has(key): 
 			new_controller_keys.append(key)
+			
+	for key_name in change_keys:
+		if InputMap.has_action(key_name + "_mod"):
+			InputMap.action_erase_events(key_name + "_mod")
+		else:
+			InputMap.add_action(key_name + "_mod")
 	
 	for i in keys_quantity:
 		var event = InputEventKey.new()
 		event.keycode = new_controller_keys[i]
-		InputMap.action_add_event(change_keys[i], event)
+		
+		InputMap.action_add_event(change_keys[i] + "_mod", event)
 
 func _reset_control():
 	for action in default_keys_events:

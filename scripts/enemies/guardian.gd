@@ -8,6 +8,8 @@ var direction := -1
 @onready var animation := $anim as AnimatedSprite2D
 @onready var raycast := $raycast as RayCast2D
 
+var control_inverted := false
+
 signal enemy_attack
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -21,6 +23,14 @@ func _physics_process(delta):
 	if raycast.is_colliding():
 		animation.play("attacking");
 		velocity.x = 0
+		
+		if control_inverted:
+			SignalBus.emit_signal("on_controls_changed", SignalBus.ChangeType.NORMAL)
+			control_inverted = false
+		else:
+			SignalBus.emit_signal("on_controls_changed", SignalBus.ChangeType.INVERT)
+			control_inverted = true
+		
 	else:
 		velocity.x = direction * SPEED * delta
 		animation.play("running")

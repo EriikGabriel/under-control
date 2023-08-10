@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.1", "Forward Plus")
 
 [autoload]
 
+SignalBus="*res://signal_bus.gd"
 DiscordSDKLoader="*res://addons/discord-sdk-gd/nodes/core_updater.gd"
 
 [display]

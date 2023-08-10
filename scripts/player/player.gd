@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 const SPEED = 100.0
 const JUMP_FORCE = -400.0
 
@@ -16,10 +18,11 @@ var knockback_vector = Vector2.ZERO
 var direction
 
 # Control flag's
-var inverted_control = false
+var control_inverted = false
+var keys_modified = false
 var disabled_keys: Array[String]
 
-@export var player_life := 3
+@export var life := 3
 
 @onready var animation := $anim as AnimatedSprite2D
 @onready var remote_tranform := $remote as RemoteTransform2D
@@ -28,14 +31,13 @@ var disabled_keys: Array[String]
 @onready var colision := $collision as CollisionShape2D
 @onready var hurtbox := $hurtbox as Area2D
 
-@onready var enemy := $"/root/World-1/Enemy" as CharacterBody2D
-
-@onready var runes := $"/root/World-1/UI/Runes" as Node2D
-@onready var lifes := $"/root/World-1/UI/Lifes" as Node2D
+@onready var runes := $"/root/World-1/UI/Runes" as Control
 
 func _ready():
 	# Conecta os sinais para receber notificações de alteração
-	enemy.enemy_attack.connect(_on_hurtbox_body_entered)
+	SignalBus.on_controls_changed.connect(_on_signal_controls_changed)
+	SignalBus.on_keys_changed.connect(_on_signal_keys_changed)
+	SignalBus.on_health_changed.connect(_on_signal_health_changed)
 #	platform.disable_keys.connect(on_disable_keys)
 
 func _physics_process(delta):
@@ -43,7 +45,9 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		
 	# Handle Jump.
-	if Input.is_action_just_pressed("jump") && !disabled_keys.has("KEY_SPACE") && is_on_floor():
+	var action_jump = "jump_mod" if keys_modified else "jump"
+	
+	if Input.is_action_just_pressed(action_jump) && !disabled_keys.has("KEY_SPACE") && is_on_floor():
 		velocity.y = JUMP_FORCE
 		is_jumping = true
 	elif is_on_floor():
@@ -53,14 +57,17 @@ func _physics_process(delta):
 		is_attacking = true
 		await get_tree().create_timer(1.5).timeout
 		is_attacking = false
-		
-	direction = Input.get_axis("move_left", "move_right")
+	
+	if keys_modified:
+		direction = Input.get_axis("move_left_mod", "move_right_mod")
+	else: 
+		direction = Input.get_axis("move_left", "move_right")
 
 	if disabled_keys.has("KEY_RIGHT") && direction > 0: direction = 0
 	
 	var children = runes.get_children()
 	
-	if inverted_control:
+	if control_inverted:
 		_invert_control()
 		children[0].play("invert")
 		children[0].visible = true
@@ -84,30 +91,11 @@ func _physics_process(delta):
 		if collision.get_collider().has_method("has_collided_with"):
 			collision.get_collider().has_collided_with(collision, self)
 
-func _on_hurtbox_body_entered(body: Node2D) -> void:
-	if raycast_right.is_colliding():
-		take_damage(Vector2(-200, -200))
-	elif raycast_left.is_colliding():
-		take_damage(Vector2(200, -200))
-	
-	if player_life <= 0:
-		is_death = true
-		set_collision_layer_value(1, false) # Player layer
-		set_collision_mask_value(3, false) # Enimy mask
-
-	if body.is_in_group("guardians"):
-		inverted_control = !inverted_control
-
 func follow_camera(camera):
 	var camera_path = camera.get_path()
 	remote_tranform.remote_path = camera_path
 
 func take_damage(knockback_force := Vector2.ZERO, duration := 0.25):
-	
-	var hearts = lifes.get_children()
-	hearts[player_life - 1].play("empty")
-	player_life -= 1
-	
 	if knockback_force != Vector2.ZERO:
 		var knockback_tween := get_tree().create_tween()
 		
@@ -115,7 +103,6 @@ func take_damage(knockback_force := Vector2.ZERO, duration := 0.25):
 		knockback_tween.parallel().tween_property(self, "knockback_vector", Vector2.ZERO, duration)
 		animation.modulate = Color(1, 0, 0, 1)
 		knockback_tween.parallel().tween_property(animation, "modulate", Color(1,1,1,1), duration)
-	
 	
 	is_hurt = true
 	await get_tree().create_timer(.3).timeout
@@ -141,12 +128,30 @@ func _set_state():
 	if animation.animation != state:
 		animation.play(state)
 
-#func on_control_changed_direction(direction_inverted):
-#	inverted_control = direction_inverted
-	
 func on_disable_keys(keys: Array[String]):
 	disabled_keys = keys
 
-# Control changes
+# Controls changes
+func _on_signal_controls_changed(change):
+	control_inverted = change == SignalBus.ControlChange.INVERT
+	
+# Keys changes	
+func _on_signal_keys_changed(change):
+	keys_modified = change != SignalBus.KeyChange.NORMAL
+
+# Health changes
+func _on_signal_health_changed(node: Node, amount_changed: int, current_health: int):
+	if(node is Player):
+		if(amount_changed < 0): # if take damage
+			if raycast_right.is_colliding():
+				take_damage(Vector2(-200, -200))
+			elif raycast_left.is_colliding():
+				take_damage(Vector2(200, -200))
+
+		if(current_health == 0):
+			is_death = true
+			set_collision_layer_value(1, false) # Player layer
+			set_collision_mask_value(3, false) # Enimy mask
+
 func _invert_control():
 	direction *= -1

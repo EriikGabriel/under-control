@@ -1,7 +1,8 @@
-[gd_resource type="SpriteFrames" load_steps=28 format=3 uid="uid://dc62xa123hbhb"]
+[gd_resource type="SpriteFrames" load_steps=31 format=3 uid="uid://dc62xa123hbhb"]
 
 [ext_resource type="Texture2D" uid="uid://c7o85jtpel5gf" path="res://assets/Keys/Classic/Dark/Single PNGs/A.png" id="1_kxr70"]
 [ext_resource type="Texture2D" uid="uid://xf2tvg5wrd35" path="res://assets/Keys/Classic/Dark/Single PNGs/D.png" id="2_gl1fs"]
+[ext_resource type="Texture2D" uid="uid://c7htigidcya8h" path="res://assets/Keys/Classic/Dark/Spritesheets/C.png" id="2_hdqr3"]
 [ext_resource type="Texture2D" uid="uid://b1i6urar7u57d" path="res://assets/Keys/Classic/Dark/Spritesheets/E.png" id="3_lm2d5"]
 [ext_resource type="Texture2D" uid="uid://hj14m4k2q0g6" path="res://assets/Keys/Classic/Dark/Spritesheets/Q.png" id="4_4w2pj"]
 [ext_resource type="Texture2D" uid="uid://sr33a7gxsfy" path="res://assets/Keys/Classic/Dark/Spritesheets/SPACE.png" id="5_6y8a6"]
@@ -11,6 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://br87qv7bpr8hj" path="res://assets/Keys/Classic/Dark/Spritesheets/Z.png" id="8_rd34j"]
 [ext_resource type="Texture2D" uid="uid://btfys6rs8k87a" path="res://assets/Keys/Classic/Dark/Spritesheets/A.png" id="9_7kmd5"]
 [ext_resource type="Texture2D" uid="uid://r7sa841yjf1b" path="res://assets/Keys/Classic/Dark/Spritesheets/D.png" id="10_d26mv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tahm1"]
+atlas = ExtResource("2_hdqr3")
+region = Rect2(0, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7l35m"]
 atlas = ExtResource("3_lm2d5")
@@ -42,6 +47,10 @@ region = Rect2(0, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpcvs"]
 atlas = ExtResource("9_7kmd5")
+region = Rect2(17, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryvvn"]
+atlas = ExtResource("2_hdqr3")
 region = Rect2(17, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k4thj"]
@@ -84,6 +93,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"default [A]",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tahm1")
+}],
+"loop": true,
+"name": &"default [C]",
 "speed": 5.0
 }, {
 "frames": [{
@@ -154,8 +171,16 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fpcvs")
 }],
-"loop": false,
+"loop": true,
 "name": &"press [A]",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryvvn")
+}],
+"loop": true,
+"name": &"press [C]",
 "speed": 5.0
 }, {
 "frames": [{
