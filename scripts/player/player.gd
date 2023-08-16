@@ -9,7 +9,6 @@ const JUMP_FORCE = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # State animations flag's
-var is_jumping = false
 var is_hurt = false
 var is_death = false
 var is_attacking = false
@@ -47,9 +46,6 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed(action_jump) && !disabled_keys.has("KEY_SPACE") && is_on_floor():
 		velocity.y = JUMP_FORCE
-		is_jumping = true
-	elif is_on_floor():
-		is_jumping = false
 		
 	if Input.is_action_just_pressed("attack"):
 		is_attacking = true
@@ -74,8 +70,6 @@ func _physics_process(delta):
 
 	if knockback_vector != Vector2.ZERO:
 		velocity = knockback_vector
-	
-	_set_state()
 	if !is_death: move_and_slide()
 	
 	for platforms in get_slide_collision_count():
@@ -99,26 +93,6 @@ func take_damage(knockback_force := Vector2.ZERO, duration := 0.25):
 	is_hurt = true
 	await get_tree().create_timer(.3).timeout
 	is_hurt = false
-
-func _set_state():
-	var state = "idle"
-	
-	if !is_on_floor():
-		state = "jumping"
-	elif direction != 0:
-		state = "running"
-
-	if is_attacking:
-		state = "attack"
-
-	if is_hurt:
-		state = "hurt"
-
-	if is_death:
-		state = "death"
-
-	if animation.animation != state:
-		animation.play(state)
 
 func on_disable_keys(keys: Array[String]):
 	disabled_keys = keys

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bisriq574agub"]
+[gd_scene load_steps=56 format=3 uid="uid://bisriq574agub"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_r14og"]
 [ext_resource type="Texture2D" uid="uid://d07avkhf3fg1v" path="res://assets/Jane/Jane_Death-Sheet.png" id="2_0jo6a"]
@@ -8,6 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://cuexetahm16mn" path="res://assets/Jane/Jane_Jump-Sheet.png" id="3_r8qik"]
 [ext_resource type="Texture2D" uid="uid://c5wyht4htrvux" path="res://assets/Jane/Jane_Running-Sheet.png" id="4_m7csh"]
 [ext_resource type="PackedScene" uid="uid://cmxam3c7w541b" path="res://prefabs/logical/damageable.tscn" id="8_pwtgv"]
+[ext_resource type="PackedScene" uid="uid://j2003fw3nauo" path="res://prefabs/logical/state_machine.tscn" id="9_yaovo"]
+[ext_resource type="Script" path="res://scripts/player/states/jump.gd" id="10_5dog8"]
+[ext_resource type="Script" path="res://scripts/player/states/idle.gd" id="10_i11rq"]
+[ext_resource type="Script" path="res://scripts/player/states/run.gd" id="10_xt60j"]
+[ext_resource type="Script" path="res://scripts/player/states/attack.gd" id="13_tlhg7"]
+[ext_resource type="Script" path="res://scripts/player/states/hurt.gd" id="14_mqhl8"]
+[ext_resource type="Script" path="res://scripts/player/states/death.gd" id="15_x7ib2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3dtth"]
 atlas = ExtResource("2_s1wyc")
@@ -268,7 +275,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_6782f")
 }],
 "loop": true,
-"name": &"jumping",
+"name": &"jump",
 "speed": 5.0
 }, {
 "frames": [{
@@ -297,7 +304,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_175st")
 }],
 "loop": true,
-"name": &"running",
+"name": &"run",
 "speed": 8.0
 }]
 
@@ -307,14 +314,14 @@ size = Vector2(14, 27)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eidvg"]
 size = Vector2(18, 25.5)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(0, -16)
 collision_mask = 22
 script = ExtResource("1_r14og")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xiiwd")
-animation = &"idle"
+animation = &"run"
 metadata/_edit_lock_ = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
@@ -342,4 +349,27 @@ position = Vector2(-8, 5)
 target_position = Vector2(-6, 0)
 collision_mask = 4
 
-[node name="damageable" parent="." instance=ExtResource("8_pwtgv")]
+[node name="Damageable" parent="." instance=ExtResource("8_pwtgv")]
+
+[node name="State Machine" parent="." node_paths=PackedStringArray("actor", "anim", "initial_state") instance=ExtResource("9_yaovo")]
+actor = NodePath("..")
+anim = NodePath("../anim")
+initial_state = NodePath("idle")
+
+[node name="run" type="Node" parent="State Machine"]
+script = ExtResource("10_xt60j")
+
+[node name="jump" type="Node" parent="State Machine"]
+script = ExtResource("10_5dog8")
+
+[node name="idle" type="Node" parent="State Machine"]
+script = ExtResource("10_i11rq")
+
+[node name="attack" type="Node" parent="State Machine"]
+script = ExtResource("13_tlhg7")
+
+[node name="hurt" type="Node" parent="State Machine"]
+script = ExtResource("14_mqhl8")
+
+[node name="death" type="Node" parent="State Machine"]
+script = ExtResource("15_x7ib2")

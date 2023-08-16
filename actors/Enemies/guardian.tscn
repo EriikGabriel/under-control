@@ -1,9 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://8uvm041cw475"]
+[gd_scene load_steps=25 format=3 uid="uid://8uvm041cw475"]
 
-[ext_resource type="Script" path="res://scripts/enemies/guardian.gd" id="1_jbp22"]
+[ext_resource type="Script" path="res://scripts/enemies/guardian/guardian.gd" id="1_jbp22"]
 [ext_resource type="Texture2D" uid="uid://chqfcfohdof7n" path="res://assets/Guardian/guardiao_attack-Sheet.png" id="2_m8ww3"]
 [ext_resource type="Texture2D" uid="uid://b2yd73e1tqj5g" path="res://assets/Guardian/guardiao_walking-Sheet.png" id="3_sftfj"]
+[ext_resource type="PackedScene" uid="uid://j2003fw3nauo" path="res://prefabs/logical/state_machine.tscn" id="5_aec03"]
+[ext_resource type="Script" path="res://scripts/enemies/guardian/states/idle.gd" id="6_68b1p"]
 [ext_resource type="PackedScene" uid="uid://dp4v8b37tpt3r" path="res://prefabs/logical/hitbox.tscn" id="6_35681"]
+[ext_resource type="Script" path="res://scripts/enemies/guardian/states/run.gd" id="7_aqvkl"]
+[ext_resource type="Script" path="res://scripts/enemies/guardian/states/attack.gd" id="8_drfvh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_peqj3"]
 size = Vector2(18, 30)
@@ -55,17 +59,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_n3u6q")
 }],
 "loop": false,
-"name": &"attacking",
+"name": &"attack",
 "speed": 10.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1nii")
+}],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"jumping",
 "speed": 5.0
 }, {
 "frames": [{
@@ -76,7 +78,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_r7mlv")
 }],
 "loop": true,
-"name": &"running",
+"name": &"run",
 "speed": 5.0
 }]
 
@@ -128,8 +130,8 @@ shape = SubResource("RectangleShape2D_peqj3")
 position = Vector2(0, -17)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_nqod2")
-animation = &"attacking"
-autoplay = "running"
+animation = &"run"
+autoplay = "run"
 
 [node name="animator" type="AnimationPlayer" parent="."]
 autoplay = "walk"
@@ -152,5 +154,15 @@ position = Vector2(4.5, -16.25)
 shape = SubResource("RectangleShape2D_6hirn")
 debug_color = Color(0.964706, 0.12549, 0.356863, 0.419608)
 
-[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
+[node name="State Machine" parent="." instance=ExtResource("5_aec03")]
+
+[node name="idle" type="Node" parent="State Machine"]
+script = ExtResource("6_68b1p")
+
+[node name="run" type="Node" parent="State Machine"]
+script = ExtResource("7_aqvkl")
+
+[node name="attack" type="Node" parent="State Machine"]
+script = ExtResource("8_drfvh")
+
 [connection signal="body_entered" from="spell_area" to="." method="_on_spell_area_body_entered"]
