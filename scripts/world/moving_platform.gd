@@ -9,12 +9,11 @@ const WAIT_DURATION := 1.0
 
 var follow := Vector2.ZERO
 var platform_center := 16
-# Called when the node enters the scene tree for the first time.
+
+
 func _ready():
 	move_platform()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
 	platform.position = platform.position.lerp(follow, 0.5)
 

@@ -2,14 +2,16 @@ extends Control
 
 @export var rune: PackedScene
 
-var spells: Array[SignalBus.KeyChange]
+var spells: Array
 
 func _ready() -> void:
 	SignalBus.on_controls_changed.connect(_on_signal_controls_changed)
 	SignalBus.on_keys_changed.connect(_on_signal_keys_changed)
 	
-	var controls_spell_count = SignalBus.ControlChange.size() - 1 # Except normal change
-	var keys_spell_count = SignalBus.KeyChange.size() - 1 # Except normal change
+	spells = []
+	
+	var controls_spell_count = SignalBus.ControlChange.size()
+	var keys_spell_count = SignalBus.KeyChange.size()
 	var spell_count = controls_spell_count + keys_spell_count
 	
 	var pos_x = -25
@@ -20,13 +22,19 @@ func _ready() -> void:
 		add_child(rune_instance)
 		pos_x += 20
 
-func _on_signal_controls_changed(changes: Array[SignalBus.ControlChange]):
+func _on_signal_controls_changed(changes: Array[SignalBus.ControlChange], _value):
+	var key_spells_array = []
+	
+	# Get all spells of type key
+	for spell in spells:
+		if(SignalBus.KeyChange.find_key(spell)): 
+			key_spells_array.append(spell)
+
+	spells.clear()
+	spells.append_array(key_spells_array)
+	
 	for change in changes:
-		if(change != SignalBus.ControlChange.NORMAL):
-			if (!spells.has(change)): spells.append(change)
-		else:
-			for spell in spells:
-				if(SignalBus.ControlChange.find_key(spell)): spells.erase(spell)
+		if (!spells.has(change)): spells.append(change)
 
 	for child in get_children(): child.visible = false
 
@@ -37,13 +45,19 @@ func _on_signal_controls_changed(changes: Array[SignalBus.ControlChange]):
 		if(spell): child.play(anim_name)
 		child.visible = true
 
-func _on_signal_keys_changed(changes: Array[SignalBus.KeyChange]):
+func _on_signal_keys_changed(changes: Array[SignalBus.KeyChange], _value):
+	var control_spells_array = []
+	
+	# Get all spells of type control
+	for spell in spells:
+		if(SignalBus.ControlChange.find_key(spell)): 
+			control_spells_array.append(spell)
+
+	spells.clear()
+	spells.append_array(control_spells_array)
+	
 	for change in changes:
-		if(change != SignalBus.KeyChange.NORMAL):
-			if (!spells.has(change)): spells.append(change)
-		else:
-			for spell in spells:
-				if(SignalBus.KeyChange.find_key(spell)): spells.erase(spell)
+		if (!spells.has(change)): spells.append(change)
 
 	for child in get_children(): child.visible = false
 	

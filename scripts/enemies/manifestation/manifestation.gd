@@ -42,15 +42,14 @@ func _on_area_body_entered(body):
 		
 		if(!keys_changes_array.has(SignalBus.KeyChange.RANDOM)):
 			keys_changes_array.append(SignalBus.KeyChange.RANDOM)
-		SignalBus.on_keys_changed.emit(keys_changes_array)
+		SignalBus.on_keys_changed.emit(keys_changes_array, null)
 
 func _on_area_body_exited(body):
 	if body.name == "Player": 
 		_reset_keys()
 		
-		keys_changes_array.clear()
-		keys_changes_array.append(SignalBus.KeyChange.NORMAL)
-		SignalBus.on_keys_changed.emit(keys_changes_array)
+		keys_changes_array.erase(SignalBus.KeyChange.RANDOM)
+		SignalBus.on_keys_changed.emit(keys_changes_array, null)
 
 func _random_keys():
 	var keys_quantity = change_keys.size()
@@ -82,5 +81,5 @@ func _reset_keys():
 		InputMap.action_erase_events(action)
 		InputMap.action_add_event(action, default_keys_events[action])
 
-func _on_signal_keys_changed(changes: Array[SignalBus.KeyChange]):
+func _on_signal_keys_changed(changes: Array[SignalBus.KeyChange], _value):
 	keys_changes_array = changes

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://8uvm041cw475"]
+[gd_scene load_steps=20 format=3 uid="uid://8uvm041cw475"]
 
 [ext_resource type="Script" path="res://scripts/enemies/guardian/guardian.gd" id="1_jbp22"]
 [ext_resource type="Texture2D" uid="uid://chqfcfohdof7n" path="res://assets/Guardian/guardiao_attack-Sheet.png" id="2_m8ww3"]
@@ -82,34 +82,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_pvysh"]
-resource_name = "attack"
-length = 0.6
-loop_mode = 1
-
-[sub_resource type="Animation" id="Animation_tp4r5"]
-resource_name = "hurt"
-length = 0.1
-loop_mode = 2
-
-[sub_resource type="Animation" id="Animation_byxi4"]
-resource_name = "idle"
-length = 0.7
-loop_mode = 1
-
-[sub_resource type="Animation" id="Animation_o1ics"]
-resource_name = "walk"
-length = 0.6
-loop_mode = 1
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_cod17"]
-_data = {
-"attack": SubResource("Animation_pvysh"),
-"hurt": SubResource("Animation_tp4r5"),
-"idle": SubResource("Animation_byxi4"),
-"walk": SubResource("Animation_o1ics")
-}
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hbium"]
 size = Vector2(8, 30)
 
@@ -133,13 +105,6 @@ sprite_frames = SubResource("SpriteFrames_nqod2")
 animation = &"run"
 autoplay = "run"
 
-[node name="animator" type="AnimationPlayer" parent="."]
-autoplay = "walk"
-speed_scale = 0.5
-libraries = {
-"": SubResource("AnimationLibrary_cod17")
-}
-
 [node name="spell_area" type="Area2D" parent="."]
 
 [node name="shape" type="CollisionShape2D" parent="spell_area"]
@@ -154,7 +119,10 @@ position = Vector2(4.5, -16.25)
 shape = SubResource("RectangleShape2D_6hirn")
 debug_color = Color(0.964706, 0.12549, 0.356863, 0.419608)
 
-[node name="State Machine" parent="." instance=ExtResource("5_aec03")]
+[node name="State Machine" parent="." node_paths=PackedStringArray("actor", "anim", "initial_state") instance=ExtResource("5_aec03")]
+actor = NodePath("..")
+anim = NodePath("../anim")
+initial_state = NodePath("idle")
 
 [node name="idle" type="Node" parent="State Machine"]
 script = ExtResource("6_68b1p")

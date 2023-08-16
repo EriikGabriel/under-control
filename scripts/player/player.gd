@@ -3,7 +3,6 @@ extends CharacterBody2D
 class_name Player
 
 const SPEED = 100.0
-const JUMP_FORCE = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -14,14 +13,17 @@ var is_death = false
 var is_attacking = false
 
 var knockback_vector = Vector2.ZERO
-var direction
+
+# Player control variables
+var direction: float
+var jump_force: float
+var jump_action: String
+var moves_action: Dictionary
 
 # Control flag's
 var control_inverted = false
 var keys_modified = false
-var disabled_keys: Array[String]
-
-@export var life := 3
+var keys_disabled: Array[SignalBus.DisableKeys] = []
 
 @onready var animation := $anim as AnimatedSprite2D
 @onready var remote_tranform := $remote as RemoteTransform2D
@@ -35,54 +37,57 @@ func _ready():
 	SignalBus.on_controls_changed.connect(_on_signal_controls_changed)
 	SignalBus.on_keys_changed.connect(_on_signal_keys_changed)
 	SignalBus.on_health_changed.connect(_on_signal_health_changed)
-#	platform.disable_keys.connect(on_disable_keys)
 
 func _physics_process(delta):
-	if not is_on_floor():
-		velocity.y += gravity * delta
-		
-	# Handle Jump.
-	var action_jump = "jump_mod" if keys_modified else "jump"
-	
-	if Input.is_action_just_pressed(action_jump) && !disabled_keys.has("KEY_SPACE") && is_on_floor():
-		velocity.y = JUMP_FORCE
-		
-	if Input.is_action_just_pressed("attack"):
-		is_attacking = true
-		await get_tree().create_timer(1.5).timeout
-		is_attacking = false
-	
-	if keys_modified:
-		direction = Input.get_axis("move_left_mod", "move_right_mod")
-	else: 
-		direction = Input.get_axis("move_left", "move_right")
+	if(!is_on_floor()): velocity.y += gravity * delta
 
-	if disabled_keys.has("KEY_RIGHT") && direction > 0: direction = 0
+	jump_action = "jump"
+	moves_action = {"left": "move_left", "right": "move_right"}
+	jump_force = -400
 	
-	if control_inverted:
-		_invert_control()
-
-	if direction != 0 && !is_death:
+	if(keys_modified): _random_control()
+	
+	# Direction Handler
+	direction = Input.get_axis(moves_action["left"], moves_action["right"])
+	
+	if(keys_disabled): _disable_keys()
+	if(control_inverted): _invert_control()
+	
+	# Move honzontal
+	if direction != 0:
 		velocity.x = direction * SPEED
 		animation.scale.x = direction
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+	# Jump Handler
+	if Input.is_action_just_pressed(jump_action) && is_on_floor():
+		velocity.y = jump_force
 
-	if knockback_vector != Vector2.ZERO:
-		velocity = knockback_vector
-	if !is_death: move_and_slide()
-	
+	# Attack Handler
+	if Input.is_action_just_pressed("attack"):
+		is_attacking = true
+		await get_tree().create_timer(1.5).timeout
+		is_attacking = false
+
+	# Platforms Colliders
 	for platforms in get_slide_collision_count():
 		var collision = get_slide_collision(platforms)
 		if collision.get_collider().has_method("has_collided_with"):
 			collision.get_collider().has_collided_with(collision, self)
+	
+	# Knockback Handler
+	if knockback_vector != Vector2.ZERO:
+		velocity = knockback_vector
+
+	if !is_death: move_and_slide()
 
 func follow_camera(camera):
 	var camera_path = camera.get_path()
 	remote_tranform.remote_path = camera_path
 
 func take_damage(knockback_force := Vector2.ZERO, duration := 0.25):
-	if knockback_force != Vector2.ZERO:
+	if(knockback_force != Vector2.ZERO):
 		var knockback_tween := get_tree().create_tween()
 		
 		knockback_vector = knockback_force 
@@ -94,16 +99,16 @@ func take_damage(knockback_force := Vector2.ZERO, duration := 0.25):
 	await get_tree().create_timer(.3).timeout
 	is_hurt = false
 
-func on_disable_keys(keys: Array[String]):
-	disabled_keys = keys
-
 # Controls changes
-func _on_signal_controls_changed(changes: Array[SignalBus.ControlChange]):
+func _on_signal_controls_changed(changes: Array[SignalBus.ControlChange], _value):
 	control_inverted = changes.has(SignalBus.ControlChange.INVERT)
 
 # Keys changes	
-func _on_signal_keys_changed(changes: Array[SignalBus.KeyChange]):
-	keys_modified = !changes.has(SignalBus.KeyChange.NORMAL)
+func _on_signal_keys_changed(changes: Array[SignalBus.KeyChange], value):
+	keys_modified = changes.has(SignalBus.KeyChange.RANDOM)
+	
+	if changes.has(SignalBus.KeyChange.DISABLE): keys_disabled = value
+	else: keys_disabled = []
 
 # Health changes
 func _on_signal_health_changed(node: Node, amount_changed: int, current_health: int):
@@ -119,5 +124,20 @@ func _on_signal_health_changed(node: Node, amount_changed: int, current_health: 
 			set_collision_layer_value(1, false) # Player layer
 			set_collision_mask_value(3, false) # Enimy mask
 
+# Spells
 func _invert_control():
 	direction *= -1
+	
+func _random_control():
+	jump_action = "jump_mod"
+	moves_action = {"left": "move_left_mod", "right": "move_right_mod"}
+
+func _disable_keys():
+	if(keys_disabled.has(SignalBus.DisableKeys.KEY_LEFT) && direction < 0): 
+		direction = 0
+
+	if(keys_disabled.has(SignalBus.DisableKeys.KEY_RIGHT) && direction > 0):
+		direction = 0
+
+	if(keys_disabled.has(SignalBus.DisableKeys.KEY_SPACE) && Input.is_action_just_pressed(jump_action)): 
+		jump_force = 0

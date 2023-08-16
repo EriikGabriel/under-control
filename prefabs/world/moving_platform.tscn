@@ -6,13 +6,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wh5f4"]
 size = Vector2(32, 16)
 
-[node name="moving_platform" type="Node2D"]
+[node name="Moving Platform" type="Node2D"]
 script = ExtResource("1_fld8r")
 
 [node name="platform" type="AnimatableBody2D" parent="."]
 collision_layer = 2
 
-[node name="sprite_platform" type="Sprite2D" parent="platform"]
+[node name="texture" type="Sprite2D" parent="platform"]
+modulate = Color(0.92549, 0, 0.788235, 1)
 texture = ExtResource("1_61qkm")
 region_enabled = true
 region_rect = Rect2(144, 48, 32, 16)

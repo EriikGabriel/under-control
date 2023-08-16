@@ -10,28 +10,21 @@ var is_attacking = false
 
 var direction := -1
 
-@onready var animation := $anim as AnimatedSprite2D
-
+var controls_changes_array: Array[SignalBus.ControlChange] = []
 var control_inverted := false
 
-var controls_changes_array: Array[SignalBus.ControlChange] = []
+@onready var animation := $anim as AnimatedSprite2D
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	SignalBus.on_controls_changed.connect(_on_controls_keys_changed)
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	if(!is_on_floor()): velocity.y += gravity * delta
 	velocity.x = direction * SPEED * delta
 	
 	move_and_slide()
-	
-func _on_controls_keys_changed(changes: Array[SignalBus.ControlChange]):
-	controls_changes_array = changes
 
 func _on_spell_area_body_entered(body: Node2D) -> void:
 	if body is Player:
@@ -47,15 +40,16 @@ func _on_spell_area_body_entered(body: Node2D) -> void:
 			control_inverted = true
 
 		for child in body.get_children():
-			if child is Damageable:
-				child.hit(1)
+			if child is Damageable: child.hit(1)
 
 func _invert_controls():
 	if(!controls_changes_array.has(SignalBus.ControlChange.INVERT)):
 		controls_changes_array.append(SignalBus.ControlChange.INVERT)
-	SignalBus.on_controls_changed.emit(controls_changes_array)
+	SignalBus.on_controls_changed.emit(controls_changes_array, null)
 
 func _reset_controls():
-	controls_changes_array.clear()
-	controls_changes_array.append(SignalBus.ControlChange.NORMAL)
-	SignalBus.on_controls_changed.emit(controls_changes_array)
+	controls_changes_array.erase(SignalBus.ControlChange.INVERT)
+	SignalBus.on_controls_changed.emit(controls_changes_array, null)
+
+func _on_controls_keys_changed(changes: Array[SignalBus.ControlChange], _value):
+	controls_changes_array = changes
