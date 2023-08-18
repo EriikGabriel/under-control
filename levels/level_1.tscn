@@ -487,6 +487,8 @@ position = Vector2(98, 272)
 
 [node name="Sign" parent="." instance=ExtResource("18_fdem6")]
 position = Vector2(342, 280)
+lines = Array[String](["No véu enigmático, a plataforma murmura,
+Teclas aprisionadas, seu poder atenua.", "Porém, um caminho se abre e revela o drama, o feitiço inimigo, é a chave da trama!"])
 
 [node name="Platforms" type="Node2D" parent="."]
 
@@ -503,13 +505,8 @@ position = Vector2(256, 185)
 scale = Vector2(1.199, 1.07)
 
 [node name="disable_platform" parent="Platforms" instance=ExtResource("17_tomp8")]
-position = Vector2(336, 221)
+position = Vector2(481, 289)
 keys_disable = Array[int]([2, 1])
-
-[node name="moving_platform1" parent="Platforms" instance=ExtResource("6_sbmcm")]
-position = Vector2(446, 297)
-scale = Vector2(1.199, 1.07)
-distance = 64
 
 [node name="moving_platform2" parent="Platforms" instance=ExtResource("6_sbmcm")]
 position = Vector2(877, 298)

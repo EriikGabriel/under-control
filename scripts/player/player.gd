@@ -46,20 +46,20 @@ func _physics_process(delta):
 	jump_force = -400
 	
 	if(keys_modified): _random_control()
-	
+
 	# Direction Handler
 	direction = Input.get_axis(moves_action["left"], moves_action["right"])
 	
 	if(keys_disabled): _disable_keys()
 	if(control_inverted): _invert_control()
-	
+
 	# Move honzontal
 	if direction != 0:
 		velocity.x = direction * SPEED
 		animation.scale.x = direction
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		
+
 	# Jump Handler
 	if Input.is_action_just_pressed(jump_action) && is_on_floor():
 		velocity.y = jump_force
@@ -75,7 +75,7 @@ func _physics_process(delta):
 		var collision = get_slide_collision(platforms)
 		if collision.get_collider().has_method("has_collided_with"):
 			collision.get_collider().has_collided_with(collision, self)
-	
+
 	# Knockback Handler
 	if knockback_vector != Vector2.ZERO:
 		velocity = knockback_vector
