@@ -6,7 +6,7 @@ const MAX_WIDTH = 256
 var text = ""
 var letter_index = 0
 
-var letter_display_timer := 0.07
+var letter_display_timer := 0.04
 var space_display_timer := 0.05
 var ponctuation_display_timer := 0.2
 

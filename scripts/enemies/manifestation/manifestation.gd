@@ -10,6 +10,8 @@ var default_keys_events: Dictionary = {}
 
 var keys_changes_array: Array[SignalBus.KeyChange] = []
 
+@onready var animation := $anim as AnimatedSprite2D
+
 @export var change_keys: Array[StringName] = []
 @export var potential_keys: Array[Key] = []
 
@@ -23,14 +25,11 @@ func _ready():
 		default_keys_events[action_name] = InputMap.action_get_events(action_name)[0]
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	if direction:
+	if not is_on_floor(): velocity.y += gravity * delta
+	
+	if direction != 0:
 		velocity.x = direction * SPEED * delta
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		animation.scale.x = direction
 
 	move_and_slide()
 

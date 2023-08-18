@@ -95,11 +95,10 @@ collision_mask = 2
 script = ExtResource("1_jbp22")
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(4, -16)
+position = Vector2(4, 1)
 shape = SubResource("RectangleShape2D_peqj3")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -17)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_nqod2")
 animation = &"run"
@@ -108,14 +107,14 @@ autoplay = "run"
 [node name="spell_area" type="Area2D" parent="."]
 
 [node name="shape" type="CollisionShape2D" parent="spell_area"]
-position = Vector2(-9, -16)
+position = Vector2(-9, 0)
 shape = SubResource("RectangleShape2D_hbium")
 debug_color = Color(0.957802, 0.000227562, 0.824826, 0.156863)
 
 [node name="hitbox" parent="." instance=ExtResource("6_35681")]
 
 [node name="collision" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(4.5, -16.25)
+position = Vector2(4.5, 0)
 shape = SubResource("RectangleShape2D_6hirn")
 debug_color = Color(0.964706, 0.12549, 0.356863, 0.419608)
 

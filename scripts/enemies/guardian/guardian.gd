@@ -22,8 +22,11 @@ func _ready():
 
 func _physics_process(delta):
 	if(!is_on_floor()): velocity.y += gravity * delta
-	velocity.x = direction * SPEED * delta
 	
+	if direction != 0:
+		velocity.x = direction * SPEED * delta
+		animation.scale.x = direction
+
 	move_and_slide()
 
 func _on_spell_area_body_entered(body: Node2D) -> void:

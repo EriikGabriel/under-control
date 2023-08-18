@@ -38,7 +38,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		current_line += 1
 		
 		if(current_line >= message_lines.size()):
-			print("manooo")
 			dialog_box.queue_free()
 			is_message_active = false
 			current_line = 0
