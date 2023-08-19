@@ -4,22 +4,28 @@ class_name Manifestation
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+# State animations flag's
+var is_hurt = false
+var is_death = false
+var is_attacking = false
+
+var knockback = Vector2.ZERO
 var direction = -1
 
 var default_keys_events: Dictionary = {}
-
 var keys_changes_array: Array[SignalBus.KeyChange] = []
 
-@onready var animation := $anim as AnimatedSprite2D
+@onready var animation: AnimatedSprite2D = $anim
 
 @export var change_keys: Array[StringName] = []
 @export var potential_keys: Array[Key] = []
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 func _ready():
 	SignalBus.on_keys_changed.connect(_on_signal_keys_changed)
+	SignalBus.on_health_changed.connect(_on_signal_health_changed)
 	
 	for action_name in change_keys:
 		default_keys_events[action_name] = InputMap.action_get_events(action_name)[0]
@@ -30,8 +36,13 @@ func _physics_process(delta):
 	if direction != 0:
 		velocity.x = direction * SPEED * delta
 		animation.scale.x = direction
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	if knockback != Vector2.ZERO:
+		velocity = knockback
 
-	move_and_slide()
+	if(!is_death): move_and_slide()
 
 func _on_area_body_entered(body):
 	if body.name == "Player": 
@@ -82,3 +93,14 @@ func _reset_keys():
 
 func _on_signal_keys_changed(changes: Array[SignalBus.KeyChange], _value):
 	keys_changes_array = changes
+
+func _on_signal_health_changed(node: Node, _amount_changed: int, current_health: int):
+	if(node is Manifestation && current_health == 0):
+		set_collision_layer_value(3, false)
+
+func _on_anim_animation_finished() -> void:
+	match (animation.animation):
+		"attack":
+			is_attacking = false
+		"hurt":
+			is_hurt = false

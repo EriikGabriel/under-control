@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bisriq574agub"]
+[gd_scene load_steps=57 format=3 uid="uid://bisriq574agub"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_r14og"]
 [ext_resource type="Texture2D" uid="uid://d07avkhf3fg1v" path="res://assets/Jane/Jane_Death-Sheet.png" id="2_0jo6a"]
@@ -190,7 +190,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -240,7 +240,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e5w77")
 }],
-"loop": true,
+"loop": false,
 "name": &"hurt",
 "speed": 8.0
 }, {
@@ -314,6 +314,9 @@ size = Vector2(14, 27)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eidvg"]
 size = Vector2(18, 25.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rq35e"]
+size = Vector2(11, 17)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(0, -16)
 collision_mask = 22
@@ -321,7 +324,7 @@ script = ExtResource("1_r14og")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xiiwd")
-animation = &"run"
+animation = &"hurt"
 metadata/_edit_lock_ = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
@@ -337,6 +340,15 @@ position = Vector2(-1, 1.75)
 shape = SubResource("RectangleShape2D_eidvg")
 debug_color = Color(0.988235, 0, 0.305882, 0.419608)
 
+[node name="hitbox" type="Area2D" parent="."]
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(11.5, 4.5)
+shape = SubResource("RectangleShape2D_rq35e")
+debug_color = Color(0.443137, 0.329412, 1, 0.419608)
+
 [node name="remote" type="RemoteTransform2D" parent="."]
 
 [node name="raycast_right" type="RayCast2D" parent="."]
@@ -349,7 +361,8 @@ position = Vector2(-8, 5)
 target_position = Vector2(-6, 0)
 collision_mask = 4
 
-[node name="Damageable" parent="." instance=ExtResource("8_pwtgv")]
+[node name="Damageable" parent="." node_paths=PackedStringArray("animation") instance=ExtResource("8_pwtgv")]
+animation = NodePath("../anim")
 
 [node name="State Machine" parent="." node_paths=PackedStringArray("actor", "anim", "initial_state") instance=ExtResource("9_yaovo")]
 actor = NodePath("..")
@@ -373,3 +386,7 @@ script = ExtResource("14_mqhl8")
 
 [node name="death" type="Node" parent="State Machine"]
 script = ExtResource("15_x7ib2")
+
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
+[connection signal="frame_changed" from="anim" to="." method="_on_anim_frame_changed"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

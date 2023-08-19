@@ -13,8 +13,8 @@
 [ext_resource type="Script" path="res://scripts/ui/runes.gd" id="12_qp0r3"]
 [ext_resource type="Script" path="res://scripts/ui/keys.gd" id="13_3fc8a"]
 [ext_resource type="PackedScene" uid="uid://cccvlwioasyc3" path="res://prefabs/ui/rune.tscn" id="13_xwup5"]
+[ext_resource type="PackedScene" uid="uid://cdtk0dcs83ykc" path="res://actors/Enemies/manifestation.tscn" id="17_0g5sx"]
 [ext_resource type="PackedScene" uid="uid://dokah3cvchfms" path="res://prefabs/world/disable_platform.tscn" id="17_tomp8"]
-[ext_resource type="PackedScene" uid="uid://b4xixg71vvdy1" path="res://actors/Enemies/butcher.tscn" id="18_amfva"]
 [ext_resource type="PackedScene" uid="uid://blerq1hctcr5y" path="res://prefabs/world/sign.tscn" id="18_fdem6"]
 [ext_resource type="SpriteFrames" uid="uid://dc62xa123hbhb" path="res://spriteframes/keys.tres" id="24_yol2j"]
 
@@ -505,15 +505,12 @@ scale = Vector2(1.199, 1.07)
 
 [node name="disable_platform" parent="Platforms" instance=ExtResource("17_tomp8")]
 position = Vector2(481, 289)
-keys_disable = Array[int]([2, 1])
+keys_disable = Array[int]([2, 1, 0])
 
 [node name="moving_platform2" parent="Platforms" instance=ExtResource("6_sbmcm")]
 position = Vector2(877, 298)
 scale = Vector2(1.199, 1.07)
 move_horizontal = false
-
-[node name="Butcher" parent="." instance=ExtResource("18_amfva")]
-position = Vector2(207, 285)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -567,3 +564,6 @@ animation = &"default [SPACE]"
 autoplay = "default [SPACE]"
 centered = false
 metadata/_edit_lock_ = true
+
+[node name="Manifestation" parent="." instance=ExtResource("17_0g5sx")]
+position = Vector2(195, 270)

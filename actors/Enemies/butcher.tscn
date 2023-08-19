@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://b4xixg71vvdy1"]
+[gd_scene load_steps=45 format=3 uid="uid://b4xixg71vvdy1"]
 
 [ext_resource type="Script" path="res://scripts/enemies/butcher/butcher.gd" id="1_u0jq7"]
 [ext_resource type="Texture2D" uid="uid://b4uin58yyoyai" path="res://assets/Butcher_Sheets/butcher_attack-Sheet.png" id="2_yu3a2"]
@@ -6,9 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://dp4v8b37tpt3r" path="res://prefabs/logical/hitbox.tscn" id="4_jrhjj"]
 [ext_resource type="Texture2D" uid="uid://brfduoa3q68yd" path="res://assets/Butcher_Sheets/butcher_hit-Sheet.png" id="4_uwfji"]
 [ext_resource type="Texture2D" uid="uid://c6b6uip04g7ju" path="res://assets/Butcher_Sheets/butcher_walking-Sheet.png" id="5_fsfcr"]
+[ext_resource type="PackedScene" uid="uid://cmxam3c7w541b" path="res://prefabs/logical/damageable.tscn" id="7_2qf1p"]
 [ext_resource type="PackedScene" uid="uid://j2003fw3nauo" path="res://prefabs/logical/state_machine.tscn" id="7_t1vsr"]
 [ext_resource type="Script" path="res://scripts/enemies/butcher/states/attack.gd" id="8_7n6ck"]
 [ext_resource type="Script" path="res://scripts/enemies/butcher/states/idle.gd" id="9_piqcn"]
+[ext_resource type="Script" path="res://scripts/enemies/butcher/states/death.gd" id="11_n0bnl"]
+[ext_resource type="Script" path="res://scripts/enemies/butcher/states/hurt.gd" id="12_e5ftn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_peqj3"]
 size = Vector2(22, 33)
@@ -146,7 +149,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_q3oov")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 8.0
 }, {
@@ -178,7 +181,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tnrau")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 7.0
 }, {
@@ -199,7 +202,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_4gk2i")
 }],
 "loop": false,
-"name": &"hit",
+"name": &"hurt",
 "speed": 8.0
 }, {
 "frames": [{
@@ -271,6 +274,11 @@ position = Vector2(2.5, -12.5)
 shape = SubResource("RectangleShape2D_6hirn")
 debug_color = Color(0.964706, 0.12549, 0.356863, 0.419608)
 
+[node name="Damageable" parent="." node_paths=PackedStringArray("animation") instance=ExtResource("7_2qf1p")]
+animation = NodePath("../anim")
+remove_node = true
+health = 5
+
 [node name="State Machine" parent="." node_paths=PackedStringArray("actor", "anim", "initial_state") instance=ExtResource("7_t1vsr")]
 actor = NodePath("..")
 anim = NodePath("../anim")
@@ -282,4 +290,11 @@ script = ExtResource("8_7n6ck")
 [node name="walk" type="Node" parent="State Machine"]
 script = ExtResource("9_piqcn")
 
+[node name="death" type="Node" parent="State Machine"]
+script = ExtResource("11_n0bnl")
+
+[node name="hurt" type="Node" parent="State Machine"]
+script = ExtResource("12_e5ftn")
+
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
