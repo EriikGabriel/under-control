@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://bfvognq88bm4n"]
 
 [ext_resource type="Texture2D" uid="uid://v623bjxebnd5" path="res://assets/Mini FX, Items & UI/Mini UI/Dialog_Box(16 x 16).png" id="1_cc323"]
-[ext_resource type="Script" path="res://prefabs/ui/dialog_box.gd" id="1_kleww"]
+[ext_resource type="Script" path="res://scripts/ui/dialog_box.gd" id="1_fcicf"]
 [ext_resource type="FontFile" uid="uid://dovacx3vyj0dl" path="res://assets/Font/RevMiniPixel.ttf" id="2_uxqrc"]
 
 [node name="Dialog Box" type="MarginContainer"]
 offset_right = 64.0
 offset_bottom = 19.0
-script = ExtResource("1_kleww")
+script = ExtResource("1_fcicf")
 
 [node name="background" type="NinePatchRect" parent="."]
 layout_mode = 2

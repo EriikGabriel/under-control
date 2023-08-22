@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://scripts/ui/runes.gd" id="12_qp0r3"]
 [ext_resource type="Script" path="res://scripts/ui/keys.gd" id="13_3fc8a"]
 [ext_resource type="PackedScene" uid="uid://cccvlwioasyc3" path="res://prefabs/ui/rune.tscn" id="13_xwup5"]
-[ext_resource type="PackedScene" uid="uid://cdtk0dcs83ykc" path="res://actors/Enemies/manifestation.tscn" id="17_0g5sx"]
+[ext_resource type="PackedScene" uid="uid://8uvm041cw475" path="res://actors/Enemies/guardian.tscn" id="17_4trgc"]
 [ext_resource type="PackedScene" uid="uid://dokah3cvchfms" path="res://prefabs/world/disable_platform.tscn" id="17_tomp8"]
 [ext_resource type="PackedScene" uid="uid://blerq1hctcr5y" path="res://prefabs/world/sign.tscn" id="18_fdem6"]
 [ext_resource type="SpriteFrames" uid="uid://dc62xa123hbhb" path="res://spriteframes/keys.tres" id="24_yol2j"]
@@ -565,5 +565,5 @@ autoplay = "default [SPACE]"
 centered = false
 metadata/_edit_lock_ = true
 
-[node name="Manifestation" parent="." instance=ExtResource("17_0g5sx")]
-position = Vector2(195, 270)
+[node name="Guardian" parent="." instance=ExtResource("17_4trgc")]
+position = Vector2(306, 272)
