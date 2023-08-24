@@ -1,10 +1,10 @@
-[gd_scene load_steps=40 format=3 uid="uid://8uvm041cw475"]
+[gd_scene load_steps=41 format=3 uid="uid://8uvm041cw475"]
 
 [ext_resource type="Script" path="res://scripts/enemies/guardian/guardian.gd" id="1_jbp22"]
-[ext_resource type="Texture2D" uid="uid://chqfcfohdof7n" path="res://assets/Guardian/guardiao_attack-Sheet.png" id="2_m8ww3"]
-[ext_resource type="Texture2D" uid="uid://b2yd73e1tqj5g" path="res://assets/Guardian/guardiao_walking-Sheet.png" id="3_sftfj"]
-[ext_resource type="Texture2D" uid="uid://borhak48ledv2" path="res://assets/Guardian/guardiao_death-Sheet.png" id="4_ikmfo"]
-[ext_resource type="Texture2D" uid="uid://c5tsbs02dd14o" path="res://assets/Guardian/guardiao_hit-Sheet.png" id="4_j1v51"]
+[ext_resource type="Texture2D" uid="uid://dyj2prt1akeln" path="res://assets/Actors/Guardian/attack.png" id="2_m8ww3"]
+[ext_resource type="Texture2D" uid="uid://c4ey1tjaipib7" path="res://assets/Actors/Guardian/walk.png" id="3_sftfj"]
+[ext_resource type="Texture2D" uid="uid://5j0t13qjgxbu" path="res://assets/Actors/Guardian/death.png" id="4_ikmfo"]
+[ext_resource type="Texture2D" uid="uid://dowbguu0euocs" path="res://assets/Actors/Guardian/hurt.png" id="4_j1v51"]
 [ext_resource type="PackedScene" uid="uid://j2003fw3nauo" path="res://prefabs/logical/state_machine.tscn" id="5_aec03"]
 [ext_resource type="PackedScene" uid="uid://cmxam3c7w541b" path="res://prefabs/logical/damageable.tscn" id="5_jgifq"]
 [ext_resource type="Script" path="res://scripts/enemies/guardian/states/idle.gd" id="6_68b1p"]
@@ -13,9 +13,10 @@
 [ext_resource type="Script" path="res://scripts/enemies/guardian/states/attack.gd" id="8_drfvh"]
 [ext_resource type="PackedScene" uid="uid://fw7cnls0tnk2" path="res://prefabs/world/spell_bullet.tscn" id="10_w7dqw"]
 [ext_resource type="Script" path="res://scripts/enemies/guardian/states/hurt.gd" id="13_2b3ny"]
+[ext_resource type="Script" path="res://scripts/enemies/guardian/states/death.gd" id="14_ge54l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_peqj3"]
-size = Vector2(18, 30)
+size = Vector2(19, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_anvj8"]
 atlas = ExtResource("2_m8ww3")
@@ -220,7 +221,7 @@ script = ExtResource("1_jbp22")
 bullet = ExtResource("10_w7dqw")
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(4, 1)
+position = Vector2(1.5, 1)
 shape = SubResource("RectangleShape2D_peqj3")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
@@ -238,7 +239,7 @@ one_shot = true
 [node name="hitbox" parent="." instance=ExtResource("6_35681")]
 
 [node name="collision" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(4.5, 0)
+position = Vector2(1.5, 0)
 shape = SubResource("RectangleShape2D_6hirn")
 debug_color = Color(0.964706, 0.12549, 0.356863, 0.419608)
 
@@ -262,6 +263,9 @@ script = ExtResource("8_drfvh")
 
 [node name="hurt" type="Node" parent="State Machine"]
 script = ExtResource("13_2b3ny")
+
+[node name="death" type="Node" parent="State Machine"]
+script = ExtResource("14_ge54l")
 
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="timeout" from="attack_distance/reload_timer" to="." method="_on_reload_timer_timeout"]

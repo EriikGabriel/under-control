@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1unu2s3g8be7"]
 
-[ext_resource type="Texture2D" uid="uid://b2ji4djd4382i" path="res://assets/Mini FX, Items & UI/Mini UI/Health_Indicator_Black_Outline (8 x 8).png" id="1_7uded"]
+[ext_resource type="Texture2D" uid="uid://berpf43fh3mxv" path="res://assets/UI/Mini UI/heart black.png" id="1_7uded"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rimmw"]
 atlas = ExtResource("1_7uded")

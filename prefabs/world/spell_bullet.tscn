@@ -1,25 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://fw7cnls0tnk2"]
+[gd_scene load_steps=5 format=3 uid="uid://fw7cnls0tnk2"]
 
-[ext_resource type="Texture2D" uid="uid://o47nn3hc0vfm" path="res://assets/Guardian/fire.png" id="1_nfkh2"]
 [ext_resource type="Script" path="res://scripts/enemies/guardian/spell_bullet.gd" id="2_p60bi"]
+[ext_resource type="Texture2D" uid="uid://cchmoh54x7q5o" path="res://assets/Actors/Guardian/fire.png" id="2_xpb7c"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6wra3"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_oqjwv"]
 radius = 80.0
 
-[node name="Spell Bullet" type="Sprite2D"]
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("1_nfkh2")
-region_enabled = true
-region_rect = Rect2(1648, 3914, 152, 155)
+[sub_resource type="CircleShape2D" id="CircleShape2D_6wra3"]
+radius = 100.0
+
+[node name="Spell Bullet" type="StaticBody2D"]
+collision_layer = 4
 script = ExtResource("2_p60bi")
 
+[node name="anim" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_xpb7c")
+region_enabled = true
+region_rect = Rect2(1646, 3916, 155, 153)
+
+[node name="collision" type="CollisionShape2D" parent="."]
+scale = Vector2(0.05, 0.05)
+shape = SubResource("CircleShape2D_oqjwv")
+
 [node name="hitbox" type="Area2D" parent="."]
+scale = Vector2(0.05, 0.05)
 collision_layer = 4
 
 [node name="shape" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("CircleShape2D_6wra3")
 debug_color = Color(1, 0.0117647, 0.0156863, 0.419608)
-
-[node name="Node2D" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

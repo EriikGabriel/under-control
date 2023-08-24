@@ -21,6 +21,7 @@ var controls_changes_array: Array[SignalBus.ControlChange] = []
 
 @export var bullet: PackedScene
 @export var bullet_reload := 2
+@export var bullet_speed := 80
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -53,7 +54,8 @@ func distance_attack():
 	distance_raycast.enabled = false
 	reload_timer.start()
 	
-	var bullet_instance: SpellBullet = bullet.instantiate()
+	var bullet_instance = bullet.instantiate() as SpellBullet
+	bullet_instance.speed = bullet_speed
 	add_child(bullet_instance)
 
 func _invert_controls():

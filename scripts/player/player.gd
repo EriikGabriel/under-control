@@ -71,6 +71,9 @@ func _physics_process(delta):
 	# Platforms Colliders
 	for platforms in get_slide_collision_count():
 		var collision = get_slide_collision(platforms)
+		
+		if(!collision.get_collider()): continue
+		
 		if collision.get_collider().has_method("has_collided_with"):
 			collision.get_collider().has_collided_with(collision, self)
 
@@ -85,8 +88,12 @@ func follow_camera(camera):
 	var camera_path = camera.get_path()
 	remote_tranform.remote_path = camera_path
 
-# When player attacks an enemy
+# When player attacks an enemy or spell
 func _on_hitbox_body_entered(body: Node2D) -> void:
+	if(body is SpellBullet):
+		body.queue_free()
+		return
+	
 	for child in body.get_children():
 			if child is Damageable: 
 				child.hit(1, Vector2(200 * hitbox.scale.x, -200))
@@ -137,5 +144,8 @@ func _disable_keys():
 
 	if(keys_disabled.has(SignalBus.DisableKeys.KEY_SPACE) && Input.is_action_just_pressed(jump_action)): 
 		jump_force = 0
+
+
+
 
 

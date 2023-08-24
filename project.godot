@@ -18,7 +18,6 @@ config/features=PackedStringArray("4.1", "Forward Plus")
 
 SignalBus="*res://singleton/signal_bus.gd"
 DialogManager="*res://singleton/dialog_manager.gd"
-DiscordSDKLoader="*res://addons/discord-sdk-gd/nodes/core_updater.gd"
 
 [display]
 
@@ -36,7 +35,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/discord-sdk-gd/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 

@@ -1,7 +1,7 @@
-extends Sprite2D
+extends StaticBody2D
 class_name SpellBullet
 
-const SPEED = 100.0
+var speed := 80
 
 var direction := Vector2.LEFT
 var guardian: Guardian
@@ -13,7 +13,7 @@ func _ready() -> void:
 	travel_distance = guardian.distance_raycast.target_position.x
 
 func _physics_process(delta: float) -> void:
-	var moviment = direction * SPEED * delta
+	var moviment = direction * speed * delta
 	
 	global_position += moviment
 	
@@ -22,7 +22,9 @@ func _physics_process(delta: float) -> void:
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if(body is Player):
 		for child in body.get_children():
-				if child is Damageable: 
+				if child is Damageable:
+					body.is_attacking = false
+					
 					child.hit(1, Vector2(-200 * guardian.scale.x, -200))
 					
 					if(!body.control_inverted):

@@ -1,11 +1,11 @@
 [gd_scene load_steps=23 format=3 uid="uid://crmd435d0r5l4"]
 
 [ext_resource type="Script" path="res://scripts/world/world_1.gd" id="1_1yyjk"]
-[ext_resource type="Texture2D" uid="uid://chfmtphjiqwel" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_57j58"]
-[ext_resource type="Texture2D" uid="uid://08wntifp68h1" path="res://assets/Seasonal Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="2_ckpl1"]
+[ext_resource type="Texture2D" uid="uid://chfmtphjiqwel" path="res://assets/Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_57j58"]
+[ext_resource type="Texture2D" uid="uid://08wntifp68h1" path="res://assets/Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="2_ckpl1"]
 [ext_resource type="PackedScene" uid="uid://bisriq574agub" path="res://actors/player.tscn" id="3_v41y2"]
-[ext_resource type="Texture2D" uid="uid://cxrhriw5n1g0c" path="res://assets/Seasonal Tilesets/5 - Misc. universal tiles/Blocks (16 x 16).png" id="4_pef58"]
-[ext_resource type="Texture2D" uid="uid://claquidcvstik" path="res://assets/Seasonal Tilesets/1 - Grassland/Extra_plants (16 x 16).png" id="5_o0ppm"]
+[ext_resource type="Texture2D" uid="uid://cxrhriw5n1g0c" path="res://assets/Tilesets/5 - Misc. universal tiles/Blocks (16 x 16).png" id="4_pef58"]
+[ext_resource type="Texture2D" uid="uid://claquidcvstik" path="res://assets/Tilesets/1 - Grassland/Extra_plants (16 x 16).png" id="5_o0ppm"]
 [ext_resource type="PackedScene" uid="uid://cmfck4elrooh5" path="res://prefabs/world/moving_platform.tscn" id="6_sbmcm"]
 [ext_resource type="PackedScene" uid="uid://ctngfmg5eafum" path="res://prefabs/world/falling_platform.tscn" id="7_0a8li"]
 [ext_resource type="PackedScene" uid="uid://d1unu2s3g8be7" path="res://prefabs/ui/heart.tscn" id="11_avr7l"]
@@ -512,6 +512,9 @@ position = Vector2(877, 298)
 scale = Vector2(1.199, 1.07)
 move_horizontal = false
 
+[node name="Guardian" parent="." instance=ExtResource("17_4trgc")]
+position = Vector2(306, 272)
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Lifes" type="Control" parent="UI"]
@@ -564,6 +567,3 @@ animation = &"default [SPACE]"
 autoplay = "default [SPACE]"
 centered = false
 metadata/_edit_lock_ = true
-
-[node name="Guardian" parent="." instance=ExtResource("17_4trgc")]
-position = Vector2(306, 272)
