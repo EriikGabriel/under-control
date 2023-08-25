@@ -1,0 +1,126 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfybak1a8hvdw"]
+
+[ext_resource type="Script" path="res://scripts/levels/main_menu.gd" id="1_8h5so"]
+[ext_resource type="Texture2D" uid="uid://dvuhs07os2hm6" path="res://assets/Actors/Player/idle.png" id="1_cm0l6"]
+[ext_resource type="FontFile" uid="uid://dovacx3vyj0dl" path="res://assets/UI/Font/RevMiniPixel.ttf" id="1_x3n3s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s3jbq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t4t2e"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ytwx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74t88"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="MainMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8h5so")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.729412, 0.509804, 0.0313726, 1)
+
+[node name="Jane" type="Sprite2D" parent="Background"]
+position = Vector2(49, 125)
+scale = Vector2(2.32, 2.32)
+texture = ExtResource("1_cm0l6")
+region_enabled = true
+region_rect = Rect2(192, 0, 32, 32)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/font = ExtResource("1_x3n3s")
+theme_override_font_sizes/font_size = 24
+text = "Under Control"
+
+[node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer2"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../../CenterContainer4/VBoxContainer/CenterContainer/Exit")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_x3n3s")
+theme_override_styles/normal = SubResource("StyleBoxFlat_s3jbq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_t4t2e")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6ytwx")
+theme_override_styles/focus = SubResource("StyleBoxFlat_74t88")
+text = "Começar
+"
+flat = true
+icon_alignment = 1
+
+[node name="CenterContainer3" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer3"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/CenterContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="Credits" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer3/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_x3n3s")
+theme_override_styles/normal = SubResource("StyleBoxFlat_s3jbq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_t4t2e")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6ytwx")
+theme_override_styles/focus = SubResource("StyleBoxFlat_74t88")
+text = "Créditos"
+flat = true
+icon_alignment = 1
+
+[node name="CenterContainer4" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer4"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/CenterContainer4/VBoxContainer"]
+layout_mode = 2
+
+[node name="Exit" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer4/VBoxContainer/CenterContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../../../CenterContainer2/VBoxContainer/CenterContainer/Start")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_x3n3s")
+theme_override_styles/normal = SubResource("StyleBoxFlat_s3jbq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_t4t2e")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6ytwx")
+theme_override_styles/focus = SubResource("StyleBoxFlat_74t88")
+text = "Sair"
+flat = true
+icon_alignment = 1
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer4/VBoxContainer/CenterContainer/Exit" to="." method="_on_exit_pressed"]
