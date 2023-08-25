@@ -1,13 +1,20 @@
-[gd_scene load_steps=49 format=3 uid="uid://bisriq574agub"]
+[gd_scene load_steps=57 format=3 uid="uid://bisriq574agub"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_r14og"]
-[ext_resource type="Texture2D" uid="uid://d07avkhf3fg1v" path="res://assets/Jane/Jane_Death-Sheet.png" id="2_0jo6a"]
-[ext_resource type="Texture2D" uid="uid://2cdr6jvs60ut" path="res://assets/Jane/Jane_idle-Sheet.png" id="2_icusg"]
-[ext_resource type="Texture2D" uid="uid://cmvrj3m8ou6cn" path="res://assets/Jane/jane_attack2-Sheet.png" id="2_s1wyc"]
-[ext_resource type="Texture2D" uid="uid://cjl8ltbi6sevy" path="res://assets/Jane/Jane_hit-Sheet.png" id="2_xirbi"]
-[ext_resource type="Texture2D" uid="uid://cuexetahm16mn" path="res://assets/Jane/Jane_Jump-Sheet.png" id="3_r8qik"]
-[ext_resource type="Texture2D" uid="uid://c5wyht4htrvux" path="res://assets/Jane/Jane_Running-Sheet.png" id="4_m7csh"]
+[ext_resource type="Texture2D" uid="uid://km8icrwd5tm6" path="res://assets/Actors/Player/death.png" id="2_0jo6a"]
+[ext_resource type="Texture2D" uid="uid://dvuhs07os2hm6" path="res://assets/Actors/Player/idle.png" id="2_icusg"]
+[ext_resource type="Texture2D" uid="uid://0nsvygjejx5" path="res://assets/Actors/Player/attack.png" id="2_s1wyc"]
+[ext_resource type="Texture2D" uid="uid://b6h267jdvsmut" path="res://assets/Actors/Player/hurt.png" id="2_xirbi"]
+[ext_resource type="Texture2D" uid="uid://hux4gytl0civ" path="res://assets/Actors/Player/jump.png" id="3_r8qik"]
+[ext_resource type="Texture2D" uid="uid://cs5lci6t0oem1" path="res://assets/Actors/Player/run.png" id="4_m7csh"]
 [ext_resource type="PackedScene" uid="uid://cmxam3c7w541b" path="res://prefabs/logical/damageable.tscn" id="8_pwtgv"]
+[ext_resource type="PackedScene" uid="uid://j2003fw3nauo" path="res://prefabs/logical/state_machine.tscn" id="9_yaovo"]
+[ext_resource type="Script" path="res://scripts/player/states/jump.gd" id="10_5dog8"]
+[ext_resource type="Script" path="res://scripts/player/states/idle.gd" id="10_i11rq"]
+[ext_resource type="Script" path="res://scripts/player/states/run.gd" id="10_xt60j"]
+[ext_resource type="Script" path="res://scripts/player/states/attack.gd" id="13_tlhg7"]
+[ext_resource type="Script" path="res://scripts/player/states/hurt.gd" id="14_mqhl8"]
+[ext_resource type="Script" path="res://scripts/player/states/death.gd" id="15_x7ib2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3dtth"]
 atlas = ExtResource("2_s1wyc")
@@ -183,7 +190,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -233,7 +240,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e5w77")
 }],
-"loop": true,
+"loop": false,
 "name": &"hurt",
 "speed": 8.0
 }, {
@@ -268,7 +275,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_6782f")
 }],
 "loop": true,
-"name": &"jumping",
+"name": &"jump",
 "speed": 5.0
 }, {
 "frames": [{
@@ -297,7 +304,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_175st")
 }],
 "loop": true,
-"name": &"running",
+"name": &"run",
 "speed": 8.0
 }]
 
@@ -307,16 +314,17 @@ size = Vector2(14, 27)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eidvg"]
 size = Vector2(18, 25.5)
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rq35e"]
+size = Vector2(11, 17)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(0, -16)
 collision_mask = 22
 script = ExtResource("1_r14og")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xiiwd")
-animation = &"attack"
-frame = 6
-frame_progress = 1.0
+animation = &"hurt"
 metadata/_edit_lock_ = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
@@ -332,6 +340,15 @@ position = Vector2(-1, 1.75)
 shape = SubResource("RectangleShape2D_eidvg")
 debug_color = Color(0.988235, 0, 0.305882, 0.419608)
 
+[node name="hitbox" type="Area2D" parent="."]
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(11.5, 4.5)
+shape = SubResource("RectangleShape2D_rq35e")
+debug_color = Color(0.443137, 0.329412, 1, 0.419608)
+
 [node name="remote" type="RemoteTransform2D" parent="."]
 
 [node name="raycast_right" type="RayCast2D" parent="."]
@@ -344,4 +361,33 @@ position = Vector2(-8, 5)
 target_position = Vector2(-6, 0)
 collision_mask = 4
 
-[node name="damageable" parent="." instance=ExtResource("8_pwtgv")]
+[node name="Damageable" parent="." node_paths=PackedStringArray("animation") instance=ExtResource("8_pwtgv")]
+animation = NodePath("../anim")
+health = 6
+
+[node name="State Machine" parent="." node_paths=PackedStringArray("actor", "anim", "initial_state") instance=ExtResource("9_yaovo")]
+actor = NodePath("..")
+anim = NodePath("../anim")
+initial_state = NodePath("idle")
+
+[node name="run" type="Node" parent="State Machine"]
+script = ExtResource("10_xt60j")
+
+[node name="jump" type="Node" parent="State Machine"]
+script = ExtResource("10_5dog8")
+
+[node name="idle" type="Node" parent="State Machine"]
+script = ExtResource("10_i11rq")
+
+[node name="attack" type="Node" parent="State Machine"]
+script = ExtResource("13_tlhg7")
+
+[node name="hurt" type="Node" parent="State Machine"]
+script = ExtResource("14_mqhl8")
+
+[node name="death" type="Node" parent="State Machine"]
+script = ExtResource("15_x7ib2")
+
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
+[connection signal="frame_changed" from="anim" to="." method="_on_anim_frame_changed"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

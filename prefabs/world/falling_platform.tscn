@@ -43,11 +43,12 @@ _data = {
 "shake": SubResource("Animation_hfknl")
 }
 
-[node name="falling-platform" type="AnimatableBody2D"]
+[node name="Falling Platform" type="AnimatableBody2D"]
 collision_layer = 2
 script = ExtResource("1_ny7dd")
 
 [node name="texture" type="Sprite2D" parent="."]
+modulate = Color(0.603922, 0.290196, 0.0470588, 1)
 texture = ExtResource("1_cncji")
 region_enabled = true
 region_rect = Rect2(144, 48, 32, 16)

@@ -1,12 +1,17 @@
-[gd_scene load_steps=54 format=3 uid="uid://cdtk0dcs83ykc"]
+[gd_scene load_steps=59 format=3 uid="uid://cdtk0dcs83ykc"]
 
-[ext_resource type="Script" path="res://scripts/enemies/manifestation.gd" id="1_hsnch"]
-[ext_resource type="Texture2D" uid="uid://bijpjwbt58kd5" path="res://assets/Manifestacao/Manifestacao_attack-Sheet.png" id="1_kjylv"]
-[ext_resource type="Texture2D" uid="uid://cu63hpc1qyaa" path="res://assets/Manifestacao/Manifestacao_walking_Sheet.png" id="1_lsnwj"]
-[ext_resource type="Texture2D" uid="uid://dt8qmg0w4ia34" path="res://assets/Manifestacao/Manifestacao_Death-Sheet.png" id="2_8y63a"]
-[ext_resource type="Texture2D" uid="uid://b26hr4l5oje4o" path="res://assets/Area Textures/480x480/pipo-gate01c.png" id="2_rpfre"]
-[ext_resource type="Texture2D" uid="uid://dri1biu3wffev" path="res://assets/Manifestacao/Manifestacao_hit-Sheet.png" id="3_f1v7o"]
-[ext_resource type="Script" path="res://scripts/logical/hitbox.gd" id="7_uvrho"]
+[ext_resource type="Texture2D" uid="uid://b5v7fji3lld8k" path="res://assets/Actors/Manifestacao/attack.png" id="1_kjylv"]
+[ext_resource type="Texture2D" uid="uid://dnhpqiluid8q3" path="res://assets/Actors/Manifestacao/walk.png" id="1_lsnwj"]
+[ext_resource type="Script" path="res://scripts/enemies/manifestation/manifestation.gd" id="1_vngpc"]
+[ext_resource type="Texture2D" uid="uid://ckuurti56iu0s" path="res://assets/Actors/Manifestacao/death.png" id="2_8y63a"]
+[ext_resource type="Texture2D" uid="uid://b26hr4l5oje4o" path="res://assets/Actors/Manifestacao/area textures/pipo-gate01c.png" id="2_rpfre"]
+[ext_resource type="Texture2D" uid="uid://bnh6w7itondbo" path="res://assets/Actors/Manifestacao/hurt.png" id="3_f1v7o"]
+[ext_resource type="PackedScene" uid="uid://dp4v8b37tpt3r" path="res://prefabs/logical/hitbox.tscn" id="7_jpamt"]
+[ext_resource type="PackedScene" uid="uid://j2003fw3nauo" path="res://prefabs/logical/state_machine.tscn" id="8_dluwx"]
+[ext_resource type="PackedScene" uid="uid://cmxam3c7w541b" path="res://prefabs/logical/damageable.tscn" id="8_foqp0"]
+[ext_resource type="Script" path="res://scripts/enemies/manifestation/states/walk.gd" id="9_qendt"]
+[ext_resource type="Script" path="res://scripts/enemies/manifestation/states/hurt.gd" id="10_6khx0"]
+[ext_resource type="Script" path="res://scripts/enemies/manifestation/states/death.gd" id="11_rdpuu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5cix"]
 atlas = ExtResource("2_rpfre")
@@ -265,7 +270,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k3a2w")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 8.0
 }, {
@@ -285,8 +290,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_novav")
 }],
-"loop": true,
-"name": &"hit",
+"loop": false,
+"name": &"hurt",
 "speed": 8.0
 }, {
 "frames": [{
@@ -328,13 +333,13 @@ size = Vector2(20, 5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ngf65"]
 radius = 73.0274
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0qqx2"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_5cr3c"]
 radius = 15.0
 
 [node name="Manifestation" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 3
-script = ExtResource("1_hsnch")
+script = ExtResource("1_vngpc")
 change_keys = Array[StringName]([&"move_left", &"move_right", &"jump"])
 potential_keys = Array[int]([81, 69, 83, 90, 88, 67])
 
@@ -350,7 +355,6 @@ frame_progress = 0.316844
 sprite_frames = SubResource("SpriteFrames_it8jh")
 animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.893287
 
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qmjcn")
@@ -366,13 +370,30 @@ position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_ngf65")
 debug_color = Color(0.957802, 0.000227562, 0.824826, 0.156863)
 
-[node name="hitbox" type="Area2D" parent="."]
-script = ExtResource("7_uvrho")
+[node name="hitbox" parent="." instance=ExtResource("7_jpamt")]
 
 [node name="shape" type="CollisionShape2D" parent="hitbox"]
-shape = SubResource("CircleShape2D_0qqx2")
+shape = SubResource("CircleShape2D_5cr3c")
 debug_color = Color(0.8, 0, 0.12549, 0.419608)
 
+[node name="Damageable" parent="." node_paths=PackedStringArray("animation") instance=ExtResource("8_foqp0")]
+animation = NodePath("../anim")
+remove_node = true
+
+[node name="State Machine" parent="." node_paths=PackedStringArray("actor", "anim", "initial_state") instance=ExtResource("8_dluwx")]
+actor = NodePath("..")
+anim = NodePath("../anim")
+initial_state = NodePath("walk")
+
+[node name="walk" type="Node" parent="State Machine"]
+script = ExtResource("9_qendt")
+
+[node name="hurt" type="Node" parent="State Machine"]
+script = ExtResource("10_6khx0")
+
+[node name="death" type="Node" parent="State Machine"]
+script = ExtResource("11_rdpuu")
+
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="body_entered" from="spell_area" to="." method="_on_area_body_entered"]
 [connection signal="body_exited" from="spell_area" to="." method="_on_area_body_exited"]
-[connection signal="body_entered" from="hitbox" to="hitbox" method="_on_body_entered"]

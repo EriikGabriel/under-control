@@ -6,11 +6,11 @@ extends Control
 
 #@onready var platform := $"/root/World-1/Platform" as StaticBody2D
 
-var disabled_keys: Array[String]
+# Keys flags
+var keys_disabled: Array[SignalBus.DisableKeys] = []
 var keys_modified = false
 
 func _ready():
-#	platform.disable_keys.connect(on_disable_key)
 	SignalBus.on_keys_changed.connect(_on_signal_keys_changed)
 
 func _process(_delta):
@@ -34,25 +34,30 @@ func _process(_delta):
 		left_anim.play(left_anim_name.format({"state": "press"}))
 	else:
 		left_anim.play(left_anim_name.format({"state": "default"}))
-#
+
 	if Input.is_action_pressed(action_right):
 		right_anim.play(right_anim_name.format({"state": "press"}))
 	else:
 		right_anim.play(right_anim_name.format({"state": "default"}))
-#
+
 	if Input.is_action_pressed(action_space):
 		space_anim.play(space_anim_name.format({"state": "press"}))
 	else:
 		space_anim.play(space_anim_name.format({"state": "default"}))
-#
-	if disabled_keys.has("KEY_RIGHT"):
+
+	if keys_disabled.has(SignalBus.DisableKeys.KEY_LEFT):
+		left_anim.play(left_anim_name.format({"state": "press"}))
+	if keys_disabled.has(SignalBus.DisableKeys.KEY_RIGHT):
 		right_anim.play(right_anim_name.format({"state": "press"}))
-	if disabled_keys.has("KEY_SPACE"):
+	if keys_disabled.has(SignalBus.DisableKeys.KEY_SPACE):
 		space_anim.play(space_anim_name.format({"state": "press"}))
 
-func _on_signal_keys_changed(change):
-	keys_modified = change != SignalBus.KeyChange.NORMAL
+func _on_signal_keys_changed(changes: Array[SignalBus.KeyChange], value):
+	keys_modified = changes.has(SignalBus.KeyChange.RANDOM)
+	
+	if changes.has(SignalBus.KeyChange.DISABLE): keys_disabled = value
+	else: keys_disabled = []
 
 func on_disable_key(keys):
-	disabled_keys = keys
+	keys_disabled = keys
 

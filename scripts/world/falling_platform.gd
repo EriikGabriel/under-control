@@ -1,4 +1,4 @@
-extends Node2D
+extends AnimatableBody2D
 
 @onready var anim := $anim as AnimationPlayer
 @onready var respawn_timer := $respawn_timer as Timer
