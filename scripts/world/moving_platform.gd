@@ -1,7 +1,7 @@
 extends Node2D
 
 const WAIT_DURATION := 1.0
-
+@onready var anim: AnimatedSprite2D = $platform/anim
 @onready var platform := $platform as AnimatableBody2D
 @export var move_speed := 3.0
 @export var distance := 192
@@ -18,6 +18,8 @@ func _physics_process(_delta: float) -> void:
 	platform.position = platform.position.lerp(follow, 0.5)
 
 func move_platform():
+	anim.play("horizontal") if move_horizontal else anim.play("vertical")
+	
 	var move_direction = Vector2.RIGHT * distance if move_horizontal else Vector2.UP * distance
 	var duration = move_direction.length() / float(move_speed * platform_center)
 	

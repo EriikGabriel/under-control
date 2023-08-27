@@ -1,62 +1,67 @@
-[gd_scene load_steps=7 format=3 uid="uid://dokah3cvchfms"]
+[gd_scene load_steps=13 format=3 uid="uid://dokah3cvchfms"]
 
 [ext_resource type="Script" path="res://scripts/world/disable_platform.gd" id="1_ysvct"]
-[ext_resource type="Texture2D" uid="uid://chfmtphjiqwel" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="2_l36nb"]
+[ext_resource type="Texture2D" uid="uid://cg5kkmw1jvfxc" path="res://assets/Sprites/Platforms/disable platform.png" id="2_ccy1d"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_175fk"]
-texture = ExtResource("2_l36nb")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-11:1/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-11:2/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-6:3/0 = 0
-7:3/0 = 0
-9:3/0 = 0
-10:3/0 = 0
-11:3/0 = 0
-12:3/0 = 0
-13:3/0 = 0
-15:3/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-7:4/0 = 0
-11:4/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-5:5/0 = 0
-11:5/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-4:8/0 = 0
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnijl"]
+atlas = ExtResource("2_ccy1d")
+region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="TileSet" id="TileSet_kavo2"]
-sources/0 = SubResource("TileSetAtlasSource_175fk")
+[sub_resource type="AtlasTexture" id="AtlasTexture_5otud"]
+atlas = ExtResource("2_ccy1d")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dreyj"]
+atlas = ExtResource("2_ccy1d")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fw0m1"]
+atlas = ExtResource("2_ccy1d")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6pbl"]
+atlas = ExtResource("2_ccy1d")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_har76"]
+atlas = ExtResource("2_ccy1d")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcs5l"]
+atlas = ExtResource("2_ccy1d")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sbc6j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnijl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5otud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dreyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fw0m1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6pbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_har76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcs5l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k72qo"]
-size = Vector2(64, 31)
+size = Vector2(48, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_srtb2"]
 size = Vector2(64, 27)
@@ -66,14 +71,13 @@ collision_layer = 2
 script = ExtResource("1_ysvct")
 keys_disable = Array[int]([2])
 
-[node name="texture" type="TileMap" parent="."]
-modulate = Color(0.0470588, 0.654902, 0.568627, 1)
-tile_set = SubResource("TileSet_kavo2")
-format = 2
-layer_0/tile_data = PackedInt32Array(65533, 0, 0, 65534, 196608, 1, 1, 327680, 1, 65535, 262144, 1, 0, 262144, 1, 2, 327680, 0, 131070, 196608, 6, 131071, 131072, 4, 65536, 131072, 4, 65537, 458752, 4)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sbc6j")
+autoplay = "default"
+frame_progress = 1.0
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 15.5)
+position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_k72qo")
 one_way_collision = true
 

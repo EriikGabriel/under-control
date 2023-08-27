@@ -1,10 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmfck4elrooh5"]
+[gd_scene load_steps=7 format=3 uid="uid://cmfck4elrooh5"]
 
-[ext_resource type="Texture2D" uid="uid://chfmtphjiqwel" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_61qkm"]
 [ext_resource type="Script" path="res://scripts/world/moving_platform.gd" id="1_fld8r"]
+[ext_resource type="Texture2D" uid="uid://d2g2iqcxeh4xf" path="res://assets/Sprites/Platforms/moving platform.png" id="2_p13ld"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m28ea"]
+atlas = ExtResource("2_p13ld")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kgbk"]
+atlas = ExtResource("2_p13ld")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nk4m8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m28ea")
+}],
+"loop": true,
+"name": &"horizontal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kgbk")
+}],
+"loop": true,
+"name": &"vertical",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wh5f4"]
-size = Vector2(32, 16)
+size = Vector2(48, 16)
 
 [node name="Moving Platform" type="Node2D"]
 script = ExtResource("1_fld8r")
@@ -12,12 +39,11 @@ script = ExtResource("1_fld8r")
 [node name="platform" type="AnimatableBody2D" parent="."]
 collision_layer = 2
 
-[node name="texture" type="Sprite2D" parent="platform"]
-modulate = Color(0.92549, 0, 0.788235, 1)
-texture = ExtResource("1_61qkm")
-region_enabled = true
-region_rect = Rect2(144, 48, 32, 16)
+[node name="anim" type="AnimatedSprite2D" parent="platform"]
+sprite_frames = SubResource("SpriteFrames_nk4m8")
+animation = &"vertical"
 
 [node name="collision" type="CollisionShape2D" parent="platform"]
+position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_wh5f4")
 one_way_collision = true

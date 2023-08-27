@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bisriq574agub"]
+[gd_scene load_steps=61 format=3 uid="uid://bisriq574agub"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_r14og"]
 [ext_resource type="Texture2D" uid="uid://km8icrwd5tm6" path="res://assets/Actors/Player/death.png" id="2_0jo6a"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b6h267jdvsmut" path="res://assets/Actors/Player/hurt.png" id="2_xirbi"]
 [ext_resource type="Texture2D" uid="uid://hux4gytl0civ" path="res://assets/Actors/Player/jump.png" id="3_r8qik"]
 [ext_resource type="Texture2D" uid="uid://cs5lci6t0oem1" path="res://assets/Actors/Player/run.png" id="4_m7csh"]
+[ext_resource type="Texture2D" uid="uid://dx5n7tt1yawhj" path="res://assets/Actors/Player/falling.png" id="4_y02s3"]
 [ext_resource type="PackedScene" uid="uid://cmxam3c7w541b" path="res://prefabs/logical/damageable.tscn" id="8_pwtgv"]
 [ext_resource type="PackedScene" uid="uid://j2003fw3nauo" path="res://prefabs/logical/state_machine.tscn" id="9_yaovo"]
 [ext_resource type="Script" path="res://scripts/player/states/jump.gd" id="10_5dog8"]
@@ -15,6 +16,7 @@
 [ext_resource type="Script" path="res://scripts/player/states/attack.gd" id="13_tlhg7"]
 [ext_resource type="Script" path="res://scripts/player/states/hurt.gd" id="14_mqhl8"]
 [ext_resource type="Script" path="res://scripts/player/states/death.gd" id="15_x7ib2"]
+[ext_resource type="Script" path="res://scripts/player/states/fall.gd" id="16_tc1sv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3dtth"]
 atlas = ExtResource("2_s1wyc")
@@ -79,6 +81,14 @@ region = Rect2(224, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_gvo4c"]
 atlas = ExtResource("2_0jo6a")
 region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyc1l"]
+atlas = ExtResource("4_y02s3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd6om"]
+atlas = ExtResource("4_y02s3")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hc27g"]
 atlas = ExtResource("2_xirbi")
@@ -226,6 +236,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_qyc1l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cd6om")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_hc27g")
 }, {
 "duration": 1.0,
@@ -324,7 +345,7 @@ script = ExtResource("1_r14og")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xiiwd")
-animation = &"hurt"
+animation = &"fall"
 metadata/_edit_lock_ = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
@@ -387,6 +408,9 @@ script = ExtResource("14_mqhl8")
 
 [node name="death" type="Node" parent="State Machine"]
 script = ExtResource("15_x7ib2")
+
+[node name="fall" type="Node" parent="State Machine"]
+script = ExtResource("16_tc1sv")
 
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="frame_changed" from="anim" to="." method="_on_anim_frame_changed"]

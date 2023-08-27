@@ -45,17 +45,18 @@ func _physics_process(delta):
 	
 	if(distance_raycast.is_colliding() && distance_raycast.get_collider()): 
 		if(reload_timer.is_stopped()):
-			distance_attack()
+			is_attacking = true
 	
 	move_and_slide()
 
 func distance_attack():
-	is_attacking = true
 	distance_raycast.enabled = false
 	reload_timer.start()
 	
+	
 	var bullet_instance = bullet.instantiate() as SpellBullet
 	bullet_instance.speed = bullet_speed
+	bullet_instance.position.x = -20
 	add_child(bullet_instance)
 
 func _invert_controls():
@@ -74,8 +75,12 @@ func _on_anim_animation_finished() -> void:
 	match (animation.animation):
 		"attack":
 			is_attacking = false
+			distance_attack()
 		"hurt":
 			is_hurt = false
 
 func _on_reload_timer_timeout():
 	distance_raycast.enabled = true
+
+
+

@@ -10,6 +10,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_hurt = false
 var is_death = false
 var is_attacking = false
+var is_jump = false
 
 # Knockback vector
 var knockback = Vector2.ZERO
@@ -39,7 +40,10 @@ func _ready():
 	SignalBus.on_health_changed.connect(_on_signal_health_changed)
 
 func _physics_process(delta):
-	if(!is_on_floor()): velocity.y += gravity * delta
+	if(!is_on_floor()):
+		velocity.y += gravity * delta
+	elif(is_jump):
+		is_jump = false
 
 	jump_action = "jump"
 	moves_action = {"left": "move_left", "right": "move_right"}
@@ -63,6 +67,7 @@ func _physics_process(delta):
 
 	# Jump Handler
 	if Input.is_action_just_pressed(jump_action) && is_on_floor():
+		is_jump = true
 		velocity.y = jump_force
 
 	# Attack Handler
