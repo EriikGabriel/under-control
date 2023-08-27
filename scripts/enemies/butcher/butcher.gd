@@ -13,11 +13,11 @@ var is_hurt := false
 
 var knockback = Vector2.ZERO
 
-var direction := -1
-
 var player: Player
 
 @onready var animation = $anim as AnimatedSprite2D
+
+@export var direction := -1
 
 func _ready():
 	SignalBus.on_health_changed.connect(_on_signal_health_changed)

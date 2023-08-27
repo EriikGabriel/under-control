@@ -386,7 +386,6 @@ collision_mask = 4
 
 [node name="Damageable" parent="." node_paths=PackedStringArray("animation") instance=ExtResource("8_pwtgv")]
 animation = NodePath("../anim")
-health = 6
 
 [node name="State Machine" parent="." node_paths=PackedStringArray("actor", "anim", "initial_state") instance=ExtResource("9_yaovo")]
 actor = NodePath("..")

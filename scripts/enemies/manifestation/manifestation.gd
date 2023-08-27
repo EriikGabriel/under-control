@@ -13,13 +13,14 @@ var is_death = false
 var is_attacking = false
 
 var knockback = Vector2.ZERO
-var direction = -1
+
 
 var default_keys_events: Dictionary = {}
 var keys_changes_array: Array[SignalBus.KeyChange] = []
 
 @onready var animation: AnimatedSprite2D = $anim
 
+@export var direction = -1
 @export var change_keys: Array[StringName] = []
 @export var potential_keys: Array[Key] = []
 

@@ -11,7 +11,7 @@ var is_hurt := false
 
 var knockback = Vector2.ZERO
 
-var direction := 0
+
 
 var controls_changes_array: Array[SignalBus.ControlChange] = []
 
@@ -19,6 +19,7 @@ var controls_changes_array: Array[SignalBus.ControlChange] = []
 @onready var distance_raycast: RayCast2D = $attack_distance
 @onready var reload_timer: Timer = $attack_distance/reload_timer
 
+@export var direction := 0
 @export var bullet: PackedScene
 @export var bullet_reload := 2
 @export var bullet_speed := 80
