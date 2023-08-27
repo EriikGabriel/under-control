@@ -4,26 +4,6 @@
 [ext_resource type="Script" path="res://scripts/enemies/guardian/spell_bullet.gd" id="2_p60bi"]
 [ext_resource type="Texture2D" uid="uid://u8ho2w75337p" path="res://assets/Actors/Guardian/spell hit.png" id="3_ldh7w"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jn8d4"]
-atlas = ExtResource("2_hhps0")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qgi54"]
-atlas = ExtResource("2_hhps0")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_baa7b"]
-atlas = ExtResource("2_hhps0")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rvs8j"]
-atlas = ExtResource("2_hhps0")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2gqlq"]
-atlas = ExtResource("2_hhps0")
-region = Rect2(128, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvu6j"]
 atlas = ExtResource("3_ldh7w")
 region = Rect2(0, 0, 32, 32)
@@ -52,28 +32,28 @@ region = Rect2(160, 0, 32, 32)
 atlas = ExtResource("3_ldh7w")
 region = Rect2(192, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn8d4"]
+atlas = ExtResource("2_hhps0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgi54"]
+atlas = ExtResource("2_hhps0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_baa7b"]
+atlas = ExtResource("2_hhps0")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvs8j"]
+atlas = ExtResource("2_hhps0")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gqlq"]
+atlas = ExtResource("2_hhps0")
+region = Rect2(128, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_g3l41"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jn8d4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qgi54")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_baa7b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rvs8j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2gqlq")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jvu6j")
@@ -96,8 +76,28 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3p401")
 }],
-"loop": true,
+"loop": false,
 "name": &"hit",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jn8d4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgi54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_baa7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvs8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gqlq")
+}],
+"loop": true,
+"name": &"move",
 "speed": 5.0
 }]
 
@@ -115,8 +115,8 @@ script = ExtResource("2_p60bi")
 position = Vector2(0, -1)
 scale = Vector2(-0.581528, 0.581528)
 sprite_frames = SubResource("SpriteFrames_g3l41")
-autoplay = "default"
-frame_progress = 0.859903
+animation = &"move"
+autoplay = "move"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 scale = Vector2(0.05, 0.05)
@@ -130,4 +130,6 @@ collision_layer = 4
 shape = SubResource("CircleShape2D_6wra3")
 debug_color = Color(1, 0.0117647, 0.0156863, 0.419608)
 
+[connection signal="animation_changed" from="anim" to="." method="_on_anim_animation_changed"]
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

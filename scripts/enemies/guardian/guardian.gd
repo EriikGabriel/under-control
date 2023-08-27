@@ -53,7 +53,6 @@ func distance_attack():
 	distance_raycast.enabled = false
 	reload_timer.start()
 	
-	
 	var bullet_instance = bullet.instantiate() as SpellBullet
 	bullet_instance.speed = bullet_speed
 	bullet_instance.position.x = -20

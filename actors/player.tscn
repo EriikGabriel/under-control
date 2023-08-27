@@ -345,7 +345,7 @@ script = ExtResource("1_r14og")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xiiwd")
-animation = &"fall"
+animation = &"idle"
 metadata/_edit_lock_ = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
@@ -376,6 +376,8 @@ debug_color = Color(0.443137, 0.329412, 1, 0.419608)
 position = Vector2(6, 5)
 target_position = Vector2(6, 0)
 collision_mask = 4
+hit_from_inside = true
+collide_with_areas = true
 
 [node name="raycast_left" type="RayCast2D" parent="."]
 position = Vector2(-8, 5)

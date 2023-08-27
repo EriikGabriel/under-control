@@ -1,17 +1,16 @@
-[gd_scene load_steps=27 format=3 uid="uid://iuididdgkf03"]
+[gd_scene load_steps=26 format=3 uid="uid://iuididdgkf03"]
 
 [ext_resource type="Script" path="res://scripts/world/world_1.gd" id="1_0hfja"]
-[ext_resource type="Texture2D" uid="uid://chfmtphjiqwel" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="2_ny8tr"]
-[ext_resource type="Texture2D" uid="uid://08wntifp68h1" path="res://assets/Seasonal Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="3_31apj"]
-[ext_resource type="Texture2D" uid="uid://cxrhriw5n1g0c" path="res://assets/Seasonal Tilesets/5 - Misc. universal tiles/Blocks (16 x 16).png" id="4_wyoy5"]
-[ext_resource type="Texture2D" uid="uid://claquidcvstik" path="res://assets/Seasonal Tilesets/1 - Grassland/Extra_plants (16 x 16).png" id="5_oxgrl"]
+[ext_resource type="Texture2D" uid="uid://chfmtphjiqwel" path="res://assets/Tilesets/1 - Grassland/Terrain (16 x 16).png" id="2_ny8tr"]
+[ext_resource type="Texture2D" uid="uid://08wntifp68h1" path="res://assets/Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="3_31apj"]
+[ext_resource type="Texture2D" uid="uid://cxrhriw5n1g0c" path="res://assets/Tilesets/5 - Misc. universal tiles/Blocks (16 x 16).png" id="4_wyoy5"]
+[ext_resource type="Texture2D" uid="uid://claquidcvstik" path="res://assets/Tilesets/1 - Grassland/Extra_plants (16 x 16).png" id="5_oxgrl"]
 [ext_resource type="PackedScene" uid="uid://ctngfmg5eafum" path="res://prefabs/world/falling_platform.tscn" id="6_gmy1r"]
 [ext_resource type="PackedScene" uid="uid://cmfck4elrooh5" path="res://prefabs/world/moving_platform.tscn" id="7_lyjea"]
 [ext_resource type="PackedScene" uid="uid://bisriq574agub" path="res://actors/player.tscn" id="8_om3x5"]
 [ext_resource type="PackedScene" uid="uid://blerq1hctcr5y" path="res://prefabs/world/sign.tscn" id="9_3bm68"]
 [ext_resource type="Script" path="res://scripts/ui/lifes.gd" id="10_vtelx"]
 [ext_resource type="PackedScene" uid="uid://d1unu2s3g8be7" path="res://prefabs/ui/heart.tscn" id="11_qpr23"]
-[ext_resource type="Texture2D" uid="uid://dokwpxgqbwhvj" path="res://assets/Mini FX, Items & UI/Mini UI/Runes.png" id="12_hmp0a"]
 [ext_resource type="Script" path="res://scripts/ui/keys.gd" id="13_67tbe"]
 [ext_resource type="SpriteFrames" uid="uid://dc62xa123hbhb" path="res://spriteframes/keys.tres" id="14_icib7"]
 
@@ -443,19 +442,15 @@ sources/5 = SubResource("TileSetAtlasSource_xwnpd")
 sources/6 = SubResource("TileSetAtlasSource_yijpd")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4cim2"]
-atlas = ExtResource("12_hmp0a")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pq3jk"]
-atlas = ExtResource("12_hmp0a")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dyyac"]
-atlas = ExtResource("12_hmp0a")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgiwg"]
-atlas = ExtResource("12_hmp0a")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ntcdm"]

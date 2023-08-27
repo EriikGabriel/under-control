@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://scripts/enemies/butcher/states/hurt.gd" id="12_e5ftn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_peqj3"]
-size = Vector2(22, 33)
+size = Vector2(22, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ipcvr"]
 atlas = ExtResource("2_ydr3k")
@@ -236,10 +236,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hbium"]
-size = Vector2(8, 33)
+size = Vector2(14, 33)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6hirn"]
-size = Vector2(23, 33)
+size = Vector2(22, 33)
 
 [node name="Butcher" type="CharacterBody2D"]
 position = Vector2(0, 1)
@@ -248,23 +248,22 @@ collision_mask = 2
 script = ExtResource("1_u0jq7")
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(4, -12.5)
+position = Vector2(4, -12)
 shape = SubResource("RectangleShape2D_peqj3")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 position = Vector2(-3, -17)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_nqod2")
-animation = &"hurt"
+animation = &"walk"
 autoplay = "walk"
-frame = 4
-frame_progress = 1.0
 
 [node name="attack_area" type="Area2D" parent="."]
+collision_layer = 4
 metadata/_edit_lock_ = true
 
 [node name="shape" type="CollisionShape2D" parent="attack_area"]
-position = Vector2(-13, -13)
+position = Vector2(-15, -13)
 shape = SubResource("RectangleShape2D_hbium")
 debug_color = Color(0.957802, 0.000227562, 0.824826, 0.156863)
 
@@ -272,7 +271,7 @@ debug_color = Color(0.957802, 0.000227562, 0.824826, 0.156863)
 metadata/_edit_lock_ = true
 
 [node name="collision" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(2.5, -12.5)
+position = Vector2(3, -12.5)
 shape = SubResource("RectangleShape2D_6hirn")
 debug_color = Color(0.964706, 0.12549, 0.356863, 0.419608)
 
@@ -299,4 +298,5 @@ script = ExtResource("11_n0bnl")
 script = ExtResource("12_e5ftn")
 
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
+[connection signal="frame_changed" from="anim" to="." method="_on_anim_frame_changed"]
 [connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]

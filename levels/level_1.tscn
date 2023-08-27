@@ -1,10 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://crmd435d0r5l4"]
+[gd_scene load_steps=25 format=3 uid="uid://crmd435d0r5l4"]
 
 [ext_resource type="Script" path="res://scripts/world/world_1.gd" id="1_1yyjk"]
 [ext_resource type="Texture2D" uid="uid://chfmtphjiqwel" path="res://assets/Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_57j58"]
 [ext_resource type="Texture2D" uid="uid://08wntifp68h1" path="res://assets/Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="2_ckpl1"]
 [ext_resource type="PackedScene" uid="uid://bisriq574agub" path="res://actors/player.tscn" id="3_v41y2"]
-[ext_resource type="Texture2D" uid="uid://cv3pw3b0eqsu1" path="res://assets/Tilesets/plataforma_padrao/plataforma_padrao.png" id="4_6e22w"]
+[ext_resource type="Texture2D" uid="uid://ct5j6thhyig4a" path="res://assets/Tilesets/default tile.png" id="4_6e22w"]
 [ext_resource type="Texture2D" uid="uid://cxrhriw5n1g0c" path="res://assets/Tilesets/5 - Misc. universal tiles/Blocks (16 x 16).png" id="4_pef58"]
 [ext_resource type="Texture2D" uid="uid://claquidcvstik" path="res://assets/Tilesets/1 - Grassland/Extra_plants (16 x 16).png" id="5_o0ppm"]
 [ext_resource type="PackedScene" uid="uid://cmfck4elrooh5" path="res://prefabs/world/moving_platform.tscn" id="6_sbmcm"]
@@ -15,10 +15,8 @@
 [ext_resource type="Script" path="res://scripts/ui/keys.gd" id="13_3fc8a"]
 [ext_resource type="PackedScene" uid="uid://cccvlwioasyc3" path="res://prefabs/ui/rune.tscn" id="13_xwup5"]
 [ext_resource type="Script" path="res://scripts/ui/ui.gd" id="14_bsp1x"]
-[ext_resource type="PackedScene" uid="uid://8uvm041cw475" path="res://actors/Enemies/guardian.tscn" id="17_4trgc"]
 [ext_resource type="PackedScene" uid="uid://dokah3cvchfms" path="res://prefabs/world/disable_platform.tscn" id="17_tomp8"]
 [ext_resource type="PackedScene" uid="uid://blerq1hctcr5y" path="res://prefabs/world/sign.tscn" id="18_fdem6"]
-[ext_resource type="PackedScene" uid="uid://b4xixg71vvdy1" path="res://actors/Enemies/butcher.tscn" id="19_2w2ij"]
 [ext_resource type="SpriteFrames" uid="uid://dc62xa123hbhb" path="res://spriteframes/keys.tres" id="24_yol2j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_maf35"]
@@ -556,7 +554,7 @@ layer_3/tile_data = PackedInt32Array()
 
 [node name="Player" parent="." instance=ExtResource("3_v41y2")]
 unique_name_in_owner = true
-position = Vector2(93, 271)
+position = Vector2(68, 271)
 
 [node name="Sign" parent="." instance=ExtResource("18_fdem6")]
 position = Vector2(342, 280)
@@ -565,15 +563,15 @@ lines = Array[String](["No véu enigmático, a plataforma murmura, Teclas aprisi
 [node name="Platforms" type="Node2D" parent="."]
 
 [node name="falling_platform1" parent="Platforms" instance=ExtResource("7_0a8li")]
-position = Vector2(257, 235)
+position = Vector2(248, 222)
 scale = Vector2(1.199, 1.07)
 
 [node name="falling_platform2" parent="Platforms" instance=ExtResource("7_0a8li")]
-position = Vector2(256, 130)
+position = Vector2(247, 117)
 scale = Vector2(1.199, 1.07)
 
 [node name="falling_platform3" parent="Platforms" instance=ExtResource("7_0a8li")]
-position = Vector2(256, 185)
+position = Vector2(247, 172)
 scale = Vector2(1.199, 1.07)
 
 [node name="disable_platform" parent="Platforms" instance=ExtResource("17_tomp8")]
@@ -584,12 +582,6 @@ keys_disable = Array[int]([0])
 position = Vector2(877, 298)
 scale = Vector2(1.199, 1.07)
 move_horizontal = false
-
-[node name="Guardian" parent="." instance=ExtResource("17_4trgc")]
-position = Vector2(822, 271)
-
-[node name="Butcher" parent="." instance=ExtResource("19_2w2ij")]
-position = Vector2(371, 283)
 
 [node name="Moving Platform" parent="." instance=ExtResource("6_sbmcm")]
 position = Vector2(316, 211)

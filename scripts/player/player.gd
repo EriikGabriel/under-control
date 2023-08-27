@@ -44,6 +44,11 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	elif(is_jump):
 		is_jump = false
+		
+	if(is_death):
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		move_and_slide()
+		return
 
 	jump_action = "jump"
 	moves_action = {"left": "move_left", "right": "move_right"}
@@ -86,7 +91,7 @@ func _physics_process(delta):
 	if knockback != Vector2.ZERO:
 		velocity = knockback
 
-	if !is_death: move_and_slide()
+	move_and_slide()
 
 # Camera follows player
 func follow_camera(camera):
@@ -96,7 +101,7 @@ func follow_camera(camera):
 # When player attacks an enemy or spell
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if(body is SpellBullet):
-		body.queue_free()
+		body.animation.play("hit")
 		return
 	
 	for child in body.get_children():
@@ -131,11 +136,12 @@ func _on_anim_animation_finished():
 			hitbox.monitoring = false
 		"hurt":
 			is_hurt = false
+			hitbox.monitoring = false
 
 # Spells
 func _invert_control():
 	direction *= -1
-	
+
 func _random_control():
 	jump_action = "jump_mod"
 	moves_action = {"left": "move_left_mod", "right": "move_right_mod"}

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv3pw3b0eqsu1"
-path="res://.godot/imported/plataforma_padrao.png-02935b1a217eaed54ac4bbf3304a9d0d.ctex"
+uid="uid://cxgih4ylwca7w"
+path="res://.godot/imported/hills.png-cefb21ee3dabbfd9fa282e607f4f60e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tilesets/plataforma_padrao/plataforma_padrao.png"
-dest_files=["res://.godot/imported/plataforma_padrao.png-02935b1a217eaed54ac4bbf3304a9d0d.ctex"]
+source_file="res://assets/Scenario/hills.png"
+dest_files=["res://.godot/imported/hills.png-cefb21ee3dabbfd9fa282e607f4f60e2.ctex"]
 
 [params]
 

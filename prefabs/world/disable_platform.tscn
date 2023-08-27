@@ -71,7 +71,7 @@ collision_layer = 2
 script = ExtResource("1_ysvct")
 keys_disable = Array[int]([2])
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sbc6j")
 autoplay = "default"
 frame_progress = 1.0
