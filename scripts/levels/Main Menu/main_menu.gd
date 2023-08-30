@@ -4,12 +4,14 @@ var default = load("res://assets/UI/Cursors/default cursor.png")
 var pointer = load("res://assets/UI/Cursors/pointer cursor.png")
 
 @onready var start: Button = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer/Start
+@onready var transition_in = $"../Transition In" as TransitionIn
+
 
 func _ready():
 	start.grab_focus()
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://levels/level_1.tscn")
+	transition_in.change_scene("res://levels/level_1.tscn", 2)
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dfybak1a8hvdw"]
+[gd_scene load_steps=31 format=3 uid="uid://dfybak1a8hvdw"]
 
 [ext_resource type="Script" path="res://scripts/levels/Main Menu/main_menu.gd" id="1_nckwl"]
 [ext_resource type="FontFile" uid="uid://dovacx3vyj0dl" path="res://assets/UI/Font/RevMiniPixel.ttf" id="1_x3n3s"]
@@ -10,6 +10,7 @@
 [ext_resource type="Shader" path="res://shaders/movement_clouds.gdshader" id="7_gynnt"]
 [ext_resource type="Texture2D" uid="uid://cxgih4ylwca7w" path="res://assets/Scenario/hills.png" id="8_7j3de"]
 [ext_resource type="Texture2D" uid="uid://ds75h54s8hvdp" path="res://assets/Scenario/foreground.png" id="9_5fagw"]
+[ext_resource type="PackedScene" uid="uid://bqyjucihdpafd" path="res://prefabs/ui/transition_in.tscn" id="12_wf50t"]
 [ext_resource type="Texture2D" uid="uid://cs5lci6t0oem1" path="res://assets/Actors/Player/run.png" id="18_ot1rq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s3jbq"]
@@ -397,6 +398,8 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scene/Limit Left"]
 shape = SubResource("RectangleShape2D_2doj0")
 debug_color = Color(0.839216, 0.760784, 0, 0.521569)
+
+[node name="Transition In" parent="." instance=ExtResource("12_wf50t")]
 
 [connection signal="mouse_entered" from="MainMenu/CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer/Start" to="MainMenu" method="_on_start_mouse_entered"]
 [connection signal="mouse_exited" from="MainMenu/CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer/Start" to="MainMenu" method="_on_start_mouse_exited"]

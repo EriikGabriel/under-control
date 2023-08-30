@@ -52,7 +52,7 @@ func _physics_process(delta):
 
 	jump_action = "jump"
 	moves_action = {"left": "move_left", "right": "move_right"}
-	jump_force = -400
+	jump_force = -380
 	
 	if(keys_modified): _random_control()
 
