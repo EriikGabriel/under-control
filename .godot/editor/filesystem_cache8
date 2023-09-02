@@ -1,9 +1,9 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1693622777
-game.tscn::PackedScene::489707798337936297::1693622812::0::1::::<><>::uid://crmd435d0r5l4::::res://levels/level_1.tscn<>res://scripts/game_manager.gd<>uid://xk4n7m27g7g7::::res://prefabs/ui/pauseMenu/pause_menu.tscn
-::res://actors/::1693621912
+::res://::1693626323
+game.tscn::PackedScene::1382810238725524078::1693626022::0::1::::<><>::uid://crmd435d0r5l4::::res://levels/level_1.tscn<>res://scripts/game_manager.gd<>uid://xk4n7m27g7g7::::res://UI/pause_menu.tscn
+::res://actors/::1693626041
 cat.tscn::PackedScene::5517741546348667408::1693599542::0::1::::<><>::uid://dbxkycxrb7psr
-player.tscn::PackedScene::2986137595809134865::1693599542::0::1::::<><>::res://scripts/player/player.gd<>uid://km8icrwd5tm6
+player.tscn::PackedScene::2986137595809134865::1693626041::0::1::::<><>::res://scripts/player/player.gd<>uid://km8icrwd5tm6::::res://assets/Actors/Player/death.png<>uid://dvuhs07os2hm6::::res://assets/Actors/Player/idle.png<>uid://0nsvygjejx5::::res://assets/Actors/Player/attack.png<>uid://b6h267jdvsmut::::res://assets/Actors/Player/hurt.png<>uid://hux4gytl0civ::::res://assets/Actors/Player/jump.png<>uid://cs5lci6t0oem1::::res://assets/Actors/Player/run.png<>uid://dx5n7tt1yawhj::::res://assets/Actors/Player/falling.png<>uid://cmxam3c7w541b::::res://prefabs/logical/damageable.tscn<>uid://j2003fw3nauo::::res://prefabs/logical/state_machine.tscn<>res://scripts/player/states/jump.gd<>res://scripts/player/states/idle.gd<>res://scripts/player/states/run.gd<>res://scripts/player/states/attack.gd<>res://scripts/player/states/hurt.gd<>res://scripts/player/states/death.gd<>res://scripts/player/states/fall.gd<>uid://bqyjucihdpafd::::res://prefabs/ui/transition_in.tscn
 ::res://actors/Enemies/::1693621912
 butcher.tscn::PackedScene::4469905012525415310::1693599542::0::1::::<><>::res://scripts/enemies/butcher/butcher.gd<>uid://bod8itq6ylh7p
 guardian.tscn::PackedScene::2358817240579193378::1693599542::0::1::::<><>::res://scripts/enemies/guardian/guardian.gd<>uid://cl26ehbqlbhju
@@ -678,9 +678,9 @@ runes.png::CompressedTexture2D::5269101330105214797::1693599542::1693599542::1::
 teclas_aleatorias-Sheet.png::CompressedTexture2D::7673398326769956913::1693599542::1693599542::1::::<><>::
 teclas_trocadas-Sheet.png::CompressedTexture2D::3442907244426602858::1693599542::1693599542::1::::<><>::
 tecla_desabilitada-Sheet.png::CompressedTexture2D::29658445668070947::1693599542::1693599542::1::::<><>::
-::res://levels/::1693621973
-level_1.tscn::PackedScene::5991059698451365763::1693622821::0::1::::<><>::res://scripts/world/world_1.gd<>uid://08wntifp68h1::::res://assets/Tilesets/1 - Grassland/Grassland_entities (16 x 16).png<>uid://bisriq574agub::::res://actors/player.tscn<>uid://ct5j6thhyig4a::::res://assets/Tilesets/default tile.png<>uid://d1unu2s3g8be7::::res://prefabs/ui/heart.tscn<>res://scripts/ui/lifes.gd<>res://scripts/ui/runes.gd<>res://scripts/ui/keys.gd<>uid://kvduq5drsh05::::res://assets/Scenario/sky_color.png<>uid://cccvlwioasyc3::::res://prefabs/ui/rune.tscn<>res://scripts/ui/ui.gd<>uid://b4xgpq0dn4x8k::::res://assets/Scenario/cloud_cover.png<>uid://cg5kkmw1jvfxc::::res://assets/Sprites/Platforms/disable platform.png<>res://shaders/movement_clouds.gdshader<>uid://dxxm861lniaw8::::res://assets/Scenario/clouds.png<>uid://cxgih4ylwca7w::::res://assets/Scenario/hills.png<>uid://ds75h54s8hvdp::::res://assets/Scenario/foreground.png<>uid://blerq1hctcr5y::::res://prefabs/world/sign.tscn<>uid://cmfck4elrooh5::::res://prefabs/world/moving_platform.tscn<>uid://dokah3cvchfms::::res://prefabs/world/disable_platform.tscn<>uid://8uvm041cw475::::res://actors/Enemies/guardian.tscn<>res://scripts/world/fall_zone.gd<>uid://b4xixg71vvdy1::::res://actors/Enemies/butcher.tscn<>uid://b7raulr8by8ce::::res://prefabs/logical/patrol_limit.tscn<>uid://dc62xa123hbhb::::res://spriteframes/keys.tres<>uid://ctngfmg5eafum::::res://prefabs/world/falling_platform.tscn<>uid://cku3nrciypm8g::::res://actors/cat.tscn<>uid://cwdr6kbepti8p::::res://prefabs/world/transition_player.tscn
-main_menu.tscn::PackedScene::7559812617802481048::1693621973::0::1::::<><>::res://scripts/levels/Main Menu/main_menu.gd<>uid://dovacx3vyj0dl::::res://assets/UI/Font/RevMiniPixel.ttf<>uid://ct5j6thhyig4a::::res://assets/Tilesets/default tile.png<>res://scripts/levels/Main Menu/scene.gd<>uid://kvduq5drsh05::::res://assets/Scenario/sky_color.png<>uid://b4xgpq0dn4x8k::::res://assets/Scenario/cloud_cover.png<>uid://dxxm861lniaw8::::res://assets/Scenario/clouds.png<>res://shaders/movement_clouds.gdshader<>uid://cxgih4ylwca7w::::res://assets/Scenario/hills.png<>uid://ds75h54s8hvdp::::res://assets/Scenario/foreground.png<>uid://bqyjucihdpafd::::res://prefabs/ui/transition_in.tscn<>uid://cs5lci6t0oem1::::res://assets/Actors/Player/run.png
+::res://levels/::1693626066
+level_1.tscn::PackedScene::5991059698451365763::1693626022::0::1::::<><>::res://scripts/world/world_1.gd<>uid://bqyjucihdpafd::::res://prefabs/ui/transition_in.tscn<>uid://08wntifp68h1::::res://assets/Tilesets/1 - Grassland/Grassland_entities (16 x 16).png<>uid://bisriq574agub::::res://actors/player.tscn<>uid://ct5j6thhyig4a::::res://assets/Tilesets/default tile.png<>uid://d1unu2s3g8be7::::res://prefabs/ui/heart.tscn<>res://scripts/ui/lifes.gd<>res://scripts/ui/runes.gd<>res://scripts/ui/keys.gd<>uid://kvduq5drsh05::::res://assets/Scenario/sky_color.png<>uid://cccvlwioasyc3::::res://prefabs/ui/rune.tscn<>res://scripts/ui/ui.gd<>uid://b4xgpq0dn4x8k::::res://assets/Scenario/cloud_cover.png<>uid://cg5kkmw1jvfxc::::res://assets/Sprites/Platforms/disable platform.png<>res://shaders/movement_clouds.gdshader<>uid://dxxm861lniaw8::::res://assets/Scenario/clouds.png<>uid://cxgih4ylwca7w::::res://assets/Scenario/hills.png<>uid://ds75h54s8hvdp::::res://assets/Scenario/foreground.png<>uid://blerq1hctcr5y::::res://prefabs/world/sign.tscn<>uid://cmfck4elrooh5::::res://prefabs/world/moving_platform.tscn<>uid://dokah3cvchfms::::res://prefabs/world/disable_platform.tscn<>uid://8uvm041cw475::::res://actors/Enemies/guardian.tscn<>res://scripts/world/fall_zone.gd<>uid://b4xixg71vvdy1::::res://actors/Enemies/butcher.tscn<>uid://b7raulr8by8ce::::res://prefabs/logical/patrol_limit.tscn<>uid://dc62xa123hbhb::::res://spriteframes/keys.tres<>uid://ctngfmg5eafum::::res://prefabs/world/falling_platform.tscn<>uid://cku3nrciypm8g::::res://actors/cat.tscn<>uid://cwdr6kbepti8p::::res://prefabs/world/transition_player.tscn
+main_menu.tscn::PackedScene::7559812617802481048::1693626066::0::1::::<><>::res://scripts/levels/Main Menu/main_menu.gd<>uid://dovacx3vyj0dl::::res://assets/UI/Font/RevMiniPixel.ttf<>uid://ct5j6thhyig4a::::res://assets/Tilesets/default tile.png<>res://scripts/levels/Main Menu/scene.gd<>uid://kvduq5drsh05::::res://assets/Scenario/sky_color.png<>uid://b4xgpq0dn4x8k::::res://assets/Scenario/cloud_cover.png<>uid://dxxm861lniaw8::::res://assets/Scenario/clouds.png<>res://shaders/movement_clouds.gdshader<>uid://cxgih4ylwca7w::::res://assets/Scenario/hills.png<>uid://ds75h54s8hvdp::::res://assets/Scenario/foreground.png<>uid://bqyjucihdpafd::::res://prefabs/ui/transition_in.tscn<>uid://cs5lci6t0oem1::::res://assets/Actors/Player/run.png
 news.tscn::PackedScene::6069053403586918160::1693599542::0::1::::<><>::res://scripts/levels/News/news.gd<>uid://dvbx5kxnrnbfo
 ::res://prefabs/::1693599542
 ::res://prefabs/logical/::1693599542
@@ -688,17 +688,11 @@ damageable.tscn::PackedScene::5662611084140783673::1693599542::0::1::::<><>::res
 hitbox.tscn::PackedScene::8273295745822289981::1693599542::0::1::::<><>::res://scripts/logical/hitbox.gd
 patrol_limit.tscn::PackedScene::4667594423327464956::1693599542::0::1::::<><>::res://scripts/logical/patrol_limit.gd
 state_machine.tscn::PackedScene::689001841184023902::1693599542::0::1::::<><>::res://scripts/logical/state_machine.gd
-::res://prefabs/ui/::1693622217
+::res://prefabs/ui/::1693622896
 dialog_box.tscn::PackedScene::2781578296444622927::1693599542::0::1::::<><>::uid://netjsttfhnq4
 heart.tscn::PackedScene::9026286024751844244::1693599542::0::1::::<><>::uid://berpf43fh3mxv
 rune.tscn::PackedScene::4918643679260405776::1693599542::0::1::::<><>::uid://chcnlgohphplt
 transition_in.tscn::PackedScene::3559569534539832245::1693599542::0::1::::<><>::res://scripts/ui/transition_in.gd<>res://shaders/transition_in.gdshader<>res://scripts/ui/overlay.gd
-::res://prefabs/ui/pauseMenu/::1693622220
-menu_button_hover_theme.tres::StyleBoxFlat::1435287130949775337::1693622089::0::1::::<><>::
-menu_button_theme.tres::StyleBoxFlat::5219437123945701124::1693622096::0::1::::<><>::
-menu_ui_theme.tres::Theme::8593019294521896695::1693622122::0::1::::<><>::
-pause_menu.gd::GDScript::-1::1693622128::0::1::::<>Control<>::
-pause_menu.tscn::PackedScene::1636772889880983548::1693622131::0::1::::<><>::res://UI/pause_menu.gd<>uid://duor1i2pvlea6::::res://UI/menu_ui_theme.tres<>uid://cgmlmqdfacwym::::res://UI/menu_button_theme.tres<>uid://upi77tjr05jh::::res://UI/menu_button_hover_theme.tres
 ::res://prefabs/world/::1693599542
 disable_platform.tscn::PackedScene::8162563614810199350::1693599542::0::1::::<><>::res://scripts/world/disable_platform.gd
 falling_platform.tscn::PackedScene::6133640179155160520::1693599542::0::1::::<><>::res://scripts/world/falling_platform.gd<>uid://cunh1fq6poepw
@@ -737,8 +731,8 @@ death.gd::GDScript::-1::1693599542::0::1::::<>State<>::
 hurt.gd::GDScript::-1::1693599542::0::1::::<>State<>::
 walk.gd::GDScript::-1::1693599542::0::1::::<>State<>::
 ::res://scripts/levels/::1693599542
-::res://scripts/levels/Main Menu/::1693599542
-main_menu.gd::GDScript::-1::1693599542::0::1::::<>MarginContainer<>::
+::res://scripts/levels/Main Menu/::1693624238
+main_menu.gd::GDScript::-1::1693624238::0::1::::<>MarginContainer<>::
 scene.gd::GDScript::-1::1693599542::0::1::::<>Control<>::
 ::res://scripts/levels/News/::1693599542
 news.gd::GDScript::-1::1693599542::0::1::::<>Control<>::
@@ -748,8 +742,8 @@ hitbox.gd::GDScript::-1::1693599542::0::1::::<>Area2D<>::
 patrol_limit.gd::GDScript::-1::1693599542::0::1::::PatrolLimits<>Area2D<>::
 state.gd::GDScript::-1::1693599542::0::1::::State<>Node<>::
 state_machine.gd::GDScript::-1::1693599542::0::1::::StateMachine<>Node<>::
-::res://scripts/player/::1693599542
-player.gd::GDScript::-1::1693599542::0::1::::Player<>CharacterBody2D<>::
+::res://scripts/player/::1693626021
+player.gd::GDScript::-1::1693626021::0::1::::Player<>CharacterBody2D<>::
 ::res://scripts/player/states/::1693599542
 attack.gd::GDScript::-1::1693599542::0::1::::<>State<>::
 death.gd::GDScript::-1::1693599542::0::1::::<>State<>::
@@ -758,29 +752,35 @@ hurt.gd::GDScript::-1::1693599542::0::1::::<>State<>::
 idle.gd::GDScript::-1::1693599542::0::1::::<>State<>::
 jump.gd::GDScript::-1::1693599542::0::1::::<>State<>::
 run.gd::GDScript::-1::1693599542::0::1::::<>State<>::
-::res://scripts/ui/::1693599542
+::res://scripts/ui/::1693626142
 action_menu.gd::GDScript::-1::1693599542::0::1::::<>CanvasLayer<>::
 dialog_box.gd::GDScript::-1::1693599542::0::1::::DialogBox<>MarginContainer<>::
 keys.gd::GDScript::-1::1693599542::0::1::::<>Control<>::
 lifes.gd::GDScript::-1::1693599542::0::1::::<>Control<>::
 overlay.gd::GDScript::-1::1693599542::0::1::::<>ColorRect<>::
 runes.gd::GDScript::-1::1693599542::0::1::::<>Control<>::
-transition_in.gd::GDScript::-1::1693599542::0::1::::TransitionIn<>CanvasLayer<>::
+transition_in.gd::GDScript::-1::1693626142::0::1::::TransitionIn<>CanvasLayer<>::
 transition_out.gd::GDScript::-1::1693599542::0::1::::<>CanvasLayer<>::
 ui.gd::GDScript::-1::1693599542::0::1::::<>CanvasLayer<>::
-::res://scripts/world/::1693599542
+::res://scripts/world/::1693626018
 disable_platform.gd::GDScript::-1::1693599542::0::1::::<>Area2D<>::
 falling_platform.gd::GDScript::-1::1693599542::0::1::::<>AnimatableBody2D<>::
 fall_zone.gd::GDScript::-1::1693599542::0::1::::<>Area2D<>::
 moving_platform.gd::GDScript::-1::1693599542::0::1::::<>Node2D<>::
 sign.gd::GDScript::-1::1693599542::0::1::::<>Area2D<>::
 transition_player.gd::GDScript::-1::1693599542::0::1::::FinishLevel<>Area2D<>::
-world_1.gd::GDScript::-1::1693599542::0::1::::<>Node2D<>::
+world_1.gd::GDScript::-1::1693626018::0::1::::<>Node2D<>::
 ::res://shaders/::1693599542
 movement_clouds.gdshader::Shader::-1::1693599542::0::1::::<><>::
 transition_in.gdshader::Shader::-1::1693599542::0::1::::<><>::
 ::res://singleton/::1693599542
 dialog_manager.gd::GDScript::-1::1693599542::0::1::::<>Node<>::
 signal_bus.gd::GDScript::-1::1693599542::0::1::::<>Node<>::
-::res://spriteframes/::1693621972
+::res://spriteframes/::1693622821
 keys.tres::SpriteFrames::7365315922225093323::1693622821::0::1::::<><>::uid://c7o85jtpel5gf::::res://assets/UI/Keys/Classic/Dark/Single PNGs/A.png<>uid://xf2tvg5wrd35::::res://assets/UI/Keys/Classic/Dark/Single PNGs/D.png<>uid://c7htigidcya8h::::res://assets/UI/Keys/Classic/Dark/Spritesheets/C.png<>uid://b1i6urar7u57d::::res://assets/UI/Keys/Classic/Dark/Spritesheets/E.png<>uid://hj14m4k2q0g6::::res://assets/UI/Keys/Classic/Dark/Spritesheets/Q.png<>uid://sr33a7gxsfy::::res://assets/UI/Keys/Classic/Dark/Spritesheets/SPACE.png<>uid://b73osi2ekkhcx::::res://assets/UI/Keys/Classic/Dark/Spritesheets/S.png<>uid://dvaw40y3e0coy::::res://assets/UI/Keys/Classic/Dark/Spritesheets/W.png<>uid://bkguqxw0sqao4::::res://assets/UI/Keys/Classic/Dark/Spritesheets/X.png<>uid://br87qv7bpr8hj::::res://assets/UI/Keys/Classic/Dark/Spritesheets/Z.png<>uid://btfys6rs8k87a::::res://assets/UI/Keys/Classic/Dark/Spritesheets/A.png<>uid://r7sa841yjf1b::::res://assets/UI/Keys/Classic/Dark/Spritesheets/D.png
+::res://UI/::1693626022
+menu_button_hover_theme.tres::StyleBoxFlat::1435287130949775337::1693622089::0::1::::<><>::
+menu_button_theme.tres::StyleBoxFlat::5219437123945701124::1693622096::0::1::::<><>::
+menu_ui_theme.tres::Theme::9007216258092412790::1693623441::0::1::::<><>::
+pause_menu.gd::GDScript::-1::1693624560::0::1::::<>Control<>::
+pause_menu.tscn::PackedScene::1636772889880983548::1693626022::0::1::::<><>::res://UI/pause_menu.gd<>uid://d1lfshnc375q5::::res://UI/menu_ui_theme.tres<>res://UI/menu_button_theme.tres<>res://UI/menu_button_hover_theme.tres
