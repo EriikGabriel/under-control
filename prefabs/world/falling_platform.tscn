@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctngfmg5eafum"]
+
+[ext_resource type="Script" path="res://scripts/world/falling_platform.gd" id="1_ny7dd"]
+[ext_resource type="Texture2D" uid="uid://cunh1fq6poepw" path="res://assets/Sprites/Platforms/falling platform.png" id="2_1f8ql"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fux1"]
+atlas = ExtResource("2_1f8ql")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4n4hh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fux1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yj4eo"]
+size = Vector2(50, 18)
+
+[sub_resource type="Animation" id="Animation_5yasd"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_hfknl"]
+resource_name = "shake"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -20), Vector2(2, -20), Vector2(0, -20), Vector2(-2, -20), Vector2(0, -20)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_80f8l"]
+_data = {
+"RESET": SubResource("Animation_5yasd"),
+"shake": SubResource("Animation_hfknl")
+}
+
+[node name="Falling Platform" type="AnimatableBody2D"]
+collision_layer = 2
+script = ExtResource("1_ny7dd")
+
+[node name="texture" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -20)
+sprite_frames = SubResource("SpriteFrames_4n4hh")
+autoplay = "default"
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(2, -11)
+shape = SubResource("RectangleShape2D_yj4eo")
+one_way_collision = true
+
+[node name="respawn_timer" type="Timer" parent="."]
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_80f8l")
+}
+
+[connection signal="timeout" from="respawn_timer" to="." method="_on_respawn_timer_timeout"]
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]

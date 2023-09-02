@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwdr6kbepti8p"]
+
+[ext_resource type="Script" path="res://scripts/world/transition_player.gd" id="1_de3ay"]
+[ext_resource type="PackedScene" uid="uid://bqyjucihdpafd" path="res://prefabs/ui/transition_in.tscn" id="2_dwq8g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ariok"]
+size = Vector2(20, 112)
+
+[node name="Transition Player" type="Area2D"]
+script = ExtResource("1_de3ay")
+
+[node name="Transition In" parent="." instance=ExtResource("2_dwq8g")]
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ariok")
+debug_color = Color(0.631373, 0.211765, 0.992157, 0.419608)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

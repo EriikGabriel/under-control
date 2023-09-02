@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://blerq1hctcr5y"]
+
+[ext_resource type="Script" path="res://scripts/world/sign.gd" id="1_phqop"]
+[ext_resource type="Texture2D" uid="uid://6conifk6ll5f" path="res://assets/Tilesets/sign.png" id="2_lrgml"]
+[ext_resource type="Texture2D" uid="uid://bgovfxo3mrh5b" path="res://assets/UI/Mini UI/emotes.png" id="5_plc2r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ingtl"]
+size = Vector2(34, 27)
+
+[node name="Sign" type="Area2D"]
+z_index = -1
+collision_layer = 2
+script = ExtResource("1_phqop")
+
+[node name="texture" type="Sprite2D" parent="."]
+texture = ExtResource("2_lrgml")
+region_rect = Rect2(48, 80, 16, 16)
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_ingtl")
+
+[node name="warning" type="Node2D" parent="."]
+
+[node name="texture" type="Sprite2D" parent="warning"]
+visible = false
+position = Vector2(-5.96046e-08, -22)
+scale = Vector2(0.875, 0.875)
+texture = ExtResource("5_plc2r")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)

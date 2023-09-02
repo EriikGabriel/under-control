@@ -533,7 +533,7 @@ scale = Vector2(4.52, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_v41y2")]
 unique_name_in_owner = true
-position = Vector2(703, 163)
+position = Vector2(-10, 275)
 
 [node name="Moving Platform" parent="." instance=ExtResource("18_r1n00")]
 position = Vector2(461, 296)
