@@ -615,11 +615,6 @@ actor = NodePath("../Butcher")
 position = Vector2(54, 1)
 actor = NodePath("../Butcher")
 
-[node name="Sign2" parent="." instance=ExtResource("18_fdem6")]
-visible = false
-position = Vector2(1368, 184)
-lines = Array[String](["Atenção, viajante! O caminho à frente é perigoso."])
-
 [node name="Falling Platform" parent="." instance=ExtResource("25_goehd")]
 position = Vector2(1482, 212)
 
@@ -712,7 +707,7 @@ position = Vector2(124, 2)
 actor = NodePath("../Butcher")
 
 [node name="Finish Level" parent="." instance=ExtResource("28_1x3c0")]
-position = Vector2(3595, 156)
+position = Vector2(3990, 90)
 collision_layer = 2
 next_scene_name = "news"
 
