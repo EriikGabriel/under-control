@@ -10,7 +10,7 @@ var scene_tween_out: Tween
 var scene_path: NodePath
 var transition_delay: float
 
-func change_scene(path: NodePath, delay := 0.5):
+func change_scene(path: NodePath, delay := 2):
 	scene_path = path
 	transition_delay = delay
 	

@@ -11,6 +11,11 @@ var is_hurt = false
 var is_death = false
 var is_attacking = false
 var is_jump = false
+var is_healing = false
+
+
+# Check if is level transition
+var level_transition = false
 
 # Knockback vector
 var knockback = Vector2.ZERO
@@ -22,7 +27,7 @@ var jump_action: String
 var moves_action: Dictionary
 
 # Control flag's
-var control_inverted = false
+@export var control_inverted = false
 var keys_modified = false
 var keys_disabled: Array[SignalBus.DisableKeys] = []
 
@@ -45,7 +50,7 @@ func _physics_process(delta):
 	elif(is_jump):
 		is_jump = false
 		
-	if(is_death):
+	if(is_death || is_healing):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		move_and_slide()
 		return
@@ -57,7 +62,8 @@ func _physics_process(delta):
 	if(keys_modified): _random_control()
 
 	# Direction Handler
-	direction = Input.get_axis(moves_action["left"], moves_action["right"])
+	if(!level_transition):
+		direction = Input.get_axis(moves_action["left"], moves_action["right"])
 	
 	if(keys_disabled): _disable_keys()
 	if(control_inverted): _invert_control()

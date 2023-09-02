@@ -1,94 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://dokah3cvchfms"]
+[gd_scene load_steps=3 format=3 uid="uid://dokah3cvchfms"]
 
 [ext_resource type="Script" path="res://scripts/world/disable_platform.gd" id="1_ysvct"]
-[ext_resource type="Texture2D" uid="uid://cg5kkmw1jvfxc" path="res://assets/Sprites/Platforms/disable platform.png" id="2_ccy1d"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fnijl"]
-atlas = ExtResource("2_ccy1d")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5otud"]
-atlas = ExtResource("2_ccy1d")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dreyj"]
-atlas = ExtResource("2_ccy1d")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fw0m1"]
-atlas = ExtResource("2_ccy1d")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k6pbl"]
-atlas = ExtResource("2_ccy1d")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_har76"]
-atlas = ExtResource("2_ccy1d")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xcs5l"]
-atlas = ExtResource("2_ccy1d")
-region = Rect2(384, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_sbc6j"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fnijl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5otud")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dreyj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fw0m1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k6pbl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_har76")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xcs5l")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k72qo"]
-size = Vector2(48, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_srtb2"]
-size = Vector2(64, 27)
+size = Vector2(48, 17)
 
-[node name="Disable Platform" type="StaticBody2D"]
+[node name="area" type="Area2D"]
 collision_layer = 2
 script = ExtResource("1_ysvct")
-keys_disable = Array[int]([2])
 
-[node name="anim" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_sbc6j")
-autoplay = "default"
-frame_progress = 1.0
-
-[node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 16)
-shape = SubResource("RectangleShape2D_k72qo")
-one_way_collision = true
-
-[node name="area" type="Area2D" parent="."]
-visible = false
-collision_layer = 2
-
-[node name="shape" type="CollisionShape2D" parent="area"]
-position = Vector2(0, -13.5)
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15.5)
 shape = SubResource("RectangleShape2D_srtb2")
 debug_color = Color(0.643137, 0.521569, 0, 0.419608)
 
-[connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
-[connection signal="body_exited" from="area" to="." method="_on_area_body_exited"]
+[connection signal="body_entered" from="." to="." method="_on_area_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_area_body_exited"]

@@ -14,8 +14,11 @@ var can_advance_message := false
 func start_message(position: Vector2, lines: Array[String]):
 	if(is_message_active): return
 	
+	
+	
 	message_lines = lines
 	dialog_box_position = position
+	print("sla")
 	show_text()
 	
 	is_message_active = true
@@ -24,6 +27,7 @@ func show_text():
 	dialog_box = dialog_box_scene.instantiate()
 	dialog_box.text_display_finished.connect(_on_signal_text_displayed)
 	get_tree().root.add_child(dialog_box)
+	print("hehe")
 	dialog_box.global_position = dialog_box_position
 	dialog_box.display_text(message_lines[current_line])
 	can_advance_message = false

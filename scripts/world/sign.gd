@@ -9,6 +9,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if(get_overlapping_bodies().size()):
 		texture.show()
 		if(event.is_action_pressed("interact") && !DialogManager.is_message_active):
+			print()
 			texture.hide()
 			DialogManager.start_message(warning.global_position, lines)
 	else:
