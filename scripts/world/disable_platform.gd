@@ -1,4 +1,4 @@
-extends Area2D
+extends StaticBody2D
 
 enum DisableKeys { KEY_LEFT, KEY_RIGHT, KEY_SPACE }
 

@@ -11,7 +11,7 @@ var is_hurt := false
 
 var knockback = Vector2.ZERO
 
-
+var direction := 0
 
 var controls_changes_array: Array[SignalBus.ControlChange] = []
 
@@ -19,7 +19,6 @@ var controls_changes_array: Array[SignalBus.ControlChange] = []
 @onready var distance_raycast: RayCast2D = $attack_distance
 @onready var reload_timer: Timer = $attack_distance/reload_timer
 
-@export var direction := 0
 @export var bullet: PackedScene
 @export var bullet_reload := 2
 @export var bullet_speed := 80
@@ -46,17 +45,17 @@ func _physics_process(delta):
 	
 	if(distance_raycast.is_colliding() && distance_raycast.get_collider()): 
 		if(reload_timer.is_stopped()):
-			is_attacking = true
+			distance_attack()
 	
 	move_and_slide()
 
 func distance_attack():
+	is_attacking = true
 	distance_raycast.enabled = false
 	reload_timer.start()
 	
 	var bullet_instance = bullet.instantiate() as SpellBullet
 	bullet_instance.speed = bullet_speed
-	bullet_instance.position.x = -20
 	add_child(bullet_instance)
 
 func _invert_controls():
@@ -75,12 +74,8 @@ func _on_anim_animation_finished() -> void:
 	match (animation.animation):
 		"attack":
 			is_attacking = false
-			distance_attack()
 		"hurt":
 			is_hurt = false
 
 func _on_reload_timer_timeout():
 	distance_raycast.enabled = true
-
-
-
