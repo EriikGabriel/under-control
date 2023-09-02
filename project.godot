@@ -26,8 +26,7 @@ window/size/viewport_height=320
 window/size/window_width_override=640
 window/size/window_height_override=384
 window/stretch/mode="canvas_items"
-mouse_cursor/custom_image="res://assets/UI/Cursors/default cursor.png"
-mouse_cursor/tooltip_position_offset=Vector2(100, 100)
+window/stretch/scale=2.0
 
 [editor]
 

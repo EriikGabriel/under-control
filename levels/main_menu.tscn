@@ -1,17 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://dfybak1a8hvdw"]
+[gd_scene load_steps=8 format=3 uid="uid://dfybak1a8hvdw"]
 
-[ext_resource type="Script" path="res://scripts/levels/Main Menu/main_menu.gd" id="1_nckwl"]
+[ext_resource type="Script" path="res://scripts/levels/main_menu.gd" id="1_8h5so"]
+[ext_resource type="Texture2D" uid="uid://dvuhs07os2hm6" path="res://assets/Actors/Player/idle.png" id="1_cm0l6"]
 [ext_resource type="FontFile" uid="uid://dovacx3vyj0dl" path="res://assets/UI/Font/RevMiniPixel.ttf" id="1_x3n3s"]
-[ext_resource type="Texture2D" uid="uid://ct5j6thhyig4a" path="res://assets/Tilesets/default tile.png" id="2_usy0w"]
-[ext_resource type="Script" path="res://scripts/levels/Main Menu/scene.gd" id="3_vkss5"]
-[ext_resource type="Texture2D" uid="uid://kvduq5drsh05" path="res://assets/Scenario/sky_color.png" id="5_fowns"]
-[ext_resource type="Texture2D" uid="uid://b4xgpq0dn4x8k" path="res://assets/Scenario/cloud_cover.png" id="6_52fu6"]
-[ext_resource type="Texture2D" uid="uid://dxxm861lniaw8" path="res://assets/Scenario/clouds.png" id="7_cjh3v"]
-[ext_resource type="Shader" path="res://shaders/movement_clouds.gdshader" id="7_gynnt"]
-[ext_resource type="Texture2D" uid="uid://cxgih4ylwca7w" path="res://assets/Scenario/hills.png" id="8_7j3de"]
-[ext_resource type="Texture2D" uid="uid://ds75h54s8hvdp" path="res://assets/Scenario/foreground.png" id="9_5fagw"]
-[ext_resource type="PackedScene" uid="uid://bqyjucihdpafd" path="res://prefabs/ui/transition_in.tscn" id="12_wf50t"]
-[ext_resource type="Texture2D" uid="uid://cs5lci6t0oem1" path="res://assets/Actors/Player/run.png" id="18_ot1rq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s3jbq"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -25,213 +16,55 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74t88"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0sxnv"]
-shader = ExtResource("7_gynnt")
-shader_parameter/move_speed = 0.05
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i84lc"]
-texture = ExtResource("2_usy0w")
-1:2/0 = 0
-1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:2/0/physics_layer_0/angular_velocity = 0.0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:2/0 = 0
-2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:2/0/physics_layer_0/angular_velocity = 0.0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:2/0 = 0
-3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:2/0/physics_layer_0/angular_velocity = 0.0
-3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-5:2/0 = 0
-5:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:2/0/physics_layer_0/angular_velocity = 0.0
-5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:4/0 = 0
-1:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:4/0/physics_layer_0/angular_velocity = 0.0
-1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:4/0 = 0
-2:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:4/0/physics_layer_0/angular_velocity = 0.0
-2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:4/0 = 0
-3:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:4/0/physics_layer_0/angular_velocity = 0.0
-3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-5:4/0 = 0
-5:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:4/0/physics_layer_0/angular_velocity = 0.0
-5:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:5/0 = 0
-1:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:5/0/physics_layer_0/angular_velocity = 0.0
-1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:5/0 = 0
-2:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:5/0/physics_layer_0/angular_velocity = 0.0
-2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:5/0 = 0
-3:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:5/0/physics_layer_0/angular_velocity = 0.0
-3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-5:5/0 = 0
-5:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:5/0/physics_layer_0/angular_velocity = 0.0
-5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:6/0 = 0
-1:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:6/0/physics_layer_0/angular_velocity = 0.0
-1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:6/0 = 0
-2:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:6/0/physics_layer_0/angular_velocity = 0.0
-2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:6/0 = 0
-3:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:6/0/physics_layer_0/angular_velocity = 0.0
-3:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-5:6/0 = 0
-5:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:6/0/physics_layer_0/angular_velocity = 0.0
-5:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSet" id="TileSet_keylt"]
-physics_layer_0/collision_layer = 2
-physics_layer_0/collision_mask = 5
-sources/0 = SubResource("TileSetAtlasSource_i84lc")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ury2q"]
-atlas = ExtResource("18_ot1rq")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ufgnh"]
-atlas = ExtResource("18_ot1rq")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gpy81"]
-atlas = ExtResource("18_ot1rq")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_op0wq"]
-atlas = ExtResource("18_ot1rq")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ut4mn"]
-atlas = ExtResource("18_ot1rq")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gdo2s"]
-atlas = ExtResource("18_ot1rq")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e3kge"]
-atlas = ExtResource("18_ot1rq")
-region = Rect2(192, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d057j"]
-atlas = ExtResource("18_ot1rq")
-region = Rect2(224, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_yybua"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ury2q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ufgnh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gpy81")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_op0wq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ut4mn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gdo2s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e3kge")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d057j")
-}],
-"loop": true,
-"name": &"run",
-"speed": 8.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ypa2e"]
-size = Vector2(14, 27)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2doj0"]
-size = Vector2(1, 40)
-
-[node name="Control" type="Control"]
-layout_mode = 3
+[node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8h5so")
 
-[node name="Shadow" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.392157)
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.729412, 0.509804, 0.0313726, 1)
 
-[node name="MainMenu" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_nckwl")
+[node name="Jane" type="Sprite2D" parent="Background"]
+position = Vector2(49, 125)
+scale = Vector2(2.32, 2.32)
+texture = ExtResource("1_cm0l6")
+region_enabled = true
+region_rect = Rect2(192, 0, 32, 32)
 
-[node name="CenterContainer" type="CenterContainer" parent="MainMenu"]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/CenterContainer"]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="CenterContainer" type="CenterContainer" parent="MainMenu/CenterContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainMenu/CenterContainer/VBoxContainer/CenterContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 8
 theme_override_fonts/font = ExtResource("1_x3n3s")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Under Control"
 
-[node name="CenterContainer2" type="CenterContainer" parent="MainMenu/CenterContainer/VBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/CenterContainer/VBoxContainer/CenterContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer2"]
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="MainMenu/CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer"]
 layout_mode = 2
 
-[node name="Start" type="Button" parent="MainMenu/CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer"]
+[node name="Start" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../../CenterContainer4/VBoxContainer/CenterContainer/Exit")
-theme_override_colors/font_pressed_color = Color(0.976471, 0.545098, 0, 1)
-theme_override_colors/font_hover_color = Color(1, 0.694457, 0.442578, 1)
-theme_override_colors/font_focus_color = Color(0.976471, 0.545098, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.976471, 0.545098, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("1_x3n3s")
@@ -244,21 +77,17 @@ text = "Começar
 flat = true
 icon_alignment = 1
 
-[node name="CenterContainer3" type="CenterContainer" parent="MainMenu/CenterContainer/VBoxContainer"]
+[node name="CenterContainer3" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/CenterContainer/VBoxContainer/CenterContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer3"]
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="MainMenu/CenterContainer/VBoxContainer/CenterContainer3/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/CenterContainer3/VBoxContainer"]
 layout_mode = 2
 
-[node name="Credits" type="Button" parent="MainMenu/CenterContainer/VBoxContainer/CenterContainer3/VBoxContainer/CenterContainer"]
+[node name="Credits" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer3/VBoxContainer/CenterContainer"]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(0.976471, 0.545098, 0, 1)
-theme_override_colors/font_hover_color = Color(1, 0.694457, 0.442578, 1)
-theme_override_colors/font_focus_color = Color(0.976471, 0.545098, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.976471, 0.545098, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("1_x3n3s")
@@ -270,22 +99,18 @@ text = "Créditos"
 flat = true
 icon_alignment = 1
 
-[node name="CenterContainer4" type="CenterContainer" parent="MainMenu/CenterContainer/VBoxContainer"]
+[node name="CenterContainer4" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/CenterContainer/VBoxContainer/CenterContainer4"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer4"]
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="MainMenu/CenterContainer/VBoxContainer/CenterContainer4/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/CenterContainer4/VBoxContainer"]
 layout_mode = 2
 
-[node name="Exit" type="Button" parent="MainMenu/CenterContainer/VBoxContainer/CenterContainer4/VBoxContainer/CenterContainer"]
+[node name="Exit" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer4/VBoxContainer/CenterContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../../../../CenterContainer2/VBoxContainer/CenterContainer/Start")
-theme_override_colors/font_pressed_color = Color(0.976471, 0.545098, 0, 1)
-theme_override_colors/font_hover_color = Color(1, 0.694457, 0.442578, 1)
-theme_override_colors/font_focus_color = Color(0.976471, 0.545098, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.976471, 0.545098, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("1_x3n3s")
@@ -297,117 +122,5 @@ text = "Sair"
 flat = true
 icon_alignment = 1
 
-[node name="Scene" type="Control" parent="."]
-anchors_preset = 0
-script = ExtResource("3_vkss5")
-
-[node name="Background" type="ParallaxBackground" parent="Scene"]
-
-[node name="05" type="ParallaxLayer" parent="Scene/Background"]
-position = Vector2(0, -63)
-motion_mirroring = Vector2(432, 0)
-
-[node name="Sky" type="Sprite2D" parent="Scene/Background/05"]
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("5_fowns")
-centered = false
-
-[node name="04" type="ParallaxLayer" parent="Scene/Background"]
-position = Vector2(0, -63)
-motion_mirroring = Vector2(432, 0)
-
-[node name="Back Clouds" type="Sprite2D" parent="Scene/Background/04"]
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("6_52fu6")
-centered = false
-
-[node name="03" type="ParallaxLayer" parent="Scene/Background"]
-position = Vector2(0, -63)
-motion_mirroring = Vector2(432, 0)
-
-[node name="Clouds" type="Sprite2D" parent="Scene/Background/03"]
-texture_repeat = 2
-material = SubResource("ShaderMaterial_0sxnv")
-position = Vector2(0, 28)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("7_cjh3v")
-centered = false
-
-[node name="02" type="ParallaxLayer" parent="Scene/Background"]
-position = Vector2(0, -63)
-motion_mirroring = Vector2(432, 0)
-
-[node name="Hills" type="Sprite2D" parent="Scene/Background/02"]
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("8_7j3de")
-centered = false
-
-[node name="01" type="ParallaxLayer" parent="Scene/Background"]
-position = Vector2(0, -63)
-motion_mirroring = Vector2(432, 0)
-
-[node name="Foreground" type="Sprite2D" parent="Scene/Background/01"]
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("9_5fagw")
-centered = false
-
-[node name="Scene" type="TileMap" parent="Scene"]
-position = Vector2(-65.5, -23.5)
-scale = Vector2(1.0177, 0.998288)
-tile_set = SubResource("TileSet_keylt")
-format = 2
-layer_0/tile_data = PackedInt32Array(1114117, 131072, 4, 1179653, 131072, 5, 1245189, 131072, 5, 1114118, 131072, 4, 1179654, 131072, 5, 1245190, 131072, 5, 1114119, 131072, 4, 1179655, 131072, 5, 1245191, 131072, 5, 1114120, 131072, 4, 1179656, 131072, 5, 1245192, 131072, 5, 1114121, 131072, 4, 1179657, 131072, 5, 1245193, 131072, 5, 1114122, 131072, 4, 1179658, 131072, 5, 1245194, 131072, 5, 1114123, 131072, 4, 1179659, 131072, 5, 1245195, 131072, 5, 1114124, 131072, 4, 1179660, 131072, 5, 1245196, 131072, 5, 1114125, 131072, 4, 1179661, 131072, 5, 1245197, 131072, 5, 1114126, 131072, 4, 1179662, 131072, 5, 1245198, 131072, 5, 1114127, 131072, 4, 1179663, 131072, 5, 1245199, 131072, 5, 1114128, 131072, 4, 1179664, 131072, 5, 1245200, 131072, 5, 1114129, 131072, 4, 1179665, 131072, 5, 1245201, 131072, 5, 1114130, 131072, 4, 1179666, 131072, 5, 1245202, 131072, 5, 1114131, 131072, 4, 1179667, 131072, 5, 1245203, 131072, 5, 1114132, 131072, 4, 1179668, 131072, 5, 1245204, 131072, 5, 1114133, 131072, 4, 1179669, 131072, 5, 1245205, 131072, 5, 1114134, 131072, 4, 1179670, 131072, 5, 1245206, 131072, 5, 1114135, 131072, 4, 1179671, 131072, 5, 1245207, 131072, 5, 1114136, 131072, 4, 1179672, 131072, 5, 1245208, 131072, 5, 1114137, 131072, 4, 1179673, 131072, 5, 1245209, 131072, 5, 1114138, 131072, 4, 1179674, 131072, 5, 1245210, 131072, 5, 1114139, 131072, 4, 1179675, 131072, 5, 1245211, 131072, 5, 1114140, 131072, 4, 1179676, 131072, 5, 1245212, 131072, 5, 1114141, 131072, 4, 1179677, 131072, 5, 1245213, 131072, 5, 1114142, 131072, 4, 1179678, 131072, 5, 1245214, 131072, 5, 1114143, 131072, 4, 1179679, 131072, 5, 1245215, 131072, 5, 1114144, 131072, 4, 1179680, 131072, 5, 1245216, 131072, 5, 1114145, 131072, 4, 1179681, 131072, 5, 1245217, 131072, 5, 1114146, 131072, 4, 1179682, 131072, 5, 1245218, 131072, 5, 1114147, 131072, 4, 1179683, 131072, 5, 1245219, 131072, 5, 1114148, 131072, 4, 1179684, 131072, 5, 1245220, 131072, 5, 1114149, 131072, 4, 1179685, 131072, 5, 1245221, 131072, 5, 1114150, 131072, 4, 1179686, 131072, 5, 1245222, 131072, 5, 1114151, 131072, 4, 1179687, 131072, 5, 1245223, 131072, 5, 1310725, 131072, 5, 1376261, 131072, 6, 1310726, 131072, 5, 1376262, 131072, 6, 1310727, 131072, 5, 1376263, 131072, 6, 1310728, 131072, 5, 1376264, 131072, 6, 1310729, 131072, 5, 1376265, 131072, 6, 1310730, 131072, 5, 1376266, 131072, 6, 1310731, 131072, 5, 1376267, 131072, 6, 1310732, 131072, 5, 1376268, 131072, 6, 1310733, 131072, 5, 1376269, 131072, 6, 1310734, 131072, 5, 1376270, 131072, 6, 1310735, 131072, 5, 1376271, 131072, 6, 1310736, 131072, 5, 1376272, 131072, 6, 1310737, 131072, 5, 1376273, 131072, 6, 1310738, 131072, 5, 1376274, 131072, 6, 1310739, 131072, 5, 1376275, 131072, 6, 1310740, 131072, 5, 1376276, 131072, 6, 1310741, 131072, 5, 1376277, 131072, 6, 1310742, 131072, 5, 1376278, 131072, 6, 1310743, 131072, 5, 1376279, 131072, 6, 1310744, 131072, 5, 1376280, 131072, 6, 1310745, 131072, 5, 1376281, 131072, 6, 1310746, 131072, 5, 1376282, 131072, 6, 1310747, 131072, 5, 1376283, 131072, 6, 1310748, 131072, 5, 1376284, 131072, 6, 1310749, 131072, 5, 1376285, 131072, 6, 1310750, 131072, 5, 1376286, 131072, 6, 1310751, 131072, 5, 1376287, 131072, 6, 1310752, 131072, 5, 1376288, 131072, 6, 1310753, 131072, 5, 1376289, 131072, 6, 1310754, 131072, 5, 1376290, 131072, 6, 1310755, 131072, 5, 1376291, 131072, 6, 1310756, 131072, 5, 1376292, 131072, 6, 1310757, 131072, 5, 1376293, 131072, 6, 1310758, 131072, 5, 1376294, 131072, 6, 1310759, 131072, 5, 1376295, 131072, 6, 1114152, 131072, 4, 1179688, 131072, 5, 1245224, 131072, 5, 1310760, 131072, 5, 1376296, 131072, 6, 1114153, 131072, 4, 1179689, 131072, 5, 1245225, 131072, 5, 1310761, 131072, 5, 1376297, 131072, 6, 1114114, 65536, 4, 1179650, 65536, 5, 1245186, 65536, 5, 1310722, 65536, 5, 1376258, 65536, 6, 1114157, 196608, 4, 1179693, 196608, 5, 1245229, 196608, 5, 1310765, 196608, 5, 1376301, 196608, 6, 1114154, 131072, 4, 1179690, 131072, 5, 1245226, 131072, 5, 1310762, 131072, 5, 1376298, 131072, 6, 1114155, 131072, 4, 1179691, 131072, 5, 1245227, 131072, 5, 1310763, 131072, 5, 1376299, 131072, 6, 1114156, 131072, 4, 1179692, 131072, 5, 1245228, 131072, 5, 1310764, 131072, 5, 1376300, 131072, 6, 1114115, 131072, 4, 1179651, 131072, 5, 1245187, 131072, 5, 1310723, 131072, 5, 1310724, 131072, 5, 1245188, 131072, 5, 1179652, 131072, 5, 1376259, 131072, 6, 1376260, 131072, 6, 1114116, 131072, 4)
-
-[node name="Player" type="CharacterBody2D" parent="Scene" groups=["Player"]]
-position = Vector2(-14, 224)
-scale = Vector2(1.5, 1.5)
-collision_mask = 22
-
-[node name="anim" type="AnimatedSprite2D" parent="Scene/Player"]
-sprite_frames = SubResource("SpriteFrames_yybua")
-animation = &"run"
-
-[node name="collision" type="CollisionShape2D" parent="Scene/Player"]
-position = Vector2(-1, 2.5)
-shape = SubResource("RectangleShape2D_ypa2e")
-
-[node name="raycast_right" type="RayCast2D" parent="Scene/Player"]
-position = Vector2(6, 5)
-target_position = Vector2(6, 0)
-collision_mask = 4
-hit_from_inside = true
-collide_with_areas = true
-
-[node name="raycast_left" type="RayCast2D" parent="Scene/Player"]
-position = Vector2(-8, 5)
-target_position = Vector2(-6, 0)
-collision_mask = 4
-
-[node name="Limit Right" type="Area2D" parent="Scene"]
-position = Vector2(668, 228)
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Scene/Limit Right"]
-shape = SubResource("RectangleShape2D_2doj0")
-debug_color = Color(0.839216, 0.760784, 0, 0.521569)
-
-[node name="Limit Left" type="Area2D" parent="Scene"]
-position = Vector2(-29, 228)
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Scene/Limit Left"]
-shape = SubResource("RectangleShape2D_2doj0")
-debug_color = Color(0.839216, 0.760784, 0, 0.521569)
-
-[node name="Transition In" parent="." instance=ExtResource("12_wf50t")]
-
-[connection signal="mouse_entered" from="MainMenu/CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer/Start" to="MainMenu" method="_on_start_mouse_entered"]
-[connection signal="mouse_exited" from="MainMenu/CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer/Start" to="MainMenu" method="_on_start_mouse_exited"]
-[connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer/Start" to="MainMenu" method="_on_start_pressed"]
-[connection signal="mouse_entered" from="MainMenu/CenterContainer/VBoxContainer/CenterContainer3/VBoxContainer/CenterContainer/Credits" to="MainMenu" method="_on_credits_mouse_entered"]
-[connection signal="mouse_exited" from="MainMenu/CenterContainer/VBoxContainer/CenterContainer3/VBoxContainer/CenterContainer/Credits" to="MainMenu" method="_on_credits_mouse_exited"]
-[connection signal="mouse_entered" from="MainMenu/CenterContainer/VBoxContainer/CenterContainer4/VBoxContainer/CenterContainer/Exit" to="MainMenu" method="_on_exit_mouse_entered"]
-[connection signal="mouse_exited" from="MainMenu/CenterContainer/VBoxContainer/CenterContainer4/VBoxContainer/CenterContainer/Exit" to="MainMenu" method="_on_exit_mouse_exited"]
-[connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/CenterContainer4/VBoxContainer/CenterContainer/Exit" to="MainMenu" method="_on_exit_pressed"]
-[connection signal="body_entered" from="Scene/Limit Right" to="Scene" method="_on_limit_right_body_entered"]
-[connection signal="body_entered" from="Scene/Limit Left" to="Scene" method="_on_limit_left_body_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer4/VBoxContainer/CenterContainer/Exit" to="." method="_on_exit_pressed"]

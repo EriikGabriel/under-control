@@ -10,12 +10,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_hurt = false
 var is_death = false
 var is_attacking = false
-var is_jump = false
-var is_healing = false
-
-
-# Check if is level transition
-var level_transition = false
 
 # Knockback vector
 var knockback = Vector2.ZERO
@@ -27,7 +21,7 @@ var jump_action: String
 var moves_action: Dictionary
 
 # Control flag's
-@export var control_inverted = false
+var control_inverted = false
 var keys_modified = false
 var keys_disabled: Array[SignalBus.DisableKeys] = []
 
@@ -45,25 +39,16 @@ func _ready():
 	SignalBus.on_health_changed.connect(_on_signal_health_changed)
 
 func _physics_process(delta):
-	if(!is_on_floor()):
-		velocity.y += gravity * delta
-	elif(is_jump):
-		is_jump = false
-		
-	if(is_death || is_healing):
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		move_and_slide()
-		return
+	if(!is_on_floor()): velocity.y += gravity * delta
 
 	jump_action = "jump"
 	moves_action = {"left": "move_left", "right": "move_right"}
-	jump_force = -380
+	jump_force = -400
 	
 	if(keys_modified): _random_control()
 
 	# Direction Handler
-	if(!level_transition):
-		direction = Input.get_axis(moves_action["left"], moves_action["right"])
+	direction = Input.get_axis(moves_action["left"], moves_action["right"])
 	
 	if(keys_disabled): _disable_keys()
 	if(control_inverted): _invert_control()
@@ -78,7 +63,6 @@ func _physics_process(delta):
 
 	# Jump Handler
 	if Input.is_action_just_pressed(jump_action) && is_on_floor():
-		is_jump = true
 		velocity.y = jump_force
 
 	# Attack Handler
@@ -97,7 +81,7 @@ func _physics_process(delta):
 	if knockback != Vector2.ZERO:
 		velocity = knockback
 
-	move_and_slide()
+	if !is_death: move_and_slide()
 
 # Camera follows player
 func follow_camera(camera):
@@ -107,7 +91,7 @@ func follow_camera(camera):
 # When player attacks an enemy or spell
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if(body is SpellBullet):
-		body.animation.play("hit")
+		body.queue_free()
 		return
 	
 	for child in body.get_children():
@@ -142,12 +126,11 @@ func _on_anim_animation_finished():
 			hitbox.monitoring = false
 		"hurt":
 			is_hurt = false
-			hitbox.monitoring = false
 
 # Spells
 func _invert_control():
 	direction *= -1
-
+	
 func _random_control():
 	jump_action = "jump_mod"
 	moves_action = {"left": "move_left_mod", "right": "move_right_mod"}

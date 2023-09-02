@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/logical/patrol_limit.gd" id="1_lilq8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se26c"]
-size = Vector2(15.5, 30)
+size = Vector2(5, 5)
 
 [node name="Patrol Limit" type="Area2D"]
 collision_layer = 64
@@ -11,7 +11,6 @@ collision_mask = 4
 script = ExtResource("1_lilq8")
 
 [node name="shape" type="CollisionShape2D" parent="."]
-position = Vector2(5.25, -12.75)
 shape = SubResource("RectangleShape2D_se26c")
 debug_color = Color(0.858824, 0.815686, 0, 0.0980392)
 

@@ -1,25 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://cccvlwioasyc3"]
+[gd_scene load_steps=7 format=3 uid="uid://cccvlwioasyc3"]
 
 [ext_resource type="Texture2D" uid="uid://chcnlgohphplt" path="res://assets/UI/Mini UI/runes.png" id="1_ysqju"]
-[ext_resource type="Texture2D" uid="uid://omp8vmysjqp" path="res://assets/UI/Mini UI/simbolos_sheets/tecla_desabilitada-Sheet.png" id="2_icb83"]
-[ext_resource type="Texture2D" uid="uid://bpb1gdjh6vhxi" path="res://assets/UI/Mini UI/simbolos_sheets/teclas_trocadas-Sheet.png" id="3_4dugd"]
-[ext_resource type="Texture2D" uid="uid://dhlb0qih4n1i8" path="res://assets/UI/Mini UI/simbolos_sheets/teclas_aleatorias-Sheet.png" id="4_50lx3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4cim2"]
 atlas = ExtResource("1_ysqju")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r4k2n"]
-atlas = ExtResource("2_icb83")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq3jk"]
+atlas = ExtResource("1_ysqju")
+region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m0fm6"]
-atlas = ExtResource("3_4dugd")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyyac"]
+atlas = ExtResource("1_ysqju")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ye5g2"]
-atlas = ExtResource("4_50lx3")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgiwg"]
+atlas = ExtResource("1_ysqju")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1bhoc"]
 animations = [{
@@ -33,7 +30,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r4k2n")
+"texture": SubResource("AtlasTexture_pq3jk")
 }],
 "loop": true,
 "name": &"disable",
@@ -41,7 +38,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m0fm6")
+"texture": SubResource("AtlasTexture_dyyac")
 }],
 "loop": true,
 "name": &"invert",
@@ -49,7 +46,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ye5g2")
+"texture": SubResource("AtlasTexture_lgiwg")
 }],
 "loop": true,
 "name": &"random",
@@ -57,7 +54,7 @@ animations = [{
 }]
 
 [node name="Rune" type="AnimatedSprite2D"]
-scale = Vector2(0.46875, 0.46875)
 sprite_frames = SubResource("SpriteFrames_1bhoc")
 animation = &"invert"
 centered = false
+metadata/_edit_lock_ = true
