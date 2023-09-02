@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://j2003fw3nauo"]
-
-[ext_resource type="Script" path="res://scripts/logical/state_machine.gd" id="1_obplc"]
-
-[node name="State Machine" type="Node"]
-script = ExtResource("1_obplc")
