@@ -13,7 +13,6 @@ var is_attacking = false
 var is_jump = false
 var is_healing = false
 
-
 # Check if is level transition
 var level_transition = false
 
@@ -31,6 +30,7 @@ var moves_action: Dictionary
 var keys_modified = false
 var keys_disabled: Array[SignalBus.DisableKeys] = []
 
+@onready var transition_in = $"Transition In" as TransitionIn
 @onready var animation: AnimatedSprite2D = $anim
 @onready var remote_tranform: RemoteTransform2D = $remote
 @onready var raycast_left: RayCast2D = $raycast_left
@@ -49,11 +49,16 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	elif(is_jump):
 		is_jump = false
-		
+	
+	if(is_death):
+		transition_in.change_scene("res://game.tscn", 1)
+	
 	if(is_death || is_healing):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		move_and_slide()
 		return
+
+	
 
 	jump_action = "jump"
 	moves_action = {"left": "move_left", "right": "move_right"}
@@ -161,8 +166,5 @@ func _disable_keys():
 
 	if(keys_disabled.has(SignalBus.DisableKeys.KEY_SPACE) && Input.is_action_just_pressed(jump_action)): 
 		jump_force = 0
-
-
-
 
 

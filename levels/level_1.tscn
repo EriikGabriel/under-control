@@ -1,6 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://crmd435d0r5l4"]
+[gd_scene load_steps=36 format=3 uid="uid://crmd435d0r5l4"]
 
 [ext_resource type="Script" path="res://scripts/world/world_1.gd" id="1_1yyjk"]
+[ext_resource type="PackedScene" uid="uid://bqyjucihdpafd" path="res://prefabs/ui/transition_in.tscn" id="2_3a21h"]
 [ext_resource type="Texture2D" uid="uid://08wntifp68h1" path="res://assets/Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="2_ckpl1"]
 [ext_resource type="PackedScene" uid="uid://bisriq574agub" path="res://actors/player.tscn" id="3_v41y2"]
 [ext_resource type="Texture2D" uid="uid://ct5j6thhyig4a" path="res://assets/Tilesets/default tile.png" id="4_6e22w"]
@@ -497,6 +498,8 @@ texture = ExtResource("18_bfnaa")
 centered = false
 metadata/_edit_lock_ = true
 
+[node name="Transition In" parent="." instance=ExtResource("2_3a21h")]
+
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(0, -2)
 zoom = Vector2(2, 2)
@@ -557,7 +560,8 @@ position = Vector2(767, 168)
 lines = Array[String](["\"No véu enigmático, a plataforma murmura, teclas aprisionadas, seu poder atenua...", "Porém, um caminho se abre e revela o drama, o feitiço inimigo, é a chave da trama!\""])
 
 [node name="Fall Zone" type="Area2D" parent="."]
-position = Vector2(627, 465)
+visible = false
+position = Vector2(501, 536)
 collision_layer = 2
 script = ExtResource("22_2eovr")
 metadata/_edit_group_ = true

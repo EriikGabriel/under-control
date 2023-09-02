@@ -11,7 +11,7 @@ func _ready():
 	start.grab_focus()
 
 func _on_start_pressed() -> void:
-	transition_in.change_scene("res://levels/level_1.tscn", 2)
+	transition_in.change_scene("res://game.tscn", 2)
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()

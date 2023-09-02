@@ -1,3 +1,12 @@
-res://levels/main_menu.tscn
+res://game.tscn
 res://levels/level_1.tscn
 res://spriteframes/keys.tres
+res://UI/pause_menu.tscn
+res://levels/main_menu.tscn
+res://UI/pause_menu.gd
+res://UI/menu_ui_theme.tres
+res://scripts/player/player.gd
+res://scripts/levels/Main Menu/main_menu.gd
+res://actors/player.tscn
+res://scripts/world/world_1.gd
+res://scripts/ui/transition_in.gd

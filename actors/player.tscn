@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://bisriq574agub"]
+[gd_scene load_steps=62 format=3 uid="uid://bisriq574agub"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_r14og"]
 [ext_resource type="Texture2D" uid="uid://km8icrwd5tm6" path="res://assets/Actors/Player/death.png" id="2_0jo6a"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://scripts/player/states/hurt.gd" id="14_mqhl8"]
 [ext_resource type="Script" path="res://scripts/player/states/death.gd" id="15_x7ib2"]
 [ext_resource type="Script" path="res://scripts/player/states/fall.gd" id="16_tc1sv"]
+[ext_resource type="PackedScene" uid="uid://bqyjucihdpafd" path="res://prefabs/ui/transition_in.tscn" id="18_udsxb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3dtth"]
 atlas = ExtResource("2_s1wyc")
@@ -412,6 +413,8 @@ script = ExtResource("15_x7ib2")
 
 [node name="fall" type="Node" parent="State Machine"]
 script = ExtResource("16_tc1sv")
+
+[node name="Transition In" parent="." instance=ExtResource("18_udsxb")]
 
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="frame_changed" from="anim" to="." method="_on_anim_frame_changed"]
